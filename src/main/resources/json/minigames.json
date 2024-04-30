@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "script": "10",
+    "type": "SHQUR"
+  },
+  {
+    "id": "2",
+    "script": "11",
+    "type": "COOK"
+  },
+  {
+    "id": "3",
+    "type": "SHOP"
+  },
+  {
+    "id":4,
+    "type": "MOM_CLEAN",
+    "script": 22
+  },
+  {
+    "id": 5,
+    "type": "PADIQUE",
+    "script": 30
+  },
+  {
+    "id": 6,
+    "type": "SHQUR",
+    "script": 10
+  },
+  {
+    "id":7,
+    "type": "BUS"
+  },
+  {
+    "id": 8,
+    "type": "SHQUR",
+    "script": 10
+  },
+  {
+    "id": 9,
+    "type": "SLEEP",
+    "script":3
+  },
+  {
+    "id": 10,
+    "type": "SINK",
+    "script": 4
+  },
+  {
+    "id": 11,
+    "type": "TOILET",
+    "script": 5
+  },
+  {
+    "id": 12,
+    "type": "SHQUR",
+    "script": 10
+  },
+  {
+    "id": 13,
+    "type": "SHQUR",
+    "script": 10
+  },
+  {
+    "id": 14,
+    "script":1,
+    "type": "DEATH"
+  },
+  {
+    "id": 15,
+    "script": 0,
+    "type": "ELEVATOR"
+  },
+  {
+    "id": 16,
+    "script": 10,
+    "type": "SHQUR"
+  }
+]

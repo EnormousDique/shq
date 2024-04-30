@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="windows-1251">
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/Launcher.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/engine/Game.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/engine/Renderer.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/engine/Updater.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/engine/utils/Command.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/engine/utils/Effect.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/engine/utils/Input.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/entities/GameObject.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/entities/Item.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/entities/Level.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/entities/Minigame.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/story/Dialogue.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/story/scripts/Script.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/textures/ItemTextures.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/textures/ObjectTextures.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/json/girl_dialogues.json" charset="UTF-8" />
+    <file url="PROJECT" charset="windows-1251" />
+  </component>
+</project>

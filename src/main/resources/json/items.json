@@ -1,0 +1,879 @@
+[
+  {
+    "id": 1,
+    "name": "Соль",
+    "description": "поосторожнее с этой хуйней.",
+    "stackable": true,
+    "count": 1,
+    "price": 1500,
+    "type": "FOOD",
+    "effect": {
+      "name":"спиды (слаб)",
+      "hpBonus": 0,
+      "staminaBonus": 50,
+      "speedBonus": 2,
+      "sprintBonus": 2,
+      "regHpBonus": 25,
+      "regStaminaBonus": 100,
+      "cameraShake": 0,
+      "cameraDelay": 0,
+      "permanent": false,
+      "expirationTime": 0,
+      "duration": 30000,
+      "crazy": 10,
+      "sleepy": -5,
+      "hunger": -25,
+      "thirst": 5
+    }
+  },
+  {
+    "id": 2,
+    "name": "Нож",
+    "description": "Острый",
+    "stackable": false,
+    "count": 1,
+    "ammo": 0,
+    "maxAmmo": 0,
+    "damage": 20,
+    "price": 300,
+    "type": "MELEE",
+    "effect": null
+  },
+  {
+    "id": 3,
+    "name": "Макарыч",
+    "description": "калибр 9мм (как твой хуй)",
+    "stackable": false,
+    "count": 1,
+    "ammo": 8,
+    "maxAmmo": 8,
+    "damage": 0,
+    "price": 5000,
+    "type": "FIREARM",
+    "effect": null
+  },
+  {
+    "id": 4,
+    "name": "Тапки абибас",
+    "description": "Нормальные сандали",
+    "stackable": false,
+    "count": 1,
+    "ammo": 0,
+    "maxAmmo": 0,
+    "damage": 0,
+    "price": 2500,
+    "type": "FOOTWEAR",
+    "effect": {
+      "name": "спорт. обувка",
+      "hpBonus": 0,
+      "staminaBonus": 20,
+      "speedBonus": 1,
+      "sprintBonus": 1,
+      "regHpBonus": 0,
+      "regStaminaBonus": 0,
+      "cameraShake": 0,
+      "cameraDelay": 0,
+      "permanent": true,
+      "expirationTime": 0,
+      "duration": 0
+    }
+  },
+  {
+    "id": 5,
+    "name": "Кожанка",
+    "description": "Из кожезаменителя",
+    "stackable": false,
+    "count": 1,
+    "ammo": 0,
+    "maxAmmo": 0,
+    "damage": 0,
+    "price": 4000,
+    "type": "TORSO",
+    "effect": {
+      "name": "защита тела",
+     "permanent": true,
+      "hpBonus": 20
+    }
+  },
+  {
+    "id": 6,
+    "name": "противогаз",
+    "description": "смотри на задохнись",
+    "stackable": false,
+    "count": 1,
+    "ammo": 0,
+    "maxAmmo": 0,
+    "damage": 0,
+    "price": 1500,
+    "type": "HAT",
+    "effect": {
+      "name": "неудобно дышать",
+      "permanent": true,
+      "staminaBonus": -50
+    }
+  },
+  {
+    "id": 7,
+    "name": "шмаль",
+    "description": "курни кропаль",
+    "stackable": true,
+    "count": 1,
+    "price": 1500,
+    "type": "FOOD",
+    "effect": {}
+  },
+  {
+    "id":8,
+    "name": "100_rub",
+    "description": "российских",
+    "stackable": true,
+    "count": 1,
+    "price": 100,
+    "type":"MONEY"
+
+  },
+  {
+    "id": 9,
+    "name": "ammo_9x18_mm",
+    "description": "под макарыч",
+    "type": "AMMO",
+    "price": 500,
+    "stackable": true,
+    "count": 1
+  },
+  {
+    "id": 30,
+    "name": "яблоко",
+    "description": "да на тарелочке",
+    "stackable": true,
+    "count": 1,
+    "price": 15,
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 2,
+      "thirst": -3,
+      "hunger": -2,
+      "poo": 5,
+      "pee": 5
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 31,
+    "name": "картошка",
+    "description": "или бульба",
+    "stackable": true,
+    "count": 1,
+    "price": 5,
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 2,
+      "thirst": -1,
+      "hunger": -1,
+      "poo": 10,
+      "pee": 1
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 32,
+    "name": "капуста",
+    "description": "ищу детей, в капусте пусто",
+    "stackable": true,
+    "count": 1,
+    "price": 30,
+    "effect": {
+      "regHpBonus": 2,
+      "name": "поел",
+      "thirst": -2,
+      "hunger": -1,
+      "poo": 5,
+      "pee": 5
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 33,
+    "name": "макароны",
+    "description": "сырые",
+    "stackable": true,
+    "count": 1,
+    "price": 150,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "thirst": 5,
+      "hunger": -1,
+      "poo": 5,
+      "pee": 1
+    }
+  },
+  {
+    "id": 34,
+    "name": "яйцо",
+    "description": "бритое что ли",
+    "stackable": true,
+    "count": 1,
+    "price": 9,
+    "effect": {
+      "regHpBonus": 2,
+      "name": "поел",
+      "thirst": -1,
+      "hunger": -4,
+      "poo": 8,
+      "pee": 1
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 35,
+    "name": "рис",
+    "description": "китайцы сказали норм",
+    "stackable": true,
+    "count": 1,
+    "price": 100,
+    "effect": {
+      "regHpBonus": 1,
+      "name": "поел",
+      "thirst": 10,
+      "hunger": 0,
+      "poo": 12,
+      "pee": 0
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 36,
+    "name": "молоко",
+    "description": "ебать",
+    "stackable": true,
+    "count": 1,
+    "price": 75,
+    "effect": {
+      "regHpBonus": 3,
+      "name": "поел",
+      "thirst": -20,
+      "hunger": -4,
+      "poo": 5,
+      "pee": 20,
+      "crazy": -1
+
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 37,
+    "name": "помидор",
+    "description": "охуенен и пиздат. томат",
+    "stackable": true,
+    "count": 1,
+    "price": 25,
+    "effect": {
+      "regHpBonus": 2,
+      "name": "поел",
+      "thirst": -3,
+      "hunger": -2,
+      "poo": 5,
+      "pee": 5
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 38,
+    "name": "масло сливочное",
+    "description": "82%",
+    "stackable": true,
+    "count": 1,
+    "price": 190,
+    "effect": {
+      "regHpBonus": 1,
+      "name": "поел",
+      "thirst": 15,
+      "hunger": -10,
+      "poo": 15,
+      "pee": 0
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 39,
+    "name": "масло растительное",
+    "description": "уже не вырастет",
+    "stackable": true,
+    "count": 1,
+    "price": 140,
+    "effect": {
+      "regHpBonus": 0,
+      "name": "поел",
+      "thirst": 20,
+      "hunger": -10,
+      "poo": 35,
+      "pee": 5
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 40,
+    "name": "свекла",
+    "description": "селедкина шуба",
+    "stackable": true,
+    "count": 1,
+    "price": 11,
+    "effect": {
+      "regHpBonus": 1,
+      "name": "поел",
+      "thirst": -2,
+      "hunger": -1,
+      "poo": 5,
+      "pee": 5
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 41,
+    "name": "творог",
+    "description": "похож на выделения",
+    "stackable": true,
+    "count": 1,
+    "price": 120,
+    "type": "FOOD",
+    "effect": {
+      "regHpBonus": 5,
+      "name": "поел",
+      "thirst":0,
+      "hunger": -15,
+      "poo": 10,
+      "pee": 0
+    }
+  },
+  {
+    "id": 42,
+    "name": "сыр",
+    "description": "российский",
+    "stackable": true,
+    "count": 1,
+    "price": 300,
+    "effect": {
+      "regHpBonus": 0,
+      "name": "поел",
+      "thirst": 10,
+      "hunger": -5,
+      "poo": 20,
+      "pee": 0
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 43,
+    "name": "хлеб",
+    "description": "белый",
+    "stackable": true,
+    "count": 1,
+    "price": 30,
+    "effect": {
+      "regHpBonus": 1,
+      "name": "поел",
+      "thirst": 5,
+      "hunger": -10,
+      "poo": 15,
+      "pee": 0
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 44,
+    "name": "черный хлеб",
+    "description": "бородинский",
+    "stackable": true,
+    "count": 1,
+    "price": 50,
+    "effect": {
+      "regHpBonus": 3,
+      "name": "поел",
+      "thirst": 5,
+      "hunger": -13,
+      "poo": 12,
+      "pee": 0
+    },
+    "type": "FOOD"
+  },
+  {
+    "id": 45,
+    "name": "мука пекарная",
+    "description": "не прет",
+    "stackable": true,
+    "count": 1,
+    "price": 100,
+    "effect": {
+      "regHpBonus": 1,
+      "name": "поел",
+      "thirst": 10,
+      "hunger": -1,
+      "poo": 5,
+      "pee": 5
+    },
+    "type": "FOOD"
+  },
+  {
+    "id":46,
+    "name": "настойка трав",
+    "description": "для нервишек и давления",
+    "stackable": true,
+    "price": 300,
+    "count": 1
+  },
+  {
+    "id":47,
+    "name": "валокардин",
+    "description": "от давления норм",
+    "stackable": true,
+    "price": 600,
+    "count": 1
+  },
+  {
+    "id":48,
+    "name": "валидол",
+    "description": "если у вашей мамы шалит сердечко",
+    "stackable": true,
+    "price": 1500,
+    "count": 1
+  },
+  {
+    "id":49,
+    "name": "корвалол",
+    "description": "ебанет сердце твоей старухи с кикстартера",
+    "stackable": true,
+    "price": 3300,
+    "count": 1
+  },
+  {
+    "id":50,
+    "name": "паста помодорро",
+    "description": "паста с помидором",
+    "stackable": true,
+    "price": 1,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 15,
+      "thirst": 5,
+      "hunger": -25,
+      "poo": 20,
+      "pee": 0
+    }
+  },
+  {
+    "id":51,
+    "name": "фарш",
+    "description": "из мяса",
+    "stackable": true,
+    "price": 450,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 5,
+      "thirst": 0,
+      "hunger": -5,
+      "poo": 15,
+      "pee": 0
+    }
+  },
+  {
+    "id":52,
+    "name": "говяда",
+    "description": "сырая",
+    "stackable": true,
+    "price": 700,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 5,
+      "thirst": 0,
+      "hunger": -10,
+      "poo": 25,
+      "pee": 0
+    }
+  },
+  {
+    "id":53,
+    "name": "курица",
+    "description": "ощипана",
+    "stackable": true,
+    "price": 250,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 5,
+      "thirst": 0,
+      "hunger": -5,
+      "poo": 15,
+      "pee": 0
+    }
+  },
+
+  {
+    "id":54,
+    "name": "огурец",
+    "description": "гуркен",
+    "stackable": true,
+    "price": 30,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 2,
+      "thirst": -3,
+      "hunger": -2,
+      "poo": 5,
+      "pee": 2
+    }
+  },
+  {
+    "id":55,
+    "name": "лук",
+    "description": "не плач сук)))",
+    "stackable": true,
+    "price": 5,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 1,
+      "thirst": 1,
+      "hunger": 1,
+      "poo": 1,
+      "pee": 1
+    }
+  },
+  {
+    "id":56,
+    "name": "морковь",
+    "description": "любовь",
+    "stackable": true,
+    "price": 10,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 1,
+      "thirst": 1,
+      "hunger": 1,
+      "poo": 1,
+      "pee": 1
+    }
+  },
+  {
+    "id":57,
+    "name": "салат",
+    "description": "овощной (летний)",
+    "stackable": true,
+    "price": 100,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 15,
+      "thirst": -5,
+      "hunger": -15,
+      "poo": 10,
+      "pee": 2
+    }
+  },  {
+  "id":58,
+  "name": "Жареная курица",
+  "description": "как у полковника",
+  "stackable": true,
+  "price": 10,
+  "count": 1,
+  "type": "FOOD",
+  "effect": {
+    "name": "поел",
+    "regHpBonus": 10,
+    "thirst": -10,
+    "hunger": -25,
+    "poo": 30,
+    "pee": 0
+  }
+},  {
+  "id":59,
+  "name": "говяжий стейк",
+  "description": "килограммовый",
+  "stackable": true,
+  "price": 10,
+  "count": 1,
+  "type": "FOOD",
+  "effect": {
+    "name": "поел",
+    "regHpBonus": 30,
+    "thirst": -10,
+    "hunger": -50,
+    "poo": 29,
+    "pee": 0
+  }
+},  {
+  "id":60,
+  "name": "котлеты",
+  "description": "как летом",
+  "stackable": true,
+  "price": 10,
+  "count": 1,
+  "type": "FOOD",
+  "effect": {
+    "name": "поел",
+    "regHpBonus": 20,
+    "thirst": -15,
+    "hunger": -30,
+    "poo": 29,
+    "pee": 0
+  }
+},  {
+  "id":61,
+  "name": "Куриный суп",
+  "description": "как у мамы",
+  "stackable": true,
+  "price": 10,
+  "count": 1,
+  "type": "FOOD",
+  "effect": {
+    "name": "поел",
+    "regHpBonus": 30,
+    "thirst": -10,
+    "hunger": -25,
+    "poo": 20,
+    "pee": 10
+  }
+},  {
+  "id":62,
+  "name": "картожечка с лучком",
+  "description": "жареная",
+  "stackable": true,
+  "price": 10,
+  "count": 1,
+  "type": "FOOD",
+  "effect": {
+    "name": "поел",
+    "regHpBonus": 15,
+    "thirst": -10,
+    "hunger": -20,
+    "poo": 25,
+    "pee": 0
+  }
+},  {
+  "id":63,
+  "name": "сырнии",
+  "description": "пиздатые",
+  "stackable": true,
+  "price": 10,
+  "count": 1,
+  "type": "FOOD",
+  "effect": {
+    "name": "поел",
+    "regHpBonus": 10,
+    "thirst": 1,
+    "hunger": -10,
+    "poo": 10,
+    "pee": 0
+  }
+},
+
+  {
+    "id":64,
+    "name": "борщ",
+    "description": "красный",
+    "stackable": true,
+    "price": 10,
+    "count": 1,
+    "type": "FOOD",
+    "effect": {
+      "name": "поел",
+      "regHpBonus": 44,
+      "thirst": -15,
+      "hunger": -60,
+      "poo": 30,
+      "pee": 10
+    }
+  },
+  {
+    "id": 65,
+    "name": "Мазь <<Анальный князь>>",
+    "description": "Скользкая",
+    "stackable": true,
+    "price": 300,
+    "count": 1,
+    "type": "ITEM"
+  },
+  {
+    "id": 66,
+    "name": "Сигареты",
+    "description": "Затянись, ковбой",
+    "stackable": true,
+    "price": 200,
+    "count": 1,
+    "type": "ITEM"
+  },
+  {
+    "id": 67,
+    "name": "зажигалка",
+    "description": "запалiчка (зачапирка)",
+    "count": 1,
+    "type": "ITEM",
+    "price": 50
+  },
+  {
+    "id": 68,
+    "name": "бейджик",
+    "description": "написано : кассир кирюша",
+    "count": 1,
+    "type": "ITEM"
+  },
+  {
+    "id": 69,
+    "name": "косяк",
+    "description": "пыхнем? | подожги меня",
+    "count": 1,
+    "type": "ITEM",
+    "stackable": true
+  },
+  {
+    "id": 70,
+    "name": "Кремний (Si)",
+    "description": "основной материал, используемый для создания базовых структур процессора",
+    "count": 1,
+    "type": "ITEM",
+    "price": 25000
+  },
+  {
+    "id": 71,
+    "name": "Процессор (ЦП)",
+    "description": "чё-то типа детали для компа",
+    "count": 1,
+    "type": "ITEM"
+  },
+  {
+    "id": 72,
+    "name": "Системный блок",
+    "description": "Коробка с блоком питания и материнской платой.",
+    "count": 1,
+    "type": "SCRIPT",
+    "scriptId": 11116,
+    "price": 10000
+  },
+  {
+    "id": 73,
+    "name": "Посылка хакера",
+    "description": "Коробка с какими-то деталями",
+    "count": 1,
+    "type": "ITEM",
+    "price": 15000
+  },
+  {
+    "id": 74,
+    "name": "Банковская карта",
+    "description": "пластиковая",
+    "count": 1,
+    "stackable": true,
+    "type": "ITEM"
+  },
+  {
+    "id": 75,
+    "name": "Букет",
+    "description": "миллион, миллион, миллион...",
+    "count": 1,
+    "stackable": true,
+    "type": "ITEM",
+    "price": 1000
+  },
+  {
+    "id": 76,
+    "name": "Устройство хакера",
+    "description": "сказал - для банкомата..",
+    "count": 1,
+    "type": "ITEM",
+    "price": 50000
+  },
+  {
+    "id":77,
+    "name": "синий пак",
+    "description": "фитюля синяя",
+    "stackable": true,
+    "price": 1,
+    "count": 1,
+    "type": "PACK",
+    "scriptId":77
+  },
+  {
+    "id": 78,
+    "name": "Водка",
+    "description": "0.5 литра жидкого золота",
+    "count": 1,
+    "type": "DRUG",
+    "price": 300,
+    "scriptId":9
+  },
+  {
+    "id": 79,
+    "name": "Ключ-карта",
+    "description": "Открывает все двери в больнице",
+    "count": 1,
+    "type": "ITEM"
+  },
+  {
+    "id": 80,
+    "name": "Ключ",
+    "description": "От сейфа в больнице",
+    "type": "SCRIPT",
+    "scriptId": 777710
+  },
+  {
+    "id": 81,
+    "name": "шприц",
+    "description": "Написано <<диацетилморфин>>",
+    "count": 1,
+    "type": "SCRIPT",
+    "scriptId": 77771
+  },
+  {
+    "id": 82,
+    "name": "халат",
+    "description": "медицинский (как у врача)",
+    "type": "TORSO",
+    "count": 1,
+    "effect": {}
+  },
+  {
+    "id": 83,
+    "name": "колескеъ",
+    "description": "инвалидная",
+    "type": "SCRIPT",
+    "count": 1,
+    "scriptId": 77779
+  },
+  {
+    "id": 84,
+    "name": "пиво",
+    "description": "моча с пузыриками",
+    "type": "SCRIPT",
+    "count": 1,
+    "scriptId": 84,
+    "stackable": true
+  },
+  {
+    "id": 85,
+    "name": "лом",
+    "description": "против лома нет приема",
+    "type": "MELEE",
+    "count": 1,
+    "damage": 20
+  },
+  {
+    "id": 86,
+    "name": "грудничок",
+    "description": "пиздючок",
+    "type": "ITEM",
+    "count": 1
+  }
+]

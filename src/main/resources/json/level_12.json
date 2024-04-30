@@ -1,0 +1,1014 @@
+{
+  "levelId": 12,
+  "isIndoors": true,
+  "isStreet": false,
+  "objectPlacements": [
+    {
+      "id": 202,
+      "x": 0,
+      "y": 0,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 690,
+      "y": 325,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 690,
+      "y": 591,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 690,
+      "y": 857,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 690,
+      "y": 1123,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 690,
+      "y": 1389,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1325,
+      "y": 325,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1325,
+      "y": 591,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1325,
+      "y": 857,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1325,
+      "y": 1123,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1325,
+      "y": 1389,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1955,
+      "y": 325,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1955,
+      "y": 591,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1955,
+      "y": 857,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1955,
+      "y": 1123,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 1955,
+      "y": 1389,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 60,
+      "y": 325,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 60,
+      "y": 591,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 60,
+      "y": 857,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 60,
+      "y": 1123,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 204,
+      "x": 60,
+      "y": 1389,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 205,
+      "x": 25,
+      "y": 75,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 205,
+      "x": 670,
+      "y": 75,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 205,
+      "x": 1305,
+      "y": 75,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 205,
+      "x": 1935,
+      "y": 75,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 205,
+      "x": 2570,
+      "y": 75,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 127,
+      "y": 1247,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 127,
+      "y": 981,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 127,
+      "y": 715,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 127,
+      "y": 449,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 127,
+      "y": 183,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 772,
+      "y": 1247,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 772,
+      "y": 981,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 772,
+      "y": 715,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 772,
+      "y": 449,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 772,
+      "y": 183,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 1407,
+      "y": 1247,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 1407,
+      "y": 981,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 1407,
+      "y": 715,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 1407,
+      "y": 449,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 1407,
+      "y": 183,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 2037,
+      "y": 1247,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 2037,
+      "y": 981,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 2037,
+      "y": 715,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 2037,
+      "y": 449,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 203,
+      "x": 2037,
+      "y": 183,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 206,
+      "x": 40,
+      "y": 1490,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 3,
+      "x": 480,
+      "y": 1277,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 3,
+      "x": 1050,
+      "y": 1277,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 3,
+      "x": 1685,
+      "y": 1277,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 3,
+      "x": 2320,
+      "y": 1277,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 45,
+      "y": 1246,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 45,
+      "y": 980,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 45,
+      "y": 714,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 45,
+      "y": 448,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 45,
+      "y": 182,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 675,
+      "y": 1246,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 675,
+      "y": 1246,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 675,
+      "y": 980,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 675,
+      "y": 714,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 675,
+      "y": 448,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 675,
+      "y": 182,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1310,
+      "y": 980,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1310,
+      "y": 1246,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1310,
+      "y": 980,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1310,
+      "y": 714,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1310,
+      "y": 448,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1310,
+      "y": 182,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1945,
+      "y": 714,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1945,
+      "y": 1246,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1945,
+      "y": 980,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1945,
+      "y": 714,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1945,
+      "y": 448,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 208,
+      "x": 1945,
+      "y": 182,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 108,
+      "x": 1000,
+      "y": 436,
+      "items": {},
+      "coordinates": {
+        "x": 200,
+        "y": 200,
+        "levelId": 13
+      }
+    },
+    {
+      "id": 108,
+      "x": 640,
+      "y": 1400,
+      "items": {},
+      "coordinates": {
+        "x": 5500,
+        "y": 7700,
+        "levelId": 1
+      }
+    },
+    {
+      "id": 108,
+      "x": 1275,
+      "y": 1400,
+      "items": {},
+      "coordinates": {
+        "x": 5865,
+        "y": 7700,
+        "levelId": 1
+      }
+    },
+    {
+      "id": 108,
+      "x": 1910,
+      "y": 1400,
+      "items": {},
+      "coordinates": {
+        "x": 6220,
+        "y": 7700,
+        "levelId": 1
+      }
+    },
+    {
+      "id": 108,
+      "x": 2545,
+      "y": 1400,
+      "items": {},
+      "coordinates": {
+        "x": 6580,
+        "y": 7700,
+        "levelId": 1
+      }
+    },
+    {
+      "id": 5,
+      "x": 450,
+      "y": 214,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 450,
+      "y": 480,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 450,
+      "y": 746,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 450,
+      "y": 1012,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 450,
+      "y": 1278,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 440,
+      "y": 310,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 440,
+      "y": 586,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 440,
+      "y": 852,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 440,
+      "y": 1118,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 440,
+      "y": 1384,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1074,
+      "y": 312,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1075,
+      "y": 585,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1076,
+      "y": 842,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1073,
+      "y": 1116,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1072,
+      "y": 1376,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1705,
+      "y": 1379,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1705,
+      "y": 1111,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1705,
+      "y": 847,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1705,
+      "y": 583,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 1705,
+      "y": 317,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 2339,
+      "y": 317,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 2339,
+      "y": 579,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 2339,
+      "y": 843,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 2339,
+      "y": 1115,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 222,
+      "x": 2339,
+      "y": 1377,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1071,
+      "y": 1021,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1071,
+      "y": 757,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1071,
+      "y": 481,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1071,
+      "y": 221,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1706,
+      "y": 225,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1714,
+      "y": 483,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1714,
+      "y": 749,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 1714,
+      "y": 1021,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 2350,
+      "y": 1017,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 2350,
+      "y": 751,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 2350,
+      "y": 487,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 5,
+      "x": 2350,
+      "y": 219,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 27,
+      "y": 143,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 35,
+      "y": 404,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 37,
+      "y": 675,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 43,
+      "y": 941,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 679,
+      "y": 408,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 673,
+      "y": 663,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 676,
+      "y": 923,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 674,
+      "y": 1197,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1314,
+      "y": 401,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1310,
+      "y": 657,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1310,
+      "y": 923,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1310,
+      "y": 1185,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1940,
+      "y": 1199,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1940,
+      "y": 923,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1940,
+      "y": 655,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 1940,
+      "y": 387,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 227,
+      "x": 2079,
+      "y": 1467,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 227,
+      "x": 1432,
+      "y": 1461,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 227,
+      "x": 828,
+      "y": 1461,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 227,
+      "x": 157,
+      "y": 1459,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 226,
+      "x": 34,
+      "y": 1179,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 228,
+      "x": 444,
+      "y": 1338,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 228,
+      "x": 1167,
+      "y": 1417,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 228,
+      "x": 1793,
+      "y": 1425,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 228,
+      "x": 2409,
+      "y": 1425,
+      "items": {},
+      "coordinates": null
+    }
+  ]
+}
