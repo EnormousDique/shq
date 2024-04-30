@@ -104,6 +104,7 @@ public class Input {
 
                     case H:
                         h();
+                        keyboard.map.put(i,false);
                         break;
 
                 }

@@ -635,7 +635,6 @@
     "solid": true,
     "type": "CONTAINER"
   },
-
   {
     "id": "100",
     "name": "hub_floor",
@@ -1007,13 +1006,38 @@
     "scriptId": 33336
   },
   {
+    "id": 33334,
+    "name": "clerk",
+    "hitBox": {
+      "width": "35",
+      "height": "25"
+    },
+    "type": "CREATURE",
+    "speed": "4",
+    "hp": 100000,
+    "dialogue":33334,
+    "solid": true
+  },
+  {
+    "id": 33335,
+    "name": "driver",
+    "hitBox": {
+      "width": "35",
+      "height": "25"
+    },
+    "type": "CREATURE",
+    "speed": "4",
+    "hp": 100,
+    "dialogue":0,
+    "solid": true
+  },
+  {
     "id": 4444,
     "name": "Pedoffka",
     "hitBox": {
       "width": "35",
       "height": "25"
     },
-    "solid": "true",
     "type": "CREATURE",
     "speed": "0",
     "hp": 100000,
@@ -1088,20 +1112,7 @@
     "dialogue": 18,
     "solid": true
   },
-  {
-    "id": 33334,
-    "name": "clerk",
-    "hitBox": {
-      "width": "35",
-      "height": "25"
-    },
-    "solid": "true",
-    "type": "CREATURE",
-    "speed": "4",
-    "hp": 100000,
-    "dialogue":33334,
-    "solid": true
-  },
+
   {
     "id": 44441,
     "name": "Kostya",

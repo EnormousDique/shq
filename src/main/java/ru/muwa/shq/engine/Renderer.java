@@ -46,7 +46,6 @@ public class Renderer implements Runnable{
             case 1 -> hud = 2;
             case 2 -> hud = 3;
             case 3 -> hud = 0;
-
         }
     }
 
@@ -376,51 +375,54 @@ public class Renderer implements Runnable{
             g.drawString(GameTime.getString(), GameWindow.WIDTH - 150, 10);
 
             //Рисуем статы игрока
-            g.drawString(" \u2764 : " + Game.player.hp + " / " + Game.player.baseHp , GameWindow.WIDTH -150, 30 );
-            g.drawString(" \uD83D\uDEE1 : " + Game.player.bonusHp, GameWindow.WIDTH-150, 50);
-            g.drawString("Руб : " + Game.player.money,GameWindow.WIDTH-150, 70);
-            g.drawString("говно : " + Double.toString(Game.player.poo).substring(0,3) + "/100", GameWindow.WIDTH-150,200);
-            g.drawString("моча : " + Double.toString(Game.player.pee).substring(0,3) + "/100", GameWindow.WIDTH-150,220);
-            g.drawString("голод : " + Double.toString(Game.player.hunger).substring(0,3) + "/100", GameWindow.WIDTH-150,240);
-            g.drawString("жажда : " + Double.toString(Game.player.thirst).substring(0,3) + "/100", GameWindow.WIDTH-150,260);
-            g.drawString("сонливость : " + Double.toString(Game.player.sleepy).substring(0,3) + "/100", GameWindow.WIDTH-170,280);
-            String crazyStr = Double.toString(Game.player.crazy).substring(0,3);
-            g.drawString("псих : " + crazyStr + "/100", GameWindow.WIDTH-150,300);
-            String staminaStr = Double.toString(Game.player.stamina).substring(0,3);
-            g.drawString("дыхалка : " + staminaStr + "/"+(Game.player.baseStamina+Game.player.bonusStamina), GameWindow.WIDTH-160,320);
-
-            //И статы мамы
-            g.drawString("Покорми маму : " + GameTime.longToString(Game.player.mommaFullness), GameWindow.WIDTH-200, 100);
-            g.drawString("Дай лекарства маме : " + GameTime.longToString(Game.player.mommaHealth), GameWindow.WIDTH-230, 120);
-            g.drawString("Помой маму : " + GameTime.longToString(Game.player.mommaClean), GameWindow.WIDTH-200, 140);
+            if(hud > 0){
+                //ХП
+                g.drawString(" \u2764 : " + Game.player.hp + " / " + Game.player.baseHp , GameWindow.WIDTH -150, 30 );
+                //БРОНЯ
+                g.drawString(" \uD83D\uDEE1 : " + Game.player.bonusHp, GameWindow.WIDTH-150, 50);
+                //ДЫХАЛКА
+                String staminaStr = Double.toString(Game.player.stamina).substring(0,3);
+                g.drawString("дыхалка : " + staminaStr + "/"+(Game.player.baseStamina+Game.player.bonusStamina), GameWindow.WIDTH-160,320);
+                //Рисуем активные эффекты (при наличии)
+                if(!Game.player.effects.isEmpty()) {
+                    g.drawString("активные эффекты : ",120,60);
+                    for (int i = 0; i < Game.player.effects.size(); i++) {
+                        Item.Effect effect = Game.player.effects.get(i);
+                        g.drawString(effect.name, 120, 80+ i*20 );
+                    }
+                }
+                //Уровни шухера
+                if(Game.currentLevel.isIndoors) {
+                    g.drawString("шухер : " + Double.toString(Game.currentLevel.noise).substring(0,3) + "/100",GameWindow.WIDTH-180,360);
+                }
+                //и беспредела
+                g.drawString(" беспредел : " + Double.toString(Game.player.wanted).substring(0,3) + "/100",GameWindow.WIDTH-180,340);
+                //Бабки $$$$$
+                g.drawString("Руб : " + Game.player.money,GameWindow.WIDTH-150, 70);
+                if(hud>1){
+                    //И статы мамы
+                    g.drawString("Покорми маму : " + GameTime.longToString(Game.player.mommaFullness), GameWindow.WIDTH-200, 100);
+                    g.drawString("Дай лекарства маме : " + GameTime.longToString(Game.player.mommaHealth), GameWindow.WIDTH-230, 120);
+                    g.drawString("Помой маму : " + GameTime.longToString(Game.player.mommaClean), GameWindow.WIDTH-200, 140);
+                 if(hud>2){
+                     g.drawString("говно : " + Double.toString(Game.player.poo).substring(0,3) + "/100", GameWindow.WIDTH-150,200);
+                     g.drawString("моча : " + Double.toString(Game.player.pee).substring(0,3) + "/100", GameWindow.WIDTH-150,220);
+                     g.drawString("голод : " + Double.toString(Game.player.hunger).substring(0,3) + "/100", GameWindow.WIDTH-150,240);
+                     g.drawString("жажда : " + Double.toString(Game.player.thirst).substring(0,3) + "/100", GameWindow.WIDTH-150,260);
+                     g.drawString("сонливость : " + Double.toString(Game.player.sleepy).substring(0,3) + "/100", GameWindow.WIDTH-170,280);
+                     String crazyStr = Double.toString(Game.player.crazy).substring(0,3);
+                     g.drawString("псих : " + crazyStr + "/100", GameWindow.WIDTH-150,300);
+                 }
+                }
+            }
 
             //координаты мыши
             g.drawString("x:"+ (Input.mouse.x+Camera.x) + " y:"+ (Input.mouse.y+Camera.y-30),GameWindow.WIDTH-100, 160);
             g.drawString("x:"+ Input.mouse.x + " y:"+ (Input.mouse.y-30),GameWindow.WIDTH-100, 180);
 
-            //Уровни шухера и беспредела
-            if(Game.currentLevel.isIndoors) {
-                g.drawString("шухер : " + Double.toString(Game.currentLevel.noise).substring(0,3) + "/100",GameWindow.WIDTH-180,360);
-            }
-            g.drawString(" беспредел : " + Double.toString(Game.player.wanted).substring(0,3) + "/100",GameWindow.WIDTH-180,340);
-
             //Предмет в руках
             if(Game.player.equip!=null)
                 g.drawString("в руках : " + Game.player.equip.name + (Game.player.equip.type==FIREARM?".  пули : " + Game.player.equip.ammo + "/"+Game.player.equip.maxAmmo : ""),120,20);
-
-            //Рисуем активные эффекты (при наличии)
-            if(!Game.player.effects.isEmpty())
-            {
-
-                g.drawString("активные эффекты : ",120,60);
-
-                for (int i = 0; i < Game.player.effects.size(); i++) {
-
-                    Item.Effect effect = Game.player.effects.get(i);
-                    g.drawString(effect.name, 120, 80+ i*20 );
-
-                }
-            }
 
             //Рисуем окна открытых контейнеров.
             for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
