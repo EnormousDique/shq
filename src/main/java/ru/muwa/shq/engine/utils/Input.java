@@ -215,6 +215,8 @@ public class Input {
                 if(o==Game.mechanic) {Dialogue.current = Dialogue.mech.get(o.dialogue);Dialogue.companion=MECHANIC;}
                 if(o==Game.butcher) {Dialogue.current = Dialogue.butcher.get(o.dialogue);Dialogue.companion=BUTCHER;}
                 if(o==Game.girl) {Dialogue.current = Dialogue.girl.get(o.dialogue);Dialogue.companion=GIRL;}
+                if(o==Game.pharmacist) {Dialogue.current = Dialogue.pharmacist.get(o.dialogue);Dialogue.companion=PHARMACIST;}
+
 
 
                 Dialogue.texture = Dialogue.textures.get(o.id);
@@ -604,6 +606,8 @@ public class Input {
                         case NURSE -> Dialogue.current = Dialogue.nurse.get(button.nextMessage);
                         case BUTCHER -> Dialogue.current = Dialogue.butcher.get(button.nextMessage);
                         case GIRL -> Dialogue.current = Dialogue.girl.get(button.nextMessage);
+                        case PHARMACIST -> Dialogue.current = Dialogue.pharmacist.get(button.nextMessage);
+
 
                         case MOM -> foo();
                     }

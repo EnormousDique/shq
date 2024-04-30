@@ -91,6 +91,8 @@ public class Dialogue {
     public static HashMap<Integer,Dialogue> nurse = new HashMap<>();
     public static HashMap<Integer,Dialogue> mech = new HashMap<>();
     public static HashMap<Integer,Dialogue> butcher = new HashMap<>();
+    public static HashMap<Integer,Dialogue> pharmacist = new HashMap<>();
+
 
 
     static
@@ -109,6 +111,7 @@ public class Dialogue {
         fillDialogueMapFromJSON(mech,pathToJsonWithItems);
         fillDialogueMapFromJSON(butcher,"json/butchers_dialogues.json");
         fillDialogueMapFromJSON(girl,"json/girl_dialogues.json");
+        fillDialogueMapFromJSON(pharmacist,"json/pharmacist_dialogues.json");
         System.out.println("Список диалогов успешно загружен");
     }
 

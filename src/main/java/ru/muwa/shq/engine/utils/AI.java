@@ -46,8 +46,6 @@ public class AI {
     private static void traffic() {
 
     }
-
-
     //Проходимся по НПЦ и передаем их службе физики чтобы проверить столкновения
     private static void callbackCollisions() {
         for (int i = 0; i <Game.currentLevel.objects.size(); i++) {

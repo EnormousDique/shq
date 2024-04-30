@@ -1165,8 +1165,8 @@ public abstract class Script {
                 //Проверяем, есть ли у Шкипера сигареты
                 var smokes = Game.player.items.stream()
                         .filter(i->i.id==66).findFirst().orElse(null);
-                //Если есть
-                if(smokes!=null){
+                //Если есть сигареты, и есть квест "где деньги ч1"
+                if(smokes!=null && Game.player.quests.stream().anyMatch(q->q.id==12)){
                     //Забираем сигу
                     smokes.count -=1; if(smokes.count<=0){ Game.player.items.remove(smokes);if(Game.player.equip==smokes)Game.player.equip = null; }
                     //Перемещаем мерчандайзера и Шкипера на улицу
@@ -1180,9 +1180,12 @@ public abstract class Script {
                     }
                     Game.currentLevel = Level.repo.get(STREET_1);
                     Game.currentLevel.objects.add(Game.player);
+                    Game.player.x = 3030; Game.player.y = 2000;
 
                 }else{
-                    //Если нет
+                    //Если нет, выводим диалог
+                    Dialogue d = new Dialogue();
+                    d.message = "Какой покурить? Ты ебанулся";
 
                 }
 
