@@ -6,25 +6,8 @@
     "stackable": true,
     "count": 1,
     "price": 1500,
-    "type": "FOOD",
-    "effect": {
-      "name":"спиды (слаб)",
-      "hpBonus": 0,
-      "staminaBonus": 50,
-      "speedBonus": 2,
-      "sprintBonus": 2,
-      "regHpBonus": 25,
-      "regStaminaBonus": 100,
-      "cameraShake": 0,
-      "cameraDelay": 0,
-      "permanent": false,
-      "expirationTime": 0,
-      "duration": 30000,
-      "crazy": 10,
-      "sleepy": -5,
-      "hunger": -25,
-      "thirst": 5
-    }
+    "type": "DRUG",
+    "scriptId": 5
   },
   {
     "id": 2,
@@ -891,5 +874,23 @@
     "type": "SCRIPT",
     "count": 1,
     "scriptId":88
+  },
+  {
+    "id": 89,
+    "name": "косяк",
+    "description": "со шмалью",
+    "type": "DRUG",
+    "count": 1,
+    "stackable": true,
+    "scriptId": 89
+  },
+  {
+    "id": 90,
+    "name": "бумажка",
+    "description": "для самокруток",
+    "type": "SCRIPT",
+    "count": 1,
+    "stackable": true,
+    "scriptId": 90
   }
 ]

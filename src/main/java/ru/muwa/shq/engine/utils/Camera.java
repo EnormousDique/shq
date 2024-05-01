@@ -11,6 +11,7 @@ public class Camera {
 
     static Kink kink;
 
+    /**  **/
     public static void update(){
         x = (int) Game.player.hitBox.getCenterX() - (GameWindow.WIDTH/2);
         y = (int) Game.player.hitBox.getCenterY() - (GameWindow.HEIGHT/2);
@@ -35,11 +36,9 @@ public class Camera {
                 case UP: Camera.y -=1;
                 case DOWN: Camera.y+=1;
             }
-            //Камера зависать с шансом равным % опьянения
-            if(Math.random() * 100 - Game.player.drunk > Game.player.drunk) if(Math.random() * 100 - Game.player.drunk > Game.player.drunk) {
-                update();
-                kink = null;
-            }
+            update();
+
+
         }else update(); //иначе камера обновляется стандартно
     }
 }

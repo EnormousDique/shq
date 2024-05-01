@@ -166,6 +166,33 @@ public abstract class Script {
         };
         repo.put(4,script);
 
+        /** Скрипт соли **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Повышаем нанюханность
+                Game.player.stimulate += 20;
+                //Повышаем дыхалку
+                Game.player.stamina += 50;
+                //Повышаем псих
+                Game.player.crazy += 10;
+                //Даем хп
+                Game.player.hp += 20;
+                //Даем сушняк
+                Game.player.thirst += 10;
+                //Снимаем сонливость
+                if(Game.player.sleepy > 40) Game.player.sleepy -= 15;
+                //Снимаем голод
+                if(Game.player.hunger < 60) Game.player.hunger -= 10;
+                //Забираем соль
+                Game.player.equip.count -=1;
+                if(Game.player.equip.count < 0){
+                    Game.player.items.remove(Game.player.equip);
+                    Game.player.equip = null;
+                }
+            }
+        }; repo.put(5,script);
+
         /** Скрипт мини-игры с ментовской подставой ("красная" закладка) **/
         //TODO: перенести в хача???
         script = new Script() {
@@ -390,6 +417,26 @@ public abstract class Script {
                 Game.player.addItem(Item.get(87));
             }
         };repo.put(88,script);
+
+        /** Скрипт косяка**/
+        script = new Script() {
+            @Override
+            public void execute() {
+                Game.player.smoke += 20;
+                Game.player.thirst += 20;
+                Game.player.hunger += 10;
+                Game.player.sleepy += 7;
+                Game.player.crazy += 7;
+            }
+        }; repo.put(89,script);
+
+        /** **/
+        script = new Script() {
+            @Override
+            public void execute() {
+
+            }
+        }; repo.put(90,script);
 
         //==========================================================================================//
         /**

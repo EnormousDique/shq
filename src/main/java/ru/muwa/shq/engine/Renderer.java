@@ -4,20 +4,16 @@ import ru.muwa.shq.engine.utils.*;
 import ru.muwa.shq.entities.GameObject;
 import ru.muwa.shq.entities.Item;
 import ru.muwa.shq.entities.Minigame;
-import ru.muwa.shq.entities.Player;
 import ru.muwa.shq.story.Dialogue;
 import ru.muwa.shq.story.Quest;
 import ru.muwa.shq.textures.ItemTextures;
 import ru.muwa.shq.textures.MinigameTextures;
 import ru.muwa.shq.textures.ObjectTextures;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -36,6 +32,7 @@ public class Renderer implements Runnable{
     public static String renderingBoss = "";
     public static boolean showDescriptions;
     public static int hud = 0;
+    public static boolean smokedRendering = false;
 
     public static boolean drawZones = false, drawWalls = false;
 
@@ -321,6 +318,7 @@ public class Renderer implements Runnable{
 
         private  void fillBG(Graphics g)
         {
+            if(smokedRendering) return;
             g.setColor(Color.BLACK);
             g.fillRect(0,0,GameWindow.WIDTH,GameWindow.HEIGHT);
         }
@@ -334,10 +332,13 @@ public class Renderer implements Runnable{
 
                 GameObject o = Game.currentLevel.objects.get(i);
 
+
+
                 if(camera.intersects(new Rectangle(o.hitBox.x - o.hitBoxXOffset, o.hitBox.y-o.hitBoxYOffset,o.hitBox.width+o.hitBoxXOffset,o.hitBox.height+o.hitBoxYOffset)))
                 {
                     if(Game.player.crazy > 33 && Math.random()<0.01) continue; // слабые глюки
                     if(Game.player.crazy > 70 && Math.random()<0.025) continue; // средние глюки
+                    if(smokedRendering && o.name.contains("bg")) continue; //глюки от травки
 
                     if(o == Game.player) continue;
 
