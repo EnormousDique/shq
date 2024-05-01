@@ -370,6 +370,27 @@ public abstract class Script {
             }
         };
         repo.put(77,script);
+
+
+        /** Скрипт секатора **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Проверяем, есть ли поблизости цветы
+                //Создаем поле действия секатора (100x100 вокруг игрока)
+                Rectangle zone =
+                        new Rectangle(Game.player.x - 50, Game.player.y-50,100,100);
+                //Находим куст, входящий в зону действия секатора
+                GameObject bush = Game.currentLevel.objects.stream()
+                        .filter(o->o.hitBox.intersects(zone) && o.id==67).findFirst().orElse(null);
+                if(bush == null) return;
+                //Если куст нашелся, удаляем его с уровня
+                Game.currentLevel.objects.remove(bush);
+                //Даем Шкиперу срезанный куст как предмет
+                Game.player.addItem(Item.get(87));
+            }
+        };repo.put(88,script);
+
         //==========================================================================================//
         /**
          *
@@ -898,7 +919,7 @@ public abstract class Script {
                     //Прелагаем взять квест "где деньги ч1"
                     Dialogue.current = Dialogue.butcher.get(13);
                 //Если Шкипер выполнил "где деньги ч1", но не взял ч2
-                if(Game.player.quests.stream().noneMatch(q->q.id==33) && Game.player.quests.stream().anyMatch(q->q.id==32&&q.completed))
+                if(Game.player.quests.stream().noneMatch(q->q.id==33) && Game.player.quests.stream().anyMatch(q->q.id==12&&q.completed))
                     Dialogue.current = Dialogue.butcher.get(20);
             }
         }; repo.put(3333,script);
@@ -1187,7 +1208,7 @@ public abstract class Script {
                     }
                     Game.currentLevel = Level.repo.get(STREET_1);
                     Game.currentLevel.objects.add(Game.player);
-                    Game.player.x = 5850; Game.player.y = 3100;
+                    Game.player.x = 5850; Game.player.y = 2100;
                     //Выводим диалог
                     Dialogue d = new Dialogue();
                     d.message = "Слыш, вот ты на вид дибил дибилом \n А сигареты куришь нормальные...";
@@ -1214,19 +1235,34 @@ public abstract class Script {
                 //Добавляем реплику для сдачи квеста
                 Dialogue.butcher.get(6).responses
                         .add(new Dialogue.Response("Водила..",0,3333_20));
+                //Закрываем диалог
+                Dialogue.current = null;
             }
         }; repo.put(3333_19,script);
         /** Шкипер сдает задание "где деньги ч2" **/
         script = new Script() {
             @Override
             public void execute() {
-                //TODO
-                //Проверяем условия задания
-                //Если все ок, выполняем задание
-                //Даем награду
-                //Выводим диалог
-                //Удаляем реплику для сдачи квеста
+                //Проверяем что на улице нет живого водителя
+                if(Level.repo.get(STREET_1).objects.stream().noneMatch(o->o.id==3333_5))
+                {
+                    //Если все ок, выполняем задание
+                    for(var q: Game.player.quests) if(q.id==33) q.completed = true;
+                    //Даем награду
+                    Game.player.money += 10_000;
+                    //Выводим диалог
+                    Dialogue.current = Dialogue.butcher.get(0);
+                    //Удаляем реплику для сдачи квеста
+                    Dialogue.Response response =
+                            Dialogue.butcher.get(6).responses
+                            .stream()
+                            .filter(r -> r.text.equals("Водила.."))
+                            .findFirst()
+                            .orElse(null);
+                    if(response!= null) Dialogue.butcher.get(6).responses.remove(response);
+                }
                 //Если нет, напоминаем о задании
+                Dialogue.current = Dialogue.butcher.get(0);
             }
         };repo.put(3333_20,script);
         /** Шкипер берет квест "где деньги ч3" **/

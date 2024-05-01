@@ -636,6 +636,72 @@
     "type": "CONTAINER"
   },
   {
+    "id": 62,
+    "name": "home_1",
+    "hitBox":
+    {
+      "width": 377,
+      "height": 205
+    },
+    "solid": true,
+    "type": "BUILDING"
+  },
+  {
+    "id": 63,
+    "name": "home_2",
+    "hitBox":
+    {
+      "width": 350,
+      "height": 196
+    },
+    "solid": true,
+    "type": "BUILDING"
+  },
+  {
+    "id": 64,
+    "name": "home_1",
+    "hitBox":
+    {
+      "width": 294,
+      "height": 211
+    },
+    "solid": true,
+    "type": "BUILDING"
+  },
+  {
+    "id": 65,
+    "name": "wood_fence",
+    "hitBox":
+    {
+      "width": 130,
+      "height": 45
+    },
+    "solid": true,
+    "type": "OBJECT"
+  },
+  {
+    "id": 66,
+    "name": "wood_fence_vert",
+    "hitBox":
+    {
+      "width": 45,
+      "height": 130
+    },
+    "solid": true,
+    "type": "OBJECT"
+  },
+  {
+    "id": 67,
+    "name": "roses_object",
+    "hitBox":
+    {
+      "width": 75,
+      "height": 75
+    },
+    "solid": true,
+    "type": "OBJECT"
+  },
+  {
     "id": "100",
     "name": "hub_floor",
     "hitBox": {
@@ -1026,7 +1092,7 @@
       "height": "25"
     },
     "type": "CREATURE",
-    "speed": "4",
+    "speed": 0,
     "hp": 100,
     "dialogue":0,
     "solid": true

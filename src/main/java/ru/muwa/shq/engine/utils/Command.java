@@ -72,7 +72,7 @@ public class Command {
 
     private static void loadLevel(int loadLevel) {
 
-        String pathToJsonWithItems = "D:\\IdeaProjects\\shq\\src\\main\\resources\\json\\level_" + loadLevel + ".json";
+        String pathToJsonWithItems = "D:\\shq\\src\\main\\resources\\json\\level_" + loadLevel + ".json";
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -106,7 +106,7 @@ public class Command {
         // Попробуйте сериализовать объект в JSON и записать в файл
         try {
             // Сериализация объекта в JSON и запись в файл
-            String filePathAndName = "D:\\IdeaProjects\\shq\\src\\main\\resources\\json\\" + "level_"+levelSkeleton.levelId+".json";
+            String filePathAndName = "D:\\shq\\src\\main\\resources\\json\\" + "level_"+levelSkeleton.levelId+".json";
             objectMapper.writeValue(new File(filePathAndName), levelSkeleton);
             System.out.println("Уровень успешно сериализован в JSON и записан в файл");
         } catch (IOException e) {

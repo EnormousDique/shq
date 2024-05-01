@@ -181,6 +181,24 @@ public class ObjectTextures {
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"school_bg.png"));
             repo.put(58,image);
 
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"home_1.png"));
+            repo.put(62,image); transparentRepo.put(62,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"home_2.png"));
+            repo.put(63,image); transparentRepo.put(63,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"home_3.png"));
+            repo.put(64,image); transparentRepo.put(64,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"wood_fence.png"));
+            repo.put(65,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"wood_fence_vert.png"));
+            repo.put(66,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"roses_object.png"));
+            repo.put(67,image);
+
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "indoor/hub_floor.png");
             image = ImageIO.read(inputStream);  repo.put(100,image);
 
@@ -254,7 +272,7 @@ public class ObjectTextures {
             image = ImageIO.read(inputStream);  repo.put(3333,image);
 
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"gopNick.png"));
-            repo.put(3333_1,image);repo.put(3333_2,image);repo.put(3333_4,image);
+            repo.put(3333_1,image);repo.put(3333_2,image);repo.put(3333_4,image); repo.put(3333_5,image);
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "gopNick.png");
             image = ImageIO.read(inputStream);  repo.put(4444,image); repo.put(4444_1,image); repo.put(4444_2,image);

@@ -875,5 +875,21 @@
     "description": "пиздючок",
     "type": "ITEM",
     "count": 1
+  },
+  {
+    "id": 87,
+    "name": "букет роз",
+    "description": "миллион ли",
+    "type": "ITEM",
+    "count": 1,
+    "stackable": true
+  },
+  {
+    "id": 88,
+    "name": "секатор",
+    "description": "для разного рода кустов и не только",
+    "type": "SCRIPT",
+    "count": 1,
+    "scriptId":88
   }
 ]
