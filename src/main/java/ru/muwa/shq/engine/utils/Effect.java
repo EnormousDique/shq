@@ -53,7 +53,8 @@ public class Effect {
             Game.player.crazy -= 1;
             //Если перебрал, хуярит
             if(Game.player.smoke > 70) Game.player.crazy += 2;
-            smokeCalmTimer = System.currentTimeMillis() + 1_000;
+            //Таймер на 750 мсек (кулдаун)
+            smokeCalmTimer = System.currentTimeMillis() + 750;
         }
         //Обновляем таймер глюков
         if(!Renderer.smokedRendering && Game.player.smoke > 5 && newGlitchTimer<System.currentTimeMillis()) {
