@@ -9,6 +9,8 @@ import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.Map;
 
+import static ru.muwa.shq.engine.utils.Camera.Kink.*;
+
 public class Effect {
 
     /** РАБОТА СЛУЖБЫ ЭФФЕКТОВ **/
@@ -24,9 +26,43 @@ public class Effect {
         handleCrazy();
         handleStamina();
         handleStim();
-      //handleDrunk();
+        handleDrunk();
         handleSmoke();
         applyBonusesFromActiveEffects();
+    }
+
+    /** Таймер убавления бухла **/
+    private static long drunkTimer = 0;
+    /** Таймер вертолета **/
+    private static long drunkCameraTimer = 0;
+    /** Таймер перерыва от вертолетов **/
+    private static long drunkCameraReleaseTimer = 0;
+    /** Управление бухлом **/
+    private static void handleDrunk() {
+        //Соблюдаем границы
+        if(Game.player.drunk > 100) Game.player.drunk = 100;
+        //Опьянение падает на 1 в 1 сек (2 игровые минуты)
+        if(drunkTimer<System.currentTimeMillis()) {
+            drunkTimer = System.currentTimeMillis() + 1_000;
+            Game.player.drunk -=1;
+        }
+        //Соблюдаем границы
+        if(Game.player.drunk < 0) Game.player.drunk = 0;
+        //Упраявляем вертолетами
+        if(Game.player.drunk > 5 && drunkCameraReleaseTimer < System.currentTimeMillis()){
+            if(Camera.kink == null) {
+                drunkCameraTimer = (long) (System.currentTimeMillis() + Game.player.drunk * 100);
+                double chance = Math.random();
+                if(chance < 0.25) Camera.kink = LEFT;
+                if(chance > 0.25 && chance < 0.5) Camera.kink = RIGHT;
+                if(chance > 0.5 && chance < 0.75) Camera.kink = UP;
+                if(chance > 0.75) Camera.kink = DOWN;
+            }
+        }
+        if(drunkCameraTimer < System.currentTimeMillis() && drunkCameraReleaseTimer < System.currentTimeMillis()) {
+            Camera.kink = null;
+            drunkCameraReleaseTimer = (long) (System.currentTimeMillis() + 4_000 - (Game.player.drunk * 30));
+        }
     }
 
     /** Таймер ожидания до нового шлейфа **/
@@ -131,7 +167,8 @@ public class Effect {
         if(Game.player.stimulate > 55) totalBonusSprint += 1;
         //Баффы шмали
         if(Game.player.smoke > 70) totalBonusStamina -= (int) (Game.player.smoke - 40);
-        //
+        //Баффы бухла
+        if(Game.player.drunk > 10) totalBonusHp += (int) (Game.player.drunk / 5);
         //Применяем бонусы активных эффектов
         Game.player.bonusHp = totalBonusHp;
         Game.player.bonusStamina = totalBonusStamina;

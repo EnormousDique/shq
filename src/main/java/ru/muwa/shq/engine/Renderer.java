@@ -379,8 +379,9 @@ public class Renderer implements Runnable{
             if(hud > 0){
                 //’œ
                 g.drawString(" \u2764 : " + Game.player.hp + " / " + Game.player.baseHp , GameWindow.WIDTH -150, 30 );
+                g.drawString(" KINK : " + Camera.kink, GameWindow.WIDTH -150, 50 );
                 //¡–ŒÕﬂ
-                g.drawString(" \uD83D\uDEE1 : " + Game.player.bonusHp, GameWindow.WIDTH-150, 50);
+                //g.drawString(" \uD83D\uDEE1 : " + Game.player.bonusHp, GameWindow.WIDTH-150, 50);
                 //ƒ€’¿À ¿
                 String staminaStr = Double.toString(Game.player.stamina).substring(0,3);
                 g.drawString("‰˚ı‡ÎÍ‡ : " + staminaStr + "/"+(Game.player.baseStamina+Game.player.bonusStamina), GameWindow.WIDTH-160,320);
