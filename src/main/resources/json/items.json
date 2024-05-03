@@ -31,7 +31,7 @@
     "ammo": 8,
     "maxAmmo": 8,
     "damage": 0,
-    "price": 5000,
+    "price": 35000,
     "type": "FIREARM",
     "effect": null
   },
@@ -900,5 +900,48 @@
     "type": "SCRIPT",
     "count": 1,
     "scriptId": 91
+  },
+  {
+    "id": 92,
+    "name": "Обреz",
+    "description": "горизонталки",
+    "type": "FIREARM",
+    "count": 1,
+    "ammo": 2,
+    "maxAmmo": 2,
+    "damage": 0,
+    "price": 50000
+  },
+  {
+    "id": 93,
+    "name": "Садовая лопатка",
+    "description": "Удобно копать и вскапывать",
+    "count": 1,
+    "type": "SCRIPT",
+    "scriptId": 93
+  },
+  {
+    "id": 94,
+    "name": "Берцы",
+    "description": "Армейские, Б/У",
+    "count": 1,
+    "type": "FOOTWEAR",
+    "count": 1,
+    "price": 10000,
+    "effect": {
+      "name": "старые берцы",
+      "hpBonus": 10,
+      "staminaBonus": 0,
+      "speedBonus": 0,
+      "sprintBonus": 0,
+      "regHpBonus": 0,
+      "regStaminaBonus": 0,
+      "cameraShake": 0,
+      "cameraDelay": 0,
+      "permanent": true,
+      "expirationTime": 0,
+      "duration": 0
+    }
+
   }
 ]

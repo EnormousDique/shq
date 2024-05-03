@@ -145,13 +145,28 @@ public class Combat {
 
     public static void shoot()
     {
-        GameObject bullet = GameObject.get(666);
-        bullet.x = (int) Game.player.hitBox.getCenterX();
-        bullet.y = (int) Game.player.hitBox.getCenterY();
-        bulletAngles.put(bullet,angle);
-        bulletTimer.put(bullet,0.0);
-        BInitialPoints.put(bullet,new Point2D.Double(bullet.x,bullet.y));
-        Game.currentLevel.objects.add(bullet);
+        //Если стреляем с дробовика
+        if(Game.player.equip.id == 92){
+            //Делаем 3 пули
+            for (int i = 0; i < 3; i++) {
+                GameObject bullet = GameObject.get(666);
+                bullet.x = (int) Game.player.hitBox.getCenterX();
+                bullet.y = (int) Game.player.hitBox.getCenterY();
+                bulletAngles.put(bullet,angle + ((-1 + i)* 0.1));
+                bulletTimer.put(bullet,0.0);
+                BInitialPoints.put(bullet,new Point2D.Double(bullet.x,bullet.y));
+                Game.currentLevel.objects.add(bullet);
+            }
+        }else {
+            //Иначе делаем одну
+            GameObject bullet = GameObject.get(666);
+            bullet.x = (int) Game.player.hitBox.getCenterX();
+            bullet.y = (int) Game.player.hitBox.getCenterY();
+            bulletAngles.put(bullet, angle);
+            bulletTimer.put(bullet, 0.0);
+            BInitialPoints.put(bullet, new Point2D.Double(bullet.x, bullet.y));
+            Game.currentLevel.objects.add(bullet);
+        }
     }
     public static void enemyShoot(GameObject npc)
     {

@@ -702,6 +702,25 @@
     "type": "OBJECT"
   },
   {
+    "id":68,
+    "name": "dug_pit",
+    "hitBox":
+    {
+      "width": 50,
+      "height": 50
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 69,
+    "name": "park_digging_zone",
+    "hitBox": {
+      "width": 5000,
+      "height": 1500
+    },
+    "type": "ZONE"
+  },
+  {
     "id": "100",
     "name": "hub_floor",
     "hitBox": {

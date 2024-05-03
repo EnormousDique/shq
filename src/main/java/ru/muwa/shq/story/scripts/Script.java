@@ -279,6 +279,7 @@ public abstract class Script {
                             (kanistra.description.split(":")[1].split("/")[0]);
                     volume += 5; //Повышаем объем бензина
                     kanistra.description = "Заполнена:"+volume+"/100"; //Обновляем описание
+                    Game.player.wanted += 20; //Мусоров такое может заебать
             }
         };repo.put(17,script);
         /** Шкипер кормит маму **/
@@ -382,7 +383,6 @@ public abstract class Script {
             }
         };
         repo.put(24,script);
-
         /** Скрипт мини-игры Домофон. Проверяем введенный пароль **/
         script = new Script() {
             @Override
@@ -471,6 +471,34 @@ public abstract class Script {
                 }
             }
         };repo.put(91,script);
+        /** Скрипт садовой лопатки **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Копать можно только на улице
+                if(Game.currentLevel.id != STREET_1) return;
+                //Копать можно только в зоне парка (id ==69)
+                if(Game.currentLevel.objects.stream()
+                        .noneMatch(o -> o.id==69 && o.hitBox.intersects(Game.player.hitBox)))
+                    return;
+                //Зона действия лопаты
+                Rectangle zone =
+                        new Rectangle(Game.player.x - 50, Game.player.y-50,100,100);
+                //Ищем яму в зоне действия
+                GameObject pit = Game.currentLevel.objects.stream()
+                        .filter(o->o.hitBox.intersects(zone) && o.name.contains("pit")).findFirst().orElse(null);
+                if(pit != null) return; //Если в зоне действия есть яма, выкопать новую нельзя
+                //Иначе копаем яму
+                pit = GameObject.get(66);//Создали новую яму
+                //Ставим на уровень рядом со Шкипером
+                pit.x = Game.player.x; pit.y = Game.player.y + Game.player.hitBox.height;
+                Game.currentLevel.objects.add(pit);
+                //С шансом даем шкиперу закладку
+                if(Math.random() > 0.8) Game.player.addItem(Item.get(77));
+                //Агрим мусоров
+                Game.player.wanted += 20;
+            }
+        }; repo.put(93,script);
         //==========================================================================================//
         /**
          *
