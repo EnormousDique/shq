@@ -215,6 +215,7 @@ public class Renderer implements Runnable{
                     g.fillRect(Minigame.current.success.x,Minigame.current.success.y,Minigame.current.success.width,Minigame.current.success.height);
                     break;
 
+                case GAS:
                 case SINK:
                 case MOM_CLEAN:
                 case COOK:

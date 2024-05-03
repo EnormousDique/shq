@@ -892,5 +892,13 @@
     "count": 1,
     "stackable": true,
     "scriptId": 90
+  },
+  {
+    "id": 91,
+    "name": "Канистра",
+    "description": "Заполнена:0/100",
+    "type": "SCRIPT",
+    "count": 1,
+    "scriptId": 91
   }
 ]

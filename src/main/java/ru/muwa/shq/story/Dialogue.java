@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Dialogue {
-
     public int id;
     public String message;
     public List<Response> responses = new ArrayList<>();
@@ -22,7 +21,6 @@ public class Dialogue {
     public static BufferedImage texture;
     public enum Companion {MOM,BUTCHER,HACH,OFFICER,GIRL,TRAP,PHARMACIST,HACKER,MECHANIC,NURSE}
     public static Companion companion;
-
     public static final HashMap<Integer, BufferedImage> textures = new HashMap<>();
     static
     {
@@ -80,9 +78,7 @@ public class Dialogue {
         public String text;
         public int script;
     }
-
     public static Dialogue current;
-
     public static HashMap<Integer,Dialogue> repo = new HashMap<>();
     public static HashMap<Integer,Dialogue> hach = new HashMap<>();
     public static HashMap<Integer,Dialogue> hacker = new HashMap<>();
@@ -92,9 +88,6 @@ public class Dialogue {
     public static HashMap<Integer,Dialogue> mech = new HashMap<>();
     public static HashMap<Integer,Dialogue> butcher = new HashMap<>();
     public static HashMap<Integer,Dialogue> pharmacist = new HashMap<>();
-
-
-
     static
     {
         String pathToJsonWithItems = "json/dialogues.json";
@@ -114,7 +107,6 @@ public class Dialogue {
         fillDialogueMapFromJSON(pharmacist,"json/pharmacist_dialogues.json");
         System.out.println("Список диалогов успешно загружен");
     }
-
     @Override
     public String toString() {
         return "Dialogue{" +
@@ -123,7 +115,6 @@ public class Dialogue {
                 ", responses=" + responses +
                 '}';
     }
-
     private static void readDialoguesFromJsonFile(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -138,7 +129,6 @@ public class Dialogue {
             e.printStackTrace();
         }
     }
-
     private static void fillDialogueMapFromJSON(HashMap<Integer,Dialogue> dialogueMap, String pathToJSON) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -153,7 +143,5 @@ public class Dialogue {
             e.printStackTrace();
         }
     }
-
     public static void foo(){}
-
 }

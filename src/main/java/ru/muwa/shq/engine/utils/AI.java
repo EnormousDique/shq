@@ -14,7 +14,7 @@ import static ru.muwa.shq.entities.GameObject.Type.CREATURE;
 
 /**
  *
- * Класс ИИ.
+ * Класс ИИ.aaqq
  * Управляет игровыми персонажами
  *
  */

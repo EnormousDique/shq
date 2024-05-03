@@ -19,7 +19,7 @@ public class Minigame
     public Type type;
     public enum Type
     {
-        SHQUR, PADIQUE, MOM_CLEAN, DOOR, ELEVATOR,COOK,SHOP,BUS,SLEEP,SINK,TOILET,DEATH
+        SHQUR, PADIQUE, MOM_CLEAN, DOOR, ELEVATOR,COOK,SHOP,BUS,SLEEP,SINK,TOILET,DEATH,GAS
     }
     public int script;
     public String input = ""; // для padique и elevator
@@ -111,6 +111,7 @@ public class Minigame
             case SINK:
             case MOM_CLEAN:
             case COOK:
+            case GAS:
                 success = new Rectangle(window.x + 200,window.y+150,40,40);
                 break;
 

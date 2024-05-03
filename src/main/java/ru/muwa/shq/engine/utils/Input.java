@@ -431,7 +431,7 @@ public class Input {
                 if(Minigame.current.id == 16) Script.repo.get(8).execute();
                 Script.repo.get(Minigame.current.script).execute();
 
-                if (Minigame.current.type.equals(Minigame.Type.SHQUR)) {
+                if (Minigame.current.type.equals(Minigame.Type.SHQUR) || Minigame.current.type==GAS) {
                     Minigame.current.success.width = 0;
                     Minigame.current.success.height = 0;
                 }

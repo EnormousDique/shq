@@ -8,6 +8,7 @@ import ru.muwa.shq.story.Quest;
 
 import javax.print.attribute.standard.MediaPrintableArea;
 import java.awt.*;
+import java.beans.beancontext.BeanContextServiceAvailableEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -264,6 +265,22 @@ public abstract class Script {
         };
         repo.put(11,script);
 
+        /** Скрипт миниигры слив бензина **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                    //Находим канистру в инвентаре
+                    var kanistra = Game.player.items.stream()
+                            .filter(i->i.id==91).findFirst().orElse(null);
+                    //Если не нашли, нахуй
+                    if(kanistra == null) return;
+                    //Определяем текущий объем бенза в канистре по описанию
+                    int volume = Integer.parseInt
+                            (kanistra.description.split(":")[1].split("/")[0]);
+                    volume += 5; //Повышаем объем бензина
+                    kanistra.description = "Заполнена:"+volume+"/100"; //Обновляем описание
+            }
+        };repo.put(17,script);
         /** Шкипер кормит маму **/
         script = new Script() {
             //Проверка еды у Шкипера для мамы.
@@ -398,7 +415,6 @@ public abstract class Script {
         };
         repo.put(77,script);
 
-
         /** Скрипт секатора **/
         script = new Script() {
             @Override
@@ -417,7 +433,6 @@ public abstract class Script {
                 Game.player.addItem(Item.get(87));
             }
         };repo.put(88,script);
-
         /** Скрипт косяка**/
         script = new Script() {
             @Override
@@ -429,15 +444,33 @@ public abstract class Script {
                 Game.player.crazy += 7;
             }
         }; repo.put(89,script);
-
-        /** **/
+        /** Скрипт бумажки для самокруток **/
         script = new Script() {
             @Override
             public void execute() {
-
+                //TODO:
             }
         }; repo.put(90,script);
-
+        /** Скрипт канистры **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Зона действия канистры
+                Rectangle zone =
+                        new Rectangle(Game.player.x - 50, Game.player.y-50,100,100);
+                //Ищем машину в зоне действия
+                GameObject car = Game.currentLevel.objects.stream()
+                        .filter(o->o.hitBox.intersects(zone) && o.name.contains("car")).findFirst().orElse(null);
+                //Если нет, пока
+                if(car == null) return;
+                //Включаем миниигру слив бензина и сохраняем ссылку на нее в тачку
+                if(car.minigame!= null) Minigame.current = car.minigame;
+                else {
+                    Minigame.current = Minigame.get(17);
+                    car.minigame = Minigame.current;
+                }
+            }
+        };repo.put(91,script);
         //==========================================================================================//
         /**
          *
@@ -1765,7 +1798,9 @@ public abstract class Script {
         script = new Script() {
             @Override
             public void execute() {
-                //TODO
+                //Проверяем, если у Шкипера нет ни одного задания (кроме догнаться)
+                if(Game.player.quests.stream().noneMatch(q->q.owner.equals("тесть") && q.id!=46))
+                    Dialogue.current = Dialogue.mech.get(11);
             }
         }; repo.put(8888,script);
 
@@ -1813,9 +1848,82 @@ public abstract class Script {
                 if(Game.player.equip==vodka) Game.player.equip = null;
                 //Выводим диалог
                 Dialogue.current = Dialogue.mech.get(9);
+                //Меняем технику начальный диалог
+                Game.mechanic.dialogue = 10;
             }
         }; repo.put(8888_3,script);
+        /** Шкипер соглашается пройти в гараж с Техником **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Если мы в квартире механика
+                if(Game.currentLevel.id == MECH_FLAT) {
+                    //Перемещаем Техника из квартиры в гараж
+                    Level.repo.get(MECH_FLAT).objects.remove(Game.mechanic);
+                    Level.repo.get(GARAGE).objects.add(Game.mechanic);
+                    //Перемещаем Шкипера из квартиры в гараж
+                    Level.repo.get(MECH_FLAT).objects.remove(Game.player);
+                    Level.repo.get(GARAGE).objects.add(Game.player);
+                    Game.currentLevel = Level.repo.get(GARAGE);
+                    //Выводим продолжение диалога
+                    Dialogue.current = Dialogue.mech.get(12);
+                }else{//Если нет, то мы уже в гараже
+                    //Иначе выводим другой диалог
+                    Dialogue.current = Dialogue.mech.get(13);
+                }
+            }
+        }; repo.put(8888_4,script);
+        /** Шкипер берет квест с канистрой **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Дали квест
+                Game.player.quests.add(Quest.get(47));
+                //Закрыли диалог
+                Dialogue.current = null;
+                //Добавили реплику для сдачи
+                Dialogue.mech.get(Game.mechanic.dialogue).responses.add(
+                        new Dialogue.Response("Канистра...",0,8888_6)
+                );
+                //Дали канистру
+                Game.player.addItem(Item.get(91));
+            }
+        }; repo.put(8888_5,script);
+        /** Шкипер сдает квест с канистрой **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Проверяем принес ли шкипер канистру
+                var kanistra = Game.player.items.stream()
+                        .filter(i->i.id==91).findFirst().orElse(null);
+                if(kanistra == null){
+                    //Если не принес
+                    Dialogue.current = Dialogue.mech.get(0);
+                    return;
+                }
+                if(Integer.parseInt(kanistra.description.split(":")[1].split("/")[0])<100) {
+                    //Если принес пустую
+                    Dialogue.current = Dialogue.mech.get(0);
+                    return;
+                }
+                if(Integer.parseInt(kanistra.description.split(":")[1].split("/")[0])>=100) {
+                    //Если принес полную
+                    Dialogue.current = Dialogue.mech.get(0);
+                    for(var q:Game.player.quests)if(q.id==47)q.completed=true;
+                    //Удаляем реплику для сдачи квеста
+                    Dialogue.Response response =
+                            Dialogue.mech.get(Game.mechanic.dialogue).responses.stream()
+                                    .filter(r->r.text.equals("Канистра...")).findFirst().orElse(null);
+                    if(response!=null) Dialogue.mech.get(Game.mechanic.dialogue).responses.remove(response);
+                    //Забираем канистру
+                    Game.player.items.remove(kanistra);
+                    Game.player.equip = null;
+                }
+            }
+        }; repo.put(8888_6,script);
+
     }
+
     /** Бар **/
     public static void foo(){}
 }
