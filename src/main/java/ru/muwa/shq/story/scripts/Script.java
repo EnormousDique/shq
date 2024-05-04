@@ -405,6 +405,33 @@ public abstract class Script {
         };
         repo.put(30,script);
 
+        /** Скрипт двери в гараж **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Перемещаем игрока в гараж
+                Game.currentLevel.objects.remove(Game.player);
+                Game.currentLevel = Level.repo.get(GARAGE);
+                Game.currentLevel.objects.add(Game.player);
+                Game.player.x = 200; Game.player.y = 200;
+            }
+        }; repo.put(70,script);
+
+        /** Скрипт объекта труб **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Ищем трубу
+                var pipe = Game.currentLevel.objects.stream()
+                        .filter(o->o.id==73).findFirst().orElse(null);
+                if(pipe == null) return;
+                //Убираем трубу с уровня
+                Game.currentLevel.objects.remove(pipe);
+                //Даем трубы Шкиперу как предмет
+                Game.player.addItem(Item.get(95));
+            }
+        }; repo.put(73,script);
+
         /** Скрипт распаковки фитюли **/
         script = new Script() {
             //Распаковка фитюли
@@ -1827,11 +1854,23 @@ public abstract class Script {
             @Override
             public void execute() {
                 //Проверяем, если у Шкипера нет ни одного задания (кроме догнаться)
+                //Предлагаем квест с канистрой
                 if(Game.player.quests.stream().noneMatch(q->q.owner.equals("тесть") && q.id!=46))
                     Dialogue.current = Dialogue.mech.get(11);
+                //Если Шкипер выполнил задание с канистрой, предлагаем взять задание с трубами
+                if(Game.player.quests.stream().anyMatch(q->q.id==47&&q.completed)
+                && Game.player.quests.stream().noneMatch(q->q.id==48))
+                    Dialogue.current = Dialogue.mech.get(0);
+                //Если шкипер выполнил задание с трубами, предлагаем взять задание с деталями
+                if(Game.player.quests.stream().anyMatch(q->q.id==48&&q.completed)
+                        && Game.player.quests.stream().noneMatch(q->q.id==49))
+                    Dialogue.current = Dialogue.mech.get(0);
+                //Если шкипер выполнил задание с деталями, предлагаем взять задание с ураном
+                if(Game.player.quests.stream().anyMatch(q->q.id==49&&q.completed)
+                        && Game.player.quests.stream().noneMatch(q->q.id==50))
+                    Dialogue.current = Dialogue.mech.get(0);
             }
         }; repo.put(8888,script);
-
         /** Шкипер пьет стопочку с механиком **/
         script = new Script() {
             @Override
@@ -1895,6 +1934,10 @@ public abstract class Script {
                     Game.currentLevel = Level.repo.get(GARAGE);
                     //Выводим продолжение диалога
                     Dialogue.current = Dialogue.mech.get(12);
+                    //Добавляем дверь в гараж для последующих посещений
+                    var door = GameObject.get(70);
+                    door.x = 6200; door.y = 3370;
+                    Level.repo.get(STREET_1).objects.add(door);
                 }else{//Если нет, то мы уже в гараже
                     //Иначе выводим другой диалог
                     Dialogue.current = Dialogue.mech.get(13);
@@ -1926,17 +1969,17 @@ public abstract class Script {
                         .filter(i->i.id==91).findFirst().orElse(null);
                 if(kanistra == null){
                     //Если не принес
-                    Dialogue.current = Dialogue.mech.get(0);
+                    Dialogue.current = Dialogue.mech.get(15);
                     return;
                 }
                 if(Integer.parseInt(kanistra.description.split(":")[1].split("/")[0])<100) {
                     //Если принес пустую
-                    Dialogue.current = Dialogue.mech.get(0);
+                    Dialogue.current = Dialogue.mech.get(16);
                     return;
                 }
                 if(Integer.parseInt(kanistra.description.split(":")[1].split("/")[0])>=100) {
                     //Если принес полную
-                    Dialogue.current = Dialogue.mech.get(0);
+                    Dialogue.current = Dialogue.mech.get(17);
                     for(var q:Game.player.quests)if(q.id==47)q.completed=true;
                     //Удаляем реплику для сдачи квеста
                     Dialogue.Response response =
@@ -1949,7 +1992,6 @@ public abstract class Script {
                 }
             }
         }; repo.put(8888_6,script);
-
     }
 
     /** Бар **/

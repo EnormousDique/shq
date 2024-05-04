@@ -333,8 +333,6 @@ public class Renderer implements Runnable{
 
                 GameObject o = Game.currentLevel.objects.get(i);
 
-
-
                 if(camera.intersects(new Rectangle(o.hitBox.x - o.hitBoxXOffset, o.hitBox.y-o.hitBoxYOffset,o.hitBox.width+o.hitBoxXOffset,o.hitBox.height+o.hitBoxYOffset)))
                 {
                     if(Game.player.crazy > 33 && Math.random()<0.01) continue; // слабые глюки
@@ -355,6 +353,14 @@ public class Renderer implements Runnable{
                             continue;
                         }else //Иначе рисуем стандартную текстуру
                             g.drawImage(ObjectTextures.repo.get(o.id), o.x - Camera.x, o.y - Camera.y, null);
+                        //Для зон входа рисуем области
+                        if((o.name.contains("enter")||o.name.contains("exit"))&&o.type == ZONE)
+                        {
+                            Color oldColor = g.getColor();
+                            g.setColor(new Color(0,255,150,25));
+                            g.fillRect(o.hitBox.x-Camera.x,o.hitBox.y-Camera.y,o.hitBox.width,o.hitBox.height);
+                            g.setColor(oldColor);
+                        }
                     }
                     if(!drawWalls) continue;
                     g.setColor(Color.red);

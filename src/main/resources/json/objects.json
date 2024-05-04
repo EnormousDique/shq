@@ -515,7 +515,7 @@
   },
   {
     "id": 50,
-    "name": "zone_hospital_1floor_ladder_door",
+    "name": "zone_hospital_enter_1floor_ladder_door",
     "hitBox": {
       "width": 70,
       "height": 70
@@ -525,7 +525,7 @@
   },
   {
     "id": 51,
-    "name": "zone_hospital_2floor_ladder_door",
+    "name": "zone_hospital_enter_2floor_ladder_door",
     "hitBox": {
       "width": 70,
       "height": 70
@@ -535,7 +535,7 @@
   },
   {
     "id": 52,
-    "name": "zone_hospital_room_door",
+    "name": "zone_hospital_enter_room_door",
     "hitBox": {
       "width": 70,
       "height": 70
@@ -605,7 +605,7 @@
   },
   {
     "id": 59,
-    "name": "zone_school_door",
+    "name": "zone_enter_school_door",
     "hitBox": {
       "width": 60,
       "height": 150
@@ -719,6 +719,56 @@
       "height": 1500
     },
     "type": "ZONE"
+  },
+  {
+    "id": 70,
+    "name": "garage_door",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "INTERACT",
+    "scriptId": 70
+  },
+  {
+    "id": 71,
+    "name": "kotlovan",
+    "hitBox": {
+      "width": 940,
+      "height": 540
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 72,
+    "name": "construction",
+    "hitBox": {
+      "width": 1050,
+      "height": 705
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 73,
+    "name": "pipes_object",
+    "hitBox": {
+      "width": 114,
+      "height": 98
+    },
+    "type": "INTERACT",
+    "scriptId": 73
+  },
+  {
+    "id": 74,
+    "name": "garage_goods",
+    "hitBox": {
+      "width": 139,
+      "height": 108
+    },
+    "type": "INTERACT",
+    "minigameId": 3
   },
   {
     "id": "100",

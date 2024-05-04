@@ -181,6 +181,9 @@ public class Effect {
     private static long staminaTimer = 0;
     /** ”правление дыхалкой **/
     private static void handleStamina() {
+        if(Game.player.stamina>Game.player.baseStamina + Game.player.bonusStamina)
+            Game.player.stamina = Game.player.baseStamina+Game.player.bonusStamina;
+        if(Game.player.stamina<0) Game.player.stamina = 0;
         if(staminaTimer > System.currentTimeMillis()) return;
         if (Game.player.thirst > 99) return;
         if (Game.player.hunger > 99) return;

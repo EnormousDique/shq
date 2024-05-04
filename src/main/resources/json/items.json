@@ -942,6 +942,13 @@
       "expirationTime": 0,
       "duration": 0
     }
-
+  },
+  {
+    "id": 95,
+    "name": "Трубы",
+    "description": "Старые, ржавые, пизданутые со стройки",
+    "count": 1,
+    "type": "ITEM",
+    "price": 5000
   }
 ]
