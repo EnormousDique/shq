@@ -187,6 +187,7 @@ public class Effect {
         if(staminaTimer > System.currentTimeMillis()) return;
         if (Game.player.thirst > 99) return;
         if (Game.player.hunger > 99) return;
+        if(Input.keyboard.map.get(Input.keyboard.SHIFT)) return;
         Game.player.stamina += 1;
         staminaTimer = System.currentTimeMillis() + Game.player.thirst<50?40:100;
     }
@@ -222,6 +223,9 @@ public class Effect {
         if(hungerTimer > System.currentTimeMillis()) return;
         Game.player.hunger +=1; //Повышаем голод на 1
         hungerTimer = System.currentTimeMillis() + 4_000; //Каждые 4 секунды (8 игровых минут)
+        //Если Шкипер сыт, восполняем хп
+        if(Game.player.hunger < 25 && Game.player.hp < 99)  Game.player.hp += 1;
+        if(Game.player.hunger < 50 && Game.player.hp < 100) Game.player.hp += 1;
         //Если голод на максах, отнимаем 1 хп каждые 10 сек (20 игровых минут)
         if(Game.player.hunger > 99){Game.player.hp -= 1; hungerTimer = System.currentTimeMillis() + 10_000;}
     }

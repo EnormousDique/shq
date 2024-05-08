@@ -393,13 +393,7 @@ public class Renderer implements Runnable{
                 String staminaStr = Double.toString(Game.player.stamina).substring(0,3);
                 g.drawString("дыхалка : " + staminaStr + "/"+(Game.player.baseStamina+Game.player.bonusStamina), GameWindow.WIDTH-160,320);
                 //Рисуем активные эффекты (при наличии)
-                if(!Game.player.effects.isEmpty()) {
-                    g.drawString("активные эффекты : ",120,60);
-                    for (int i = 0; i < Game.player.effects.size(); i++) {
-                        Item.Effect effect = Game.player.effects.get(i);
-                        g.drawString(effect.name, 120, 80+ i*20 );
-                    }
-                }
+                drawEffects(g);
                 //Уровни шухера
                 if(Game.currentLevel.isIndoors) {
                     g.drawString("шухер : " + Double.toString(Game.currentLevel.noise).substring(0,3) + "/100",GameWindow.WIDTH-180,360);
@@ -484,6 +478,44 @@ public class Renderer implements Runnable{
                     g.fillRect(item.icon.x, item.icon.y,item.icon.width-20,item.icon.height-20);
                 }
             }
+
+        }
+
+        private void drawEffects(Graphics g) {
+            int row = 0;
+            if(!Game.player.effects.isEmpty()) {
+                g.drawString("активные эффекты : ",120,60);
+                for (int i = 0; i < Game.player.effects.size(); i++) {
+                    row = i;
+                    Item.Effect effect = Game.player.effects.get(i);
+                    g.drawString(effect.name, 120, 80+ row*20 );
+                }
+            }
+            row++;
+            if(Game.player.hunger>25) {g.drawString("Проголодался", 120, 80+ row*20);row++;}
+            if(Game.player.hunger>50) {g.drawString("Голоден", 120, 80+ row*20);row++;}
+            if(Game.player.hunger>98) {g.drawString("Смертельно голоден", 120, 80+ row*20);row++;}
+            if(Game.player.thirst>50) {g.drawString("Сушняк", 120, 80+ row*20);row++;}
+            if(Game.player.thirst>95) {g.drawString("Обезвоживание", 120, 80+ row*20);row++;}
+            if(Game.player.stimulate>0) {g.drawString("Бодрит", 120, 80+ row*20);row++;}
+            if(Game.player.stimulate>25) {g.drawString("Ускорился", 120, 80+ row*20);row++;}
+            if(Game.player.stimulate>50) {g.drawString("Обнюхан", 120, 80+ row*20);row++;}
+            if(Game.player.stimulate>75) {g.drawString("Перенюхал", 120, 80+ row*20);row++;}
+            if(Game.player.smoke>0) {g.drawString("Подкурен", 120, 80+ row*20);row++;}
+            if(Game.player.smoke>25) {g.drawString("Накурился", 120, 80+ row*20);row++;}
+            if(Game.player.smoke>70) {g.drawString("Перекурил", 120, 80+ row*20);row++;}
+            if(Game.player.drunk>0) {g.drawString("Пьяненький", 120, 80+ row*20);row++;}
+            if(Game.player.drunk>15) {g.drawString("Пьяный", 120, 80+ row*20);row++;}
+
+
+
+
+
+
+
+
+
+
 
         }
 
