@@ -4,6 +4,7 @@ import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.GameWindow;
 import ru.muwa.shq.entities.GameObject;
 import ru.muwa.shq.entities.Item;
+import ru.muwa.shq.entities.Player;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -108,15 +109,22 @@ public class Combat {
         line = new Line2D.Double(px,py,mouseX+Camera.x,mouseY+Camera.y);
 
     }
-
+    //Наносим урон
     public static void dealDamage(GameObject target, int damage) {
+        //Если цель - игрок, понижаем урон на коэффициент его брони
+        if(target == Game.player) damage = (damage * (100-Game.player.bonusHp)) / 100;
+        //Снижаем здоровье цели
         target.hp = target.hp - damage;
+        //Убираем цель (не игрока) с карты в случае смерти
         if(!target.equals(Game.player))
         {
             //Убийство
             if(target.hp <=0 ) {
+                //Убираем с карты убитого
                 Game.currentLevel.objects.remove(target);
+                //TODO лучше увеличивать беспредел индивидуально в зависимости от убитого. Можно сделать через мапу
                 Game.player.wanted += 25;
+                //Спавним труп
                 addCorpse(target);
             }
         }
