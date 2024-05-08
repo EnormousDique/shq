@@ -516,7 +516,6 @@ public class Renderer implements Runnable{
 
 
 
-
         }
 
         private void drawDescriptions(Graphics g) {

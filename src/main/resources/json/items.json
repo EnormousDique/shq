@@ -950,5 +950,21 @@
     "count": 1,
     "type": "ITEM",
     "price": 5000
+  },
+  {
+    "id": 96,
+    "name": "Счетчик Гейгера",
+    "description": "Почему он так трещит?",
+    "count": 1,
+    "type": "ITEM",
+    "price": 10000
+  },
+  {
+    "id": 97,
+    "name": "уран",
+    "description": "ну да, прям так. Кусок урана",
+    "count": 1,
+    "type": "ITEM",
+    "price": 100000
   }
 ]

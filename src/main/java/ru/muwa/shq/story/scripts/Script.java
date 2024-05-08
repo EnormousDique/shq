@@ -1860,11 +1860,11 @@ public abstract class Script {
                 //Если Шкипер выполнил задание с канистрой, предлагаем взять задание с трубами
                 if(Game.player.quests.stream().anyMatch(q->q.id==47&&q.completed)
                 && Game.player.quests.stream().noneMatch(q->q.id==48))
-                    Dialogue.current = Dialogue.mech.get(0);
+                    Dialogue.current = Dialogue.mech.get(18);
                 //Если шкипер выполнил задание с трубами, предлагаем взять задание с деталями
                 if(Game.player.quests.stream().anyMatch(q->q.id==48&&q.completed)
                         && Game.player.quests.stream().noneMatch(q->q.id==49))
-                    Dialogue.current = Dialogue.mech.get(0);
+                    Dialogue.current = Dialogue.mech.get(23);
                 //Если шкипер выполнил задание с деталями, предлагаем взять задание с ураном
                 if(Game.player.quests.stream().anyMatch(q->q.id==49&&q.completed)
                         && Game.player.quests.stream().noneMatch(q->q.id==50))
@@ -1992,6 +1992,113 @@ public abstract class Script {
                 }
             }
         }; repo.put(8888_6,script);
+        /** Шкипер берет квест с Трубами **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Добавялем квест
+                Game.player.quests.add(Quest.get(48));
+                //Добавляем реплику для сдачи квеста
+                Dialogue.mech.get(Game.mechanic.dialogue).responses.add(new Dialogue.Response("труба",0,8888_9));
+                //Закрываем диалог
+                Dialogue.current = null;
+            }
+        };repo.put(8888_7,script);
+        /** Шкипер сдает квест с Трубами **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Если Шкипер принес трубу
+                if(Game.player.items.stream().anyMatch(i->i.id==95)) {
+                    //Выводим диалог
+                    Dialogue.current = Dialogue.mech.get(22);
+                    //Завершаем квест
+                    for(var q:Game.player.quests)if(q.id==48)q.completed=true;
+                    //Удаляем реплику для сдачи квеста
+                    Dialogue.Response response = Dialogue.mech.get(Game.mechanic.dialogue).responses.stream()
+                            .filter(r->r.text.equals("труба")).findFirst().orElse(null);
+                    if(response!=null)Dialogue.mech.get(Game.mechanic.dialogue).responses.remove(response);
+                    //забираем трубу
+                    var pipe = Game.player.items.stream().filter(i->i.id==95).findFirst().orElse(null);
+                    if(pipe!=null)Game.player.items.remove(pipe);if(Game.player.equip==pipe)Game.player.equip=null;
+                }else {
+                    //Если не принес, напоминаем
+                    Dialogue.current = Dialogue.mech.get(21);
+                }
+            }
+        };repo.put(8888_9,script);
+        /** Шкипер берет квест с Гейгером **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Добавялем квест
+                Game.player.quests.add(Quest.get(49));
+                //Добавляем реплику для сдачи квеста
+                Dialogue.mech.get(Game.mechanic.dialogue).responses.add(new Dialogue.Response("счетчик",0,8888_11));
+                //Закрываем диалог
+                Dialogue.current = null;
+            }
+        };repo.put(8888_10,script);
+        /** Шкипер сдает квест с Гейгером **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Если Шкипер принес счетчик Гейгера
+                if(Game.player.items.stream().anyMatch(i->i.id==96)) {
+                    //Выводим диалог
+                    Dialogue.current = Dialogue.mech.get(27);
+                    //Завершаем квест
+                    for(var q:Game.player.quests)if(q.id==49)q.completed=true;
+                    //Удаляем реплику для сдачи квеста
+                    Dialogue.Response response = Dialogue.mech.get(Game.mechanic.dialogue).responses.stream()
+                            .filter(r->r.text.equals("счетчик")).findFirst().orElse(null);
+                    if(response!=null)Dialogue.mech.get(Game.mechanic.dialogue).responses.remove(response);
+                    //забираем счетчик
+                    var xrayMeter = Game.player.items.stream().filter(i->i.id==96).findFirst().orElse(null);
+                    if(xrayMeter!=null)Game.player.items.remove(xrayMeter);if(Game.player.equip==xrayMeter)Game.player.equip=null;
+
+                }else {
+                    //Если не принес, напоминаем
+                    Dialogue.current = Dialogue.mech.get(26);
+                }
+            }
+        };repo.put(8888_11,script);
+        /** Шкипер берет квест с ураном **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Добавялем квест
+                Game.player.quests.add(Quest.get(49));
+                //Добавляем реплику для сдачи квеста
+                Dialogue.mech.get(Game.mechanic.dialogue).responses.add(new Dialogue.Response("уран",0,8888_13));
+                //Закрываем диалог
+                Dialogue.current = null;
+                //Возвращаем счетчик гейгера
+                Game.player.addItem(Item.get(96));
+            }
+        };repo.put(8888_12,script);
+        /** Шкипер сдает квест с ураном **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Если Шкипер принес уран
+                if(Game.player.items.stream().anyMatch(i->i.id==97)) {
+                    //Выводим диалог
+                    Dialogue.current = Dialogue.mech.get(27);
+                    //Завершаем квест
+                    for(var q:Game.player.quests)if(q.id==49)q.completed=true;
+                    //Удаляем реплику для сдачи квеста
+                    Dialogue.Response response = Dialogue.mech.get(Game.mechanic.dialogue).responses.stream()
+                            .filter(r->r.text.equals("уран")).findFirst().orElse(null);
+                    if(response!=null)Dialogue.mech.get(Game.mechanic.dialogue).responses.remove(response);
+                    //забираем уран
+                    var uran = Game.player.items.stream().filter(i->i.id==96).findFirst().orElse(null);
+                    if(uran!=null)Game.player.items.remove(uran);if(Game.player.equip==uran)Game.player.equip=null;
+                }
+                //Если не принес, напоминаем
+                Dialogue.current = Dialogue.mech.get(26);
+            }
+        };repo.put(8888_13,script);
     }
 
     /** Бар **/

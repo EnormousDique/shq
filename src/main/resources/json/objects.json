@@ -725,7 +725,7 @@
     "name": "garage_door",
     "hitBox": {
       "width": 70,
-      "height": 70
+      "height": 110
     },
     "type": "INTERACT",
     "scriptId": 70
