@@ -1,6 +1,8 @@
 package ru.muwa.shq.engine.utils;
 
 import ru.muwa.shq.engine.Game;
+import ru.muwa.shq.engine.GameWindow;
+import ru.muwa.shq.engine.Renderer;
 import ru.muwa.shq.entities.GameObject;
 import ru.muwa.shq.entities.Player;
 
@@ -192,7 +194,8 @@ public class AI {
             if(!seesPlayer(object)) setRandomDestination(object);
 
             //shoot logic
-            if(seesPlayer(object) &&(!shotsTimer.containsKey(object) || shotsTimer.get(object) < GameTime.value))
+            Rectangle screen = new Rectangle(Camera.x,Camera.y, GameWindow.WIDTH,GameWindow.HEIGHT);
+            if(seesPlayer(object) && screen.intersects(object.hitBox) &&(!shotsTimer.containsKey(object) || shotsTimer.get(object) < GameTime.value))
             {
                  Combat.enemyShoot(object);
                  shotsTimer.put(object,GameTime.value + WAIT_INTERVAL * 5);

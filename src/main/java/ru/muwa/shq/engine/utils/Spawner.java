@@ -36,7 +36,7 @@ public class Spawner {
     }
 
     private static long copSpawnTimer;
-    private static final long COP_SPAWN_INTERVAL = 60_000; // 1 min
+    private static long copSpawnInterval; // 1 min
     private static long pedestrianSpawnTimer;
     private static final long PEDESTRIAN_SPAWN_INTERVAL = 10_000; // 10 sec
 
@@ -45,7 +45,6 @@ public class Spawner {
 
         //Получаем список зон спавна прохожих на улице 1 (уровень 1)
         List<GameObject> pedestrianSpawnZones = Level.repo.get(1).objects.stream().filter(o->o.id==PEDESTRIAN_SPAWN_ZONE_ID).toList();
-
         Rectangle screen = new Rectangle(Camera.x,Camera.y, GameWindow.WIDTH,GameWindow.HEIGHT);
 
         for (GameObject z : pedestrianSpawnZones)
@@ -58,47 +57,63 @@ public class Spawner {
                 pedestrian.y = z.y;
                 Level.repo.get(1).objects.add(pedestrian);
                 pedestrianSpawnTimer = GameTime.value + PEDESTRIAN_SPAWN_INTERVAL;
-
             }
         }
     }
     private static final int INDOOR_COP_SPAWN_ZONE_ID = 228;
     private static void copSpawn()
     {
+        //Спавним мусоров при соответствующем уровне беспредела
         if(Game.player.wanted > 99.9)
         {
+            //Если время не настало, ждем
             if(copSpawnTimer > GameTime.value) return;
+
+            //Спавн в зданиях
             if(Game.currentLevel.isIndoors) {
                 List<GameObject> copSpawnZone = Game.currentLevel.objects.stream().filter(o -> o.id == INDOOR_COP_SPAWN_ZONE_ID).toList();
                 Rectangle screen = new Rectangle(Camera.x, Camera.y, GameWindow.WIDTH, GameWindow.HEIGHT);
                 for (GameObject z : copSpawnZone) {
-                    if (screen.intersects(z.hitBox)) continue;
-                    if (Math.random() < 0.01) {
                         GameObject cop = GameObject.get(7);
                         cop.x = z.x;
                         cop.y = z.y;
                         Game.currentLevel.objects.add(cop);
-                        copSpawnTimer = GameTime.value + COP_SPAWN_INTERVAL;
-                    }
+                        copSpawnTimer = GameTime.value + copSpawnInterval;
                 }
             }
+            //Спавн на улице
             if(Game.currentLevel.isStreet)
             {
-                int x = Game.player.x + Math.random() > 0.5? GameWindow.WIDTH : -1 * GameWindow.WIDTH;
-                int y = Game.player.y + Math.random() > 0.5? GameWindow.HEIGHT : -1 * GameWindow.HEIGHT;
-                Rectangle screen = new Rectangle(Camera.x, Camera.y, GameWindow.WIDTH, GameWindow.HEIGHT);
-                if(!screen.contains(new Point2D.Double(x,y)))
-                {
-                    GameObject cop = GameObject.get(7);
+                //Определяем какого копа спавним
+                int copId = Game.player.wanted > 299? 7 : 7; //TODO сделать военных
+                //Считаем какое кол-во копов спавним
+                int times = 1;
+                if(Game.player.wanted > 150) times ++;
+                if(Game.player.wanted > 200) times ++;
+                if(Game.player.wanted > 250) times ++;
+                //Спавним копов указанное количество раз
+                for (int i = 0; i < times; i++) {
+                    //Определяем место для спавна
+                    int x = Game.player.x + Math.random() > 0.5?
+                            (GameWindow.WIDTH/2)+100 : (-1 * GameWindow.WIDTH/2)-100;
+                    int y = Game.player.y + Math.random() > 0.5?
+                            (GameWindow.HEIGHT/2)+100 : (-1 * GameWindow.HEIGHT/2)-100;
+                    //Создаем новый экземпляр копа и помещаем на карту
+                    GameObject cop = GameObject.get(copId);
                     cop.x = x;
                     cop.y = y;
                     Game.currentLevel.objects.add(cop);
-                    System.out.println("cop spawned");
-                    copSpawnTimer = GameTime.value + COP_SPAWN_INTERVAL;
                 }
+                int interval = 10_000;//По умолчанию 10 сек
+                if(Game.player.wanted > 150) interval -= 1_500; // -1.5 сек за каждый шаг
+                if(Game.player.wanted > 200) interval -= 1_500;
+                if(Game.player.wanted > 250) interval -= 1_500;
+                if(Game.player.wanted > 300) interval -= 1_500;
+                copSpawnTimer = GameTime.value + interval;
             }
         }
         else{
+            //Если беспредел низкий, убираем мусоров
             for (int i = 0; i < Level.repo.get(STREET_1).objects.size(); i++) {
                 var npc = Level.repo.get(STREET_1).objects.get(i);
                 if(npc.id!=7)continue;
