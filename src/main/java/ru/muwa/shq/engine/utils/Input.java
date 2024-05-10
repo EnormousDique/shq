@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.utils;
 
+import jdk.jshell.spi.ExecutionControl;
 import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.GameWindow;
 import ru.muwa.shq.engine.Renderer;
@@ -38,78 +39,79 @@ public class Input {
 
     /** Метод обработки нажатий с клавиатуры **/
     private static void keyboardInput() {
-        for(Integer i : keyboard.buttonList)
-        {
-            if(keyboard.map.get(i))
-            {
-                switch (i)
-                {
-                    case KListener.W:
-                        w();
-                        break;
-                    case KListener.A:
-                        a();
-                        break;
-                    case KListener.S:
-                        s();
-                        break;
-                    case KListener.D:
-                        d();
-                        break;
-                    case KListener.SPACE:
-                        space();
-                        keyboard.map.put(i,false);
-                        break;
-                    case KListener.SHIFT:
-                        break;
-                    case KListener.Q:
-                        q();
-                        break;
-                    case KListener.M:
+        try {
 
-                        break;
-                    case KListener.E:
-                        e();
-                        keyboard.map.put(i,false);
-                        break;
 
-                    case KListener.I:
-                        i();
-                        keyboard.map.put(i,false);
-                        break;
+            for (Integer i : keyboard.buttonList) {
+                if (keyboard.map.get(i)) {
+                    switch (i) {
+                        case KListener.W:
+                            w();
+                            break;
+                        case KListener.A:
+                            a();
+                            break;
+                        case KListener.S:
+                            s();
+                            break;
+                        case KListener.D:
+                            d();
+                            break;
+                        case KListener.SPACE:
+                            space();
+                            keyboard.map.put(i, false);
+                            break;
+                        case KListener.SHIFT:
+                            break;
+                        case KListener.Q:
+                            q();
+                            break;
+                        case KListener.M:
 
-                    case KListener.J:
-                        j();
-                        keyboard.map.put(i,false);
-                        break;
+                            break;
+                        case KListener.E:
+                            e();
+                            keyboard.map.put(i, false);
+                            break;
 
-                    case KListener.C:
-                        c();
-                        keyboard.map.put(i,false);
-                        break;
+                        case KListener.I:
+                            i();
+                            keyboard.map.put(i, false);
+                            break;
 
-                    case ADD:
-                        add();
-                        keyboard.map.put(i,false);
-                        break;
+                        case KListener.J:
+                            j();
+                            keyboard.map.put(i, false);
+                            break;
 
-                    case P:
-                        q();
-                        Minigame.current = Minigame.get(11);
-                        break;
+                        case KListener.C:
+                            c();
+                            keyboard.map.put(i, false);
+                            break;
 
-                    case REMOVE:
-                        remove();
-                        break;
+                        case ADD:
+                            add();
+                            keyboard.map.put(i, false);
+                            break;
 
-                    case H:
-                        h();
-                        keyboard.map.put(i,false);
-                        break;
+                        case P:
+                            q();
+                            Minigame.current = Minigame.get(11);
+                            break;
 
+                        case REMOVE:
+                            remove();
+                            break;
+
+                        case H:
+                            h();
+                            keyboard.map.put(i, false);
+                            break;
+
+                    }
                 }
             }
-        }
+        }catch (Exception e){}
     }
 
     private static void h() {

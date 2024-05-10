@@ -43,21 +43,23 @@ public class Updater implements Runnable{
 
     private void work() {
 
-        //Код, выполняемый несмотря на паузу
-        //TODO: добавить отдельно вызов обработки команд консоли
+        try {
+            //Код, выполняемый несмотря на паузу
+            //TODO: добавить отдельно вызов обработки команд консоли
 
-        if(pause) return;
-        //Код, замирающий при паузе
-        Momma.work();
-        Camera.work();
-        Effect.work();
-        Input.work();
-        GameTime.work();
-        Physx.work();
-        Combat.work();
-        AI.work();
-        Spawner.work();
-        Kldmn.mdk();
+            if (pause) return;
+            //Код, замирающий при паузе
+            Momma.work();
+            Camera.work();
+            Effect.work();
+            Input.work();
+            GameTime.work();
+            Physx.work();
+            Combat.work();
+            AI.work();
+            Spawner.work();
+            Kldmn.mdk();
+        }catch (Exception e){}
     }
 
 }

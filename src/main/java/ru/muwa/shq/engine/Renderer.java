@@ -96,7 +96,9 @@ public class Renderer implements Runnable{
 
     private void work()
     {
-        screen.repaint();
+        try {
+            screen.repaint();
+        }catch (Exception e){}
     }
 
 
