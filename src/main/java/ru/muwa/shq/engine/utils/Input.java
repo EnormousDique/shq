@@ -656,12 +656,15 @@ public class Input {
                 Item item = Game.player.items.get(i);
 
                 if (item.icon.contains(point)) {
+
                     if(inContainer && container.items.size() < GameObject.ITEMS_CAPACITY) {
                             if (!item.stackable || item.count ==1) {
-                                container.addItem(item);
+                                if(container.id!=75)
+                                    container.addItem(item);
                                 Game.player.items.remove(item);
                             } else {
-                                container.addItem(Item.get(item.id));
+                                if(container.id!=75)
+                                    container.addItem(Item.get(item.id));
                                 item.count -= 1;
                             }
                             if(item==Game.player.equip){ Game.player.effects.remove(Game.player.equip.effect);  Game.player.equip = null;}
@@ -670,6 +673,7 @@ public class Input {
                             if(item==Game.player.foot){Game.player.effects.remove(Game.player.foot.effect);Game.player.foot = null; }
                             return;
                     }
+
                     if(item.type == AMMO) Combat.Reload(Game.player.equip, item);
                     if(item.type == HAT && Game.player.hat == null) {
                         Game.player.hat = item;

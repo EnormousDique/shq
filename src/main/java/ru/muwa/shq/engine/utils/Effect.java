@@ -162,8 +162,8 @@ public class Effect {
         //Проверяем степень объебоса и довешиваем эффекты
         //Баффы скоростей
         if(Game.player.stimulate > 5) totalBonusStamina += Game.player.stimulate;
-        if(Game.player.stimulate > 10) totalBonusSpeed += 1 + Game.player.stimulate > 35?1:0;
-        if(Game.player.stimulate > 35) totalBonusSprint += 1;
+        if(Game.player.stimulate > 10) totalBonusSpeed += 1 + Game.player.stimulate > 30?1:0 + Game.player.stimulate > 55?1:0;
+        if(Game.player.stimulate > 35) totalBonusSprint += 1 + Game.player.stimulate > 30?1:0 + Game.player.stimulate > 55?1:0;
         if(Game.player.stimulate > 55) totalBonusSprint += 1;
         //Баффы шмали
         if(Game.player.smoke > 70) totalBonusStamina -= (int) (Game.player.smoke - 40);

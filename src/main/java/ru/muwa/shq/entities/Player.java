@@ -45,7 +45,6 @@ public class Player extends GameObject {
         hp = baseHp;
         type = Type.CREATURE;
         damage = 5;
-
     }
 
 
@@ -69,7 +68,6 @@ public class Player extends GameObject {
         }else speed = baseSpeed;
         x -= speed + bonusSpeed;
         if(stamina<1) stamina = 0;
-
     }
 
     @Override
@@ -81,7 +79,6 @@ public class Player extends GameObject {
         }else speed = baseSpeed;
         x += speed + bonusSpeed;
         if(stamina<1) stamina = 0;
-
     }
 
     @Override
@@ -94,7 +91,6 @@ public class Player extends GameObject {
 
         y -= speed + bonusSpeed;
         if(stamina<1) stamina = 0;
-
     }
 
     @Override

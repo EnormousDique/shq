@@ -194,6 +194,21 @@ public abstract class Script {
             }
         }; repo.put(5,script);
 
+        /** Скрипт съедания сырого овоща **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                if(Game.player.poo > 99){
+                    Game.player.addItem(Item.get(Game.player.equip.id));
+                    return;
+                }
+                Game.player.hunger -=1;
+                Game.player.thirst -= 2;
+                Game.player.poo +=5;
+                Game.player.pee +=2;
+            }
+        };repo.put(6,script);
+
         /** Скрипт мини-игры с ментовской подставой ("красная" закладка) **/
         //TODO: перенести в хача???
         script = new Script() {
@@ -405,6 +420,50 @@ public abstract class Script {
         };
         repo.put(30,script);
 
+        /** Скрипт молока **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                if(Game.player.poo>99||Game.player.pee>99) {
+                    Game.player.equip.count +=1;
+                    return;
+                }
+                Game.player.hunger -=10;
+                Game.player.thirst -= 20;
+                Game.player.poo +=5;
+                Game.player.pee +=15;
+                Game.player.sleepy +=2;
+            }
+        }; repo.put(36,script);
+
+        /** Скрипт творога (и сырника) **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                if(Game.player.poo>99) {
+                    Game.player.equip.count +=1;
+                    return;
+                }
+                Game.player.hunger -=20;
+                Game.player.hp += 5;
+                Game.player.poo +=15;
+            }
+        }; repo.put(41,script);
+
+        /** Скрипт сыра **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                if(Game.player.poo>99) {
+                    Game.player.equip.count +=1;
+                    return;
+                }
+                Game.player.hunger -=10;
+                Game.player.thirst += 25;
+                Game.player.poo +=40;
+            }
+        }; repo.put(42,script);
+
         /** Скрипт двери в гараж **/
         script = new Script() {
             @Override
@@ -526,6 +585,18 @@ public abstract class Script {
                 Game.player.wanted += 20;
             }
         }; repo.put(93,script);
+        /** Шкипер пьет бутылку воды **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                if(Game.player.pee > 99){ Game.player.addItem(Item.get(101)); return;}
+                Game.player.thirst -= 50;
+                Game.player.pee += 25;
+                //Даем пустую бутылку
+                Game.player.addItem(Item.get(102));
+            }
+        }; repo.put(101,script);
+
         //==========================================================================================//
         /**
          *
@@ -1439,6 +1510,29 @@ public abstract class Script {
                 //Если у Шкипера есть невыполненное задание, напоминаем ему об этом
                 if(Game.player.quests.stream().anyMatch(q->q.owner.equals("педоффка")&&!q.completed))
                     Dialogue.current = Dialogue.girl.get(4);
+                //Если Шкипер выполнил квест с травкой, и не взял квест с вейпом
+                if(Game.player.quests.stream().noneMatch(q->q.id==7)
+                && Game.player.quests.stream().anyMatch(q->q.id==8&&q.completed))
+                    //Предлагаем взять
+                    Dialogue.current = Dialogue.girl.get(8);
+                //Если Шкипер выполнил квест с вейпом, и не взял квест с бывшим
+                if(Game.player.quests.stream().noneMatch(q->q.id==23)
+                        && Game.player.quests.stream().anyMatch(q->q.id==7&&q.completed))
+                    //Предлагаем взять
+                    Dialogue.current = Dialogue.girl.get(13);
+                //Если Шкипер выполнил квест с бывшим, и не взял квест с вебкой
+                if(Game.player.quests.stream().noneMatch(q->q.id==24)
+                        && Game.player.quests.stream().anyMatch(q->q.id==23&&q.completed))
+                    //Предлагаем взять
+                    Dialogue.current = Dialogue.girl.get(18);
+                //Если Шкипер выполнил квест с вебкой, и не взял квест с хатой
+                if(Game.player.quests.stream().noneMatch(q->q.id==25)
+                        && Game.player.quests.stream().anyMatch(q->q.id==24&&q.completed))
+                    //Предлагаем взять
+                    Dialogue.current = Dialogue.girl.get(23);
+                //Если выполнили квест с хатой, проверяем на хорошую неканоничную концовку
+                if(Game.player.quests.stream().anyMatch(q->q.id==25&&q.completed))
+                    repo.get(4444_15).execute();
             }
         };repo.put(4444,script);
         /** Шкипер сказал педовке о папе **/
@@ -1474,6 +1568,8 @@ public abstract class Script {
                 }
                 Game.currentLevel = flat;//Переключаем уровень на квартиру
                 Dialogue.current = Dialogue.girl.get(3);//Выводим диалог
+                //Меняем педовке основной диалог
+                Game.girl.dialogue = 5;
             }
         };repo.put(4444_5,script);
         /** Шкипер соглашается найти травку **/
@@ -1484,11 +1580,13 @@ public abstract class Script {
                 Game.player.quests.add(Quest.get(8));
                 //Закрываем текущий диалог
                 Dialogue.current = null;
-                //Меняем педовке основной диалог
-
+                //Добавляем реплику для сдачи квеста
+                Dialogue.girl.get(Game.girl.dialogue).responses
+                        .add(new Dialogue.Response("травка...",0,4444_2));
             }
         };repo.put(4444_6,script);
         /** Скрипт Кости **/
+        //TODO: возможно вообще лишнее и стоит удалить
         script = new Script() {
             @Override
             public void execute() {
@@ -1503,8 +1601,183 @@ public abstract class Script {
                 }
             }
         };repo.put(4444_1,script);
-        /** **/
-
+        /** Шкипер сдает квест с травкой **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Проверяем, принес ли Шкипер искомые вещи
+                var weed = Game.player.items.stream().filter(i->i.id==7).findFirst().orElse(null);
+                var paper = Game.player.items.stream().filter(i->i.id==7).findFirst().orElse(null);
+                var fire = Game.player.items.stream().filter(i->i.id==7).findFirst().orElse(null);
+                //Если не принес, напоминаем ему об этом
+                if(weed==null || paper==null || fire==null){Dialogue.current = Dialogue.girl.get(6); return;}
+                //Если принес, забираем травку и бумагу
+                weed.count -=1; if(weed.count <1) Game.player.items.remove(weed); if(Game.player.equip==weed) Game.player.equip = null;
+                paper.count -=1; if(paper.count <1) Game.player.items.remove(paper); if(Game.player.equip==paper) Game.player.equip = null;
+                //Даем косяк
+                Game.player.addItem(Item.get(89));
+                //Добавляем накуренность
+                Game.player.smoke += 45;
+                //Выполняем квест
+                for(var q : Game.player.quests)if(q.id == 8)q.completed=true;
+                //Удаляем реплику для сдачи квеста
+                Dialogue.Response response = Dialogue.girl.get(Game.girl.dialogue).responses.stream()
+                        .filter(r->r.text.equals("травка...")).findFirst().orElse(null);
+                if(response!=null)Dialogue.girl.get(Game.girl.dialogue).responses.remove(response);
+                //Слова благодарности
+                Dialogue.current = Dialogue.girl.get(7);
+            }
+        }; repo.put(4444_2,script);
+        /** Шкипер соглашается найти вапе **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Добавляем квест
+                Game.player.quests.add(Quest.get(7));
+                //Закрываем текущий диалог
+                Dialogue.current = null;
+                //Добавляем реплику для сдачи квеста
+                Dialogue.girl.get(Game.girl.dialogue).responses
+                        .add(new Dialogue.Response("вейп...",0,4444_8));
+            }
+        };repo.put(4444_7,script);
+        /** Шкипер сдает квест с вейпом **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Проверяем, принес ли Шкипер искомые вещи
+                var vape = Game.player.items.stream().filter(i->i.id==99).findFirst().orElse(null);
+                //Если не принес, напоминаем ему об этом
+                if(vape==null) {Dialogue.current = Dialogue.girl.get(6); return;}
+                //Если принес, забираем травку и бумагу
+                vape.count -=1; if(vape.count <1) Game.player.items.remove(vape); if(Game.player.equip==vape) Game.player.equip = null;
+                //Выполняем квест
+                for(var q : Game.player.quests)if(q.id == 7)q.completed=true;
+                //Удаляем реплику для сдачи квеста
+                Dialogue.Response response = Dialogue.girl.get(Game.girl.dialogue).responses.stream()
+                        .filter(r->r.text.equals("вейп...")).findFirst().orElse(null);
+                if(response!=null)Dialogue.girl.get(Game.girl.dialogue).responses.remove(response);
+                //Слова благодарности
+                Dialogue.current = Dialogue.girl.get(12);
+            }
+        }; repo.put(4444_8,script);
+        /** Шкипер соглашается разобраться с бывшим **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Добавляем квест
+                Game.player.quests.add(Quest.get(23));
+                //Закрываем текущий диалог
+                Dialogue.current = null;
+                //Добавляем реплику для сдачи квеста
+                Dialogue.girl.get(Game.girl.dialogue).responses
+                        .add(new Dialogue.Response("бывший...",0,4444_10));
+            }
+        };repo.put(4444_9,script);
+        /** Шкипер сдает квест с бывшим **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Проверяем, убил ли Шкипер бывшего
+                //Если не, напоминаем ему об этом
+                if(false) {Dialogue.current = Dialogue.girl.get(16); return;}
+                //Выполняем квест
+                for(var q : Game.player.quests)if(q.id == 23)q.completed=true;
+                //Удаляем реплику для сдачи квеста
+                Dialogue.Response response = Dialogue.girl.get(Game.girl.dialogue).responses.stream()
+                        .filter(r->r.text.equals("бывший...")).findFirst().orElse(null);
+                if(response!=null)Dialogue.girl.get(Game.girl.dialogue).responses.remove(response);
+                //Слова благодарности
+                Dialogue.current = Dialogue.girl.get(17);
+            }
+        }; repo.put(4444_10,script);
+        /** Шкипер соглашается купить вебку **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Добавляем квест
+                Game.player.quests.add(Quest.get(24));
+                //Закрываем текущий диалог
+                Dialogue.current = null;
+                //Добавляем реплику для сдачи квеста
+                Dialogue.girl.get(Game.girl.dialogue).responses
+                        .add(new Dialogue.Response("камера...",0,4444_12));
+            }
+        };repo.put(4444_11,script);
+        /** Шкипер сдает квест с вебкой **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Проверяем принес ли Шкипер камеру
+                var webcam = Game.player.items.stream().filter(i->i.id==100).findFirst().orElse(null);
+                //Если не, напоминаем ему об этом
+                if(webcam==null) {Dialogue.current = Dialogue.girl.get(21); return;}
+                //Выполняем квест
+                for(var q : Game.player.quests)if(q.id == 24)q.completed=true;
+                //Удаляем реплику для сдачи квеста
+                Dialogue.Response response = Dialogue.girl.get(Game.girl.dialogue).responses.stream()
+                        .filter(r->r.text.equals("камера...")).findFirst().orElse(null);
+                if(response!=null)Dialogue.girl.get(Game.girl.dialogue).responses.remove(response);
+                //Слова благодарности
+                Dialogue.current = Dialogue.girl.get(22);
+            }
+        }; repo.put(4444_12,script);
+        /** Шкипер соглашается снять квартиру **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Добавляем квест
+                Game.player.quests.add(Quest.get(25));
+                //Закрываем текущий диалог
+                Dialogue.current = null;
+                //Добавляем реплику для сдачи квеста
+                Dialogue.girl.get(Game.girl.dialogue).responses
+                        .add(new Dialogue.Response("квартира...",0,4444_12));
+            }
+        };repo.put(4444_13,script);
+        /** Шкипер сдает квест с квартирой **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Проверяем снял ли Шкипер квартиру
+                //Если не, напоминаем ему об этом
+                if(false) {Dialogue.current = Dialogue.girl.get(0); return;}
+                //Выполняем квест
+                for(var q : Game.player.quests)if(q.id == 25)q.completed=true;
+                //Удаляем реплику для сдачи квеста
+                Dialogue.Response response = Dialogue.girl.get(Game.girl.dialogue).responses.stream()
+                        .filter(r->r.text.equals("квартира...")).findFirst().orElse(null);
+                if(response!=null)Dialogue.girl.get(Game.girl.dialogue).responses.remove(response);
+            }
+        }; repo.put(4444_14,script);
+        /** Проверка на хорошую концовку **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //todo: проверка на сложный режим игры
+                boolean hardcore = false;
+                //пройдена ли линейка Мясника
+                boolean butcher = false;
+                //пройдена ли линейка Аптекарши
+                boolean pharmacist = false;
+                //Выводим диалог
+                Dialogue d = Dialogue.girl.get(26);
+                if(hardcore && butcher && pharmacist) {
+                    d.responses.add(new Dialogue.Response("ладно",0,4444_16));
+                }else{
+                    d.responses.add(new Dialogue.Response("Не могу",0,0));
+                }
+                Dialogue.current = d;
+            }
+        };repo.put(4444_15,script);
+        /** Шкипер выбрал остаться жить у педовки **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //TODO
+                //игра кончается хорошей неканоничной концовкой
+            }
+        }; repo.put(4444_16,script);
         //==========================================================================================//
         /**
          *

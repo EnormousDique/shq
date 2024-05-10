@@ -1,24 +1,11 @@
 [
   {
-    "id": 0,
-    "message": "ALLALALLAL",
-    "responses": [
-      {
-        "text": "OK"
-      }
-    ]
-  },
-  {
     "id": 1,
     "message": "Эу салам алейкум братишка. А ну иди сюда, пабазарим с тобой.",
     "responses": [
       {
         "text": "Чего",
         "nextMessage": 2
-      },
-      {
-        "text": "DAY TEST QUEST",
-        "script": 1488
       }
     ]
   },

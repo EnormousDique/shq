@@ -771,6 +771,15 @@
     "minigameId": 3
   },
   {
+    "id": 75,
+    "name": "dump",
+    "hitBox": {
+      "width": 64,
+      "height": 64
+    },
+    "type": "CONTAINER"
+  },
+  {
     "id": "100",
     "name": "hub_floor",
     "hitBox": {
