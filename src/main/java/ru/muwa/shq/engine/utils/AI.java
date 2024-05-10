@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static ru.muwa.shq.entities.GameObject.Type.CREATURE;
+import static ru.muwa.shq.entities.Level.STREET_1;
 
 /**
  *
@@ -46,7 +47,53 @@ public class AI {
 
     //Управляем машинами
     private static void traffic() {
+        if(Game.currentLevel.id != STREET_1) return;
 
+        var cars = Game.currentLevel.objects.stream()
+                .filter(o->o.name.contains("car") && o.speed>5).toList();
+
+        var zones = Game.currentLevel.objects.stream()
+                .filter(o->o.name.contains("zone_car_turn")).toList();
+
+        for (var car : cars)
+        {
+            if(car.name.contains("left")){
+                //Движение
+                car.x -= car.speed;
+                //Поворот
+                for(var zone : zones) {
+                    if (zone.name.contains("zone_car_turn_left_to_up")
+                    && car.hitBox.intersects(zone.hitBox)) {
+
+                    }
+                    if (zone.name.contains("zone_car_turn_left_to_down")
+                            && car.hitBox.intersects(zone.hitBox)) {
+                            if(Math.random() > 0.7) {
+                                var carAfterTurn = GameObject.get(55);
+                                carAfterTurn.x = zone.x;
+                                carAfterTurn.y = zone.y;
+                                carAfterTurn.speed = car.speed;
+                                Game.currentLevel.objects.remove(car);
+                                Game.currentLevel.objects.add(carAfterTurn);
+                            }else{
+                                car.x = zone.x - car.hitBox.width - 2;
+                            }
+
+                    }
+                }
+            }
+            if(car.name.contains("up")){
+                car.y -= car.speed;
+            }
+            if(car.name.contains("down")){
+                car.y += car.speed;
+            }
+            if(car.name.contains("right")){
+                car.x += car.speed;
+            }
+            if(car.x < 0 || car.x > 10000 || car.y < 0 || car.y > 10000)
+                Game.currentLevel.objects.remove(car);
+        }
     }
     //Проходимся по НПЦ и передаем их службе физики чтобы проверить столкновения
     private static void callbackCollisions() {

@@ -16,10 +16,25 @@ public class Physx {
     public static boolean playerCollisions = true;
     public static void work()
     {
-
         updateHitBox();
         collisions();
+        carsCollisions();
+    }
 
+    private static void carsCollisions() {
+        var cars = Game.currentLevel.objects.stream()
+                .filter(o->(o.name.contains("car") && o.solid)).toList();
+
+        for (int i = 0; i < cars.size(); i++) {
+            var car = cars.get(i);
+            for (int j = 0; j < cars.size(); j++) {
+                var car2 = cars.get(j);
+                if(car.hitBox.intersects(car2.hitBox) && car!=car2) {
+                   car2.speed = car.speed + 2;
+                }
+            }
+
+        }
     }
 
     private static void collisions() {

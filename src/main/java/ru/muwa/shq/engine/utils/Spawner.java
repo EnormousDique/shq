@@ -17,6 +17,37 @@ public class Spawner {
         pedestrianSpawn();
         copSpawn();
         removeNpcAtNight();
+        spawnCars();
+    }
+
+    private static long carSpawnTimer = 0;
+    private static final long CAR_SPAWN_INTERVAL = 1_000;
+    private static void spawnCars() {
+
+        if(Game.currentLevel.id != STREET_1) return;
+        if(carSpawnTimer > System.currentTimeMillis()) return;
+        var zones = Game.currentLevel.objects.stream()
+                .filter(o->o.name.contains("zone_car_spawn")).toList();
+        for(var zone : zones) {
+            if(zone.name.contains("right")) {
+            }
+            if(zone.name.contains("left")) {
+                var car = GameObject.get(53);
+                car.speed = 15;
+                car.x = zone.x; car.y = zone.y;
+                Game.currentLevel.objects.add(car);
+            }
+            if(zone.name.contains("down")) {
+                var car = GameObject.get(55);
+                car.speed = 15;
+                car.x = zone.x; car.y = zone.y;
+                Game.currentLevel.objects.add(car);
+            }
+            if(zone.name.contains("up")) {
+
+            }
+        }
+        carSpawnTimer = System.currentTimeMillis() + CAR_SPAWN_INTERVAL;
     }
 
     private static final List<Integer> goHomeIds = List.of(6);

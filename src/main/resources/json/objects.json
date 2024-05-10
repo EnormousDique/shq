@@ -545,7 +545,7 @@
   },
   {
     "id": 53,
-    "name": "car_white",
+    "name": "car_white_left",
     "hitBox": {
       "width": 150,
       "height": 75
@@ -555,7 +555,7 @@
   },
   {
     "id": 54,
-    "name": "car_red",
+    "name": "car_red_left",
     "hitBox": {
       "width": 150,
       "height": 75
@@ -565,7 +565,7 @@
   },
   {
     "id": 55,
-    "name": "car_green_vert",
+    "name": "car_green_down",
     "hitBox": {
       "width": 82,
       "height": 140
@@ -778,6 +778,114 @@
       "height": 64
     },
     "type": "CONTAINER"
+  },
+  {
+    "id": 76,
+    "name": "zone_car_spawn_down",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 77,
+    "name": "zone_car_spawn_up",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 78,
+    "name": "zone_car_spawn_left",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 79,
+    "name": "zone_car_spawn_right",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 80,
+    "name": "zone_car_turn_down_to_right",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 81,
+    "name": "zone_car_turn_down_to_left",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 82,
+    "name": "zone_car_turn_up_to_right",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 83,
+    "name": "zone_car_turn_up_to_left",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 84,
+    "name": "zone_car_turn_left_to_up",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 85,
+    "name": "zone_car_turn_left_to_down",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 86,
+    "name": "zone_car_turn_right_to_up",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 87,
+    "name": "zone_car_turn_right_to_down",
+    "hitBox": {
+      "width": 70,
+      "height": 70
+    },
+    "type": "ZONE"
   },
   {
     "id": "100",
