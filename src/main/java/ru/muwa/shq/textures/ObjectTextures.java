@@ -169,13 +169,13 @@ public class ObjectTextures {
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "ride_obj.png");
             image = ImageIO.read(inputStream);  repo.put(47,image);
 
-            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_2.png"));
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_white_left.png"));
             repo.put(53,image);
 
-            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_3.png"));
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_red_left.png"));
             repo.put(54,image);
 
-            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_5.png"));
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_green_down.png"));
             repo.put(55,image);
 
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"school_bg.png"));
@@ -213,6 +213,33 @@ public class ObjectTextures {
 
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"garage_goods.png"));
             repo.put(74,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_white_right.png"));
+            repo.put(88,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_red_right.png"));
+            repo.put(89,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_green_right.png"));
+            repo.put(90,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_white_up.png"));
+            repo.put(91,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_red_up.png"));
+            repo.put(92,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_green_up.png"));
+            repo.put(93,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_white_down.png"));
+            repo.put(94,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_red_down.png"));
+            repo.put(95,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"car_green_left.png"));
+            repo.put(96,image);
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "indoor/hub_floor.png");
             image = ImageIO.read(inputStream);  repo.put(100,image);

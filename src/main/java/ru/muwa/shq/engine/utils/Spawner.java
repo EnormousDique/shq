@@ -30,20 +30,44 @@ public class Spawner {
                 .filter(o->o.name.contains("zone_car_spawn")).toList();
         for(var zone : zones) {
             if(zone.name.contains("right")) {
+                int id = 0; double chance = Math.random();
+                if(chance < 0.33) id = 88;
+                else if(chance < 0.66) id = 89;
+                else id = 90;
+                var car = GameObject.get(id);
+                car.speed = 15;
+                car.x = zone.x; car.y = zone.y;
+                Game.currentLevel.objects.add(car);
             }
             if(zone.name.contains("left")) {
-                var car = GameObject.get(53);
+                int id = 0; double chance = Math.random();
+                if(chance < 0.33) id = 53;
+                else if(chance < 0.66) id = 54;
+                else id = 96;
+                var car = GameObject.get(id);
                 car.speed = 15;
                 car.x = zone.x; car.y = zone.y;
                 Game.currentLevel.objects.add(car);
             }
             if(zone.name.contains("down")) {
-                var car = GameObject.get(55);
+                int id = 0; double chance = Math.random();
+                if(chance < 0.33) id = 55;
+                else if(chance < 0.66) id = 95;
+                else id = 94;
+                var car = GameObject.get(id);
                 car.speed = 15;
                 car.x = zone.x; car.y = zone.y;
                 Game.currentLevel.objects.add(car);
             }
             if(zone.name.contains("up")) {
+                int id = 0; double chance = Math.random();
+                if(chance < 0.33) id = 93;
+                else if(chance < 0.66) id = 91;
+                else id = 92;
+                var car = GameObject.get(id);
+                car.speed = 15;
+                car.x = zone.x; car.y = zone.y;
+                Game.currentLevel.objects.add(car);
 
             }
         }
@@ -61,7 +85,6 @@ public class Spawner {
                 {
                     Level.repo.get(STREET_1).objects.remove(npc);
                 }
-
             }
         }
     }
@@ -95,7 +118,7 @@ public class Spawner {
     private static void copSpawn()
     {
         //Спавним мусоров при соответствующем уровне беспредела
-        if(Game.player.wanted > 99.9)
+        if(Game.player.wanted > 10)
         {
             //Если время не настало, ждем
             if(copSpawnTimer > GameTime.value) return;
@@ -119,9 +142,10 @@ public class Spawner {
                 int copId = Game.player.wanted > 299? 7 : 7; //TODO сделать военных
                 //Считаем какое кол-во копов спавним
                 int times = 1;
-                if(Game.player.wanted > 150) times ++;
+                if(Game.player.wanted > 10) times ++;
+                if(Game.player.wanted > 100) times ++;
                 if(Game.player.wanted > 200) times ++;
-                if(Game.player.wanted > 250) times ++;
+                //TODO проверить есть ли копы далеко от Шкипера, чтобы вместо спавна подтянуть потеряшек
                 //Спавним копов указанное количество раз
                 for (int i = 0; i < times; i++) {
                     //Определяем место для спавна

@@ -45,8 +45,31 @@ public class AI {
         traffic();
     }
 
+    //Мапа, в которой храним повороты машин
+    //Ключ - id машины, которая поворачивает, значение - список id всех 4-х поворотов этой машины
+    private static final int LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3;
+    private static final HashMap<Integer,List<Integer>> carTurns = new HashMap<>();
+    private static final HashMap<GameObject,GameObject> ignoreZones = new HashMap<>();
+    static {
+        carTurns.put(54,List.of(54,92,89,95));//КРАСНАЯ МАШИНА
+        carTurns.put(92,List.of(54,92,89,95));//КРАСНАЯ МАШИНА
+        carTurns.put(89,List.of(54,92,89,95));//КРАСНАЯ МАШИНА
+        carTurns.put(95,List.of(54,92,89,95));//КРАСНАЯ МАШИНА
+
+        carTurns.put(53,List.of(53,91,88,94));//БЕЛАЯ МАШИНА
+        carTurns.put(91,List.of(53,91,88,94));//БЕЛАЯ МАШИНА
+        carTurns.put(88,List.of(53,91,88,94));//БЕЛАЯ МАШИНА
+        carTurns.put(94,List.of(53,91,88,94));//БЕЛАЯ МАШИНА
+
+        carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
+        carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
+        carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
+        carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
+
+    }
     //Управляем машинами
     private static void traffic() {
+
         if(Game.currentLevel.id != STREET_1) return;
 
         var cars = Game.currentLevel.objects.stream()
@@ -64,35 +87,159 @@ public class AI {
                 for(var zone : zones) {
                     if (zone.name.contains("zone_car_turn_left_to_up")
                     && car.hitBox.intersects(zone.hitBox)) {
-
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.5) {
+                            var carAfterTurn = GameObject.get(carTurns.get(car.id).get(UP));
+                            carAfterTurn.x = zone.x;
+                            carAfterTurn.y = zone.y;
+                            carAfterTurn.speed = car.speed;
+                            Game.currentLevel.objects.remove(car);
+                            Game.currentLevel.objects.add(carAfterTurn);
+                            ignoreZones.put(zone,car);
+                            break;
+                        }else{
+                            ignoreZones.put(zone,car);
+                        }
                     }
                     if (zone.name.contains("zone_car_turn_left_to_down")
                             && car.hitBox.intersects(zone.hitBox)) {
-                            if(Math.random() > 0.7) {
-                                var carAfterTurn = GameObject.get(55);
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.5) {
+                                var carAfterTurn = GameObject.get(carTurns.get(car.id).get(DOWN));
                                 carAfterTurn.x = zone.x;
                                 carAfterTurn.y = zone.y;
                                 carAfterTurn.speed = car.speed;
                                 Game.currentLevel.objects.remove(car);
                                 Game.currentLevel.objects.add(carAfterTurn);
+                                ignoreZones.put(zone,car);
+                                break;
                             }else{
-                                car.x = zone.x - car.hitBox.width - 2;
+                                ignoreZones.put(zone,car);
                             }
-
                     }
                 }
             }
             if(car.name.contains("up")){
                 car.y -= car.speed;
+                //Поворот
+                for(var zone : zones) {
+                    if (zone.name.contains("zone_car_turn_up_to_right")
+                            && car.hitBox.intersects(zone.hitBox)) {
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.5) {
+                            var carAfterTurn = GameObject.get(carTurns.get(car.id).get(RIGHT));
+                            carAfterTurn.x = zone.x;
+                            carAfterTurn.y = zone.y;
+                            carAfterTurn.speed = car.speed;
+                            Game.currentLevel.objects.remove(car);
+                            Game.currentLevel.objects.add(carAfterTurn);
+                            ignoreZones.put(zone,car);
+                            break;
+                        }else{
+                            ignoreZones.put(zone,car);
+                        }
+                    }
+                    if (zone.name.contains("zone_car_turn_up_to_left")
+                            && car.hitBox.intersects(zone.hitBox)) {
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.5) {
+                            var carAfterTurn = GameObject.get(carTurns.get(car.id).get(LEFT));
+                            carAfterTurn.x = zone.x;
+                            carAfterTurn.y = zone.y;
+                            carAfterTurn.speed = car.speed;
+                            Game.currentLevel.objects.remove(car);
+                            Game.currentLevel.objects.add(carAfterTurn);
+                            ignoreZones.put(zone,car);
+                            break;
+                        }else{
+                            ignoreZones.put(zone,car);
+                        }
+                    }
+                }
             }
             if(car.name.contains("down")){
                 car.y += car.speed;
+                //Поворот
+                for(var zone : zones) {
+                    if (zone.name.contains("zone_car_turn_down_to_right")
+                            && car.hitBox.intersects(zone.hitBox)) {
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.5) {
+                            var carAfterTurn = GameObject.get(carTurns.get(car.id).get(RIGHT));
+                            carAfterTurn.x = zone.x;
+                            carAfterTurn.y = zone.y;
+                            carAfterTurn.speed = car.speed;
+                            Game.currentLevel.objects.remove(car);
+                            Game.currentLevel.objects.add(carAfterTurn);
+                            ignoreZones.put(zone,car);
+                            break;
+                        }else{
+                            ignoreZones.put(zone,car);
+                        }
+                    }
+                    if (zone.name.contains("zone_car_turn_down_to_left")
+                            && car.hitBox.intersects(zone.hitBox)) {
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.5) {
+                            var carAfterTurn = GameObject.get(carTurns.get(car.id).get(LEFT));
+                            carAfterTurn.x = zone.x;
+                            carAfterTurn.y = zone.y;
+                            carAfterTurn.speed = car.speed;
+                            Game.currentLevel.objects.remove(car);
+                            Game.currentLevel.objects.add(carAfterTurn);
+                            ignoreZones.put(zone,car);
+                            break;
+                        }else{
+                            ignoreZones.put(zone,car);
+                        }
+                    }
+                }
             }
             if(car.name.contains("right")){
                 car.x += car.speed;
+                //Поворот
+                for(var zone : zones) {
+                    if (zone.name.contains("zone_car_turn_right_to_up")
+                            && car.hitBox.intersects(zone.hitBox)) {
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.5) {
+                            var carAfterTurn = GameObject.get(carTurns.get(car.id).get(UP));
+                            carAfterTurn.x = zone.x;
+                            carAfterTurn.y = zone.y;
+                            carAfterTurn.speed = car.speed;
+                            Game.currentLevel.objects.remove(car);
+                            Game.currentLevel.objects.add(carAfterTurn);
+                            ignoreZones.put(zone,car);
+                            break;
+                        }else{
+                            ignoreZones.put(zone,car);
+                        }
+                    }
+                    if (zone.name.contains("zone_car_turn_right_to_down")
+                            && car.hitBox.intersects(zone.hitBox)) {
+                        if(ignoreZones.get(zone)==car) continue;
+                        if(Math.random() > 0.7) {
+                            var carAfterTurn = GameObject.get(carTurns.get(car.id).get(DOWN));
+                            carAfterTurn.x = zone.x;
+                            carAfterTurn.y = zone.y;
+                            carAfterTurn.speed = car.speed;
+                            Game.currentLevel.objects.remove(car);
+                            Game.currentLevel.objects.add(carAfterTurn);
+                            ignoreZones.put(zone,car);
+                            break;
+                        }else{
+                            ignoreZones.put(zone,car);
+                        }
+                    }
+                }
             }
             if(car.x < 0 || car.x > 10000 || car.y < 0 || car.y > 10000)
                 Game.currentLevel.objects.remove(car);
+            for (Map.Entry<GameObject,GameObject> z : ignoreZones.entrySet())
+            {
+                if(!z.getValue().hitBox.intersects(z.getKey().hitBox))
+                    ignoreZones.remove(z.getKey());
+            }
         }
     }
     //Проходимся по НПЦ и передаем их службе физики чтобы проверить столкновения

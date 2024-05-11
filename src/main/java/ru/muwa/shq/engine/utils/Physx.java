@@ -30,7 +30,7 @@ public class Physx {
             for (int j = 0; j < cars.size(); j++) {
                 var car2 = cars.get(j);
                 if(car.hitBox.intersects(car2.hitBox) && car!=car2) {
-                   car2.speed = car.speed + 2;
+                   car2.speed = car.speed = 15;
                 }
             }
 

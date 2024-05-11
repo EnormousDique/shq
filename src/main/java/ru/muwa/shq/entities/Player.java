@@ -39,7 +39,8 @@ public class Player extends GameObject {
     {
         name = "player";
         hitBox = new Rectangle(x,y,24,18);
-        baseSpeed =4;
+        //baseSpeed =4;
+        baseSpeed = 25;
         speed = baseSpeed;
         baseHp = 100;
         hp = baseHp;

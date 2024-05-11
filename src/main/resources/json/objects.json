@@ -888,6 +888,96 @@
     "type": "ZONE"
   },
   {
+    "id": 88,
+    "name": "car_white_right",
+    "hitBox": {
+      "width": 150,
+      "height": 75
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 89,
+    "name": "car_red_right",
+    "hitBox": {
+      "width": 150,
+      "height": 75
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 90,
+    "name": "car_green_right",
+    "hitBox": {
+      "width": 82,
+      "height": 140
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 91,
+    "name": "car_white_up",
+    "hitBox": {
+      "width": 150,
+      "height": 75
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 92,
+    "name": "car_red_up",
+    "hitBox": {
+      "width": 150,
+      "height": 75
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 93,
+    "name": "car_green_up",
+    "hitBox": {
+      "width": 82,
+      "height": 140
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 94,
+    "name": "car_white_down",
+    "hitBox": {
+      "width": 150,
+      "height": 75
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 95,
+    "name": "car_red_down",
+    "hitBox": {
+      "width": 150,
+      "height": 75
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 96,
+    "name": "car_green_left",
+    "hitBox": {
+      "width": 82,
+      "height": 140
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
     "id": "100",
     "name": "hub_floor",
     "hitBox": {
