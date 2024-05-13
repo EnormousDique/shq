@@ -38,7 +38,8 @@ public class Level {
                             MECH_FLAT = 19,//Квартира механика
                             SCHOOL = 20,//Школа
                             PACAN_FLAT = 21,//Квартира с пацаном (для кражи)
-                            GARAGE = 22;//Гараж техника
+                            GARAGE = 22,//Гараж техника
+                            SALON_SVYAZI = 23;//Салон связи
 
 
     public int id;
@@ -104,6 +105,7 @@ public class Level {
 
         readItemsFromJsonFile("json/level_21.json");
         readItemsFromJsonFile("json/level_22.json");
+        readItemsFromJsonFile("json/level_23.json");
 
 
         System.out.println("Список уровней успешно инициализирован");

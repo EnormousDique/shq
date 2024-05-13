@@ -978,6 +978,36 @@
     "solid": true
   },
   {
+    "id": 97,
+    "name": "post_building",
+    "hitBox": {
+      "width": 356,
+      "height": 313
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 98,
+    "name": "wildberries_building",
+    "hitBox": {
+      "width": 378,
+      "height": 279
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 99,
+    "name": "post_bg",
+    "hitBox": {
+      "width": 462,
+      "height": 411
+    },
+    "type": "OBJECT",
+    "solid": false
+  },
+  {
     "id": "100",
     "name": "hub_floor",
     "hitBox": {
@@ -1090,6 +1120,36 @@
     "solid": false,
     "type": "INTERACT",
     "minigameId":9
+  },
+  {
+    "id": 111,
+    "name": "wildberries_bg",
+    "hitBox": {
+      "width": 914,
+      "height": 363
+    },
+    "type": "OBJECT",
+    "solid": false
+  },
+  {
+    "id": 112,
+    "name": "salon_building",
+    "hitBox": {
+      "width": 625,
+      "height": 348
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 113,
+    "name": "salon_bg",
+    "hitBox": {
+      "width": 82,
+      "height": 140
+    },
+    "type": "OBJECT",
+    "solid": false
   },
   {
     "id": 200,
