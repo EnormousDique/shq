@@ -18,13 +18,13 @@ public class Physx {
     {
         updateHitBox();
         collisions();
-        carsCollisions();
+        // НЕ ВКЛЮЧАТЬ ! МНОГО ЖРЕТ И БЕСПОЛЕЗНЫЙ
+        //    carsCollisions();
     }
 
     private static void carsCollisions() {
         var cars = Game.currentLevel.objects.stream()
                 .filter(o->(o.name.contains("car") && o.solid)).toList();
-
         for (int i = 0; i < cars.size(); i++) {
             var car = cars.get(i);
             for (int j = 0; j < cars.size(); j++) {

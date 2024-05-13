@@ -82,7 +82,7 @@ public class Renderer implements Runnable{
             if (delta >= 1) {
                 work();
                 delta =-1;
-            }else if (delta > 0) {
+            }else{
                 long remainingTime = (long) ((1 - delta) * drawInterval / 1_000_000); // переводим в миллисекунды
                 try {
                     Thread.sleep(remainingTime);

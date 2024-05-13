@@ -2,6 +2,7 @@ package ru.muwa.shq.engine.utils;
 
 import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.GameWindow;
+import ru.muwa.shq.engine.Renderer;
 import ru.muwa.shq.entities.GameObject;
 import ru.muwa.shq.entities.Level;
 
@@ -21,7 +22,7 @@ public class Spawner {
     }
 
     private static long carSpawnTimer = 0;
-    private static final long CAR_SPAWN_INTERVAL = 1_000;
+    private static final long CAR_SPAWN_INTERVAL = 5_000;
     private static void spawnCars() {
 
         if(Game.currentLevel.id != STREET_1) return;
