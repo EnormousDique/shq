@@ -101,7 +101,7 @@ public class GameObject {
     }
     public GameObject(GameObject o)
     {
-        this(o.id,o.name,o.x,o.y,o.hp,o.stamina,o.speed,o.sprintSpeed,o.dialogue,o.minigameId,o.minigame,o.hitBox,o.solid,o.opened,o.enemy,o.damage,o.items,o.scriptId,o.type,o.coordinates, o.hitBoxXOffset,o.hitBoxYOffset);
+        this(o.id,o.name,o.x,o.y,o.hp,o.stamina,o.speed,o.sprintSpeed,o.dialogue,o.minigameId,o.minigame,o.hitBox,o.solid,o.opened,o.enemy,o.damage,new ArrayList<>()/*items*/,o.scriptId,o.type,o.coordinates, o.hitBoxXOffset,o.hitBoxYOffset);
     }
     public GameObject(){}
 

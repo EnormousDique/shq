@@ -85,7 +85,7 @@ public class ObjectTextures {
             image = ImageIO.read(inputStream);  repo.put(19,image);
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "grocery_goods.png");
-            image = ImageIO.read(inputStream);  repo.put(20,image);
+            image = ImageIO.read(inputStream);  repo.put(20,image); repo.put(114,image);
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "drugstore_goods.png");
             image = ImageIO.read(inputStream);  repo.put(21,image);
@@ -149,7 +149,7 @@ public class ObjectTextures {
             image = ImageIO.read(inputStream);  repo.put(39,image); image = ImageIO.read(inputStream);  transparentRepo.put(39,image);
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "pc_object.png");
-            image = ImageIO.read(inputStream);  repo.put(40,image); image = ImageIO.read(inputStream);  repo.put(41,image);
+            image = ImageIO.read(inputStream);  repo.put(40,image); repo.put(41,image);
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "rock_si.png");
             image = ImageIO.read(inputStream);  repo.put(42,image);
@@ -258,6 +258,9 @@ public class ObjectTextures {
 
        //     image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"salon_bg.png"));
        //     repo.put(113,image);
+
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath+"biolog_shop.png"));
+            repo.put(115,image);
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "indoor/hub_floor.png");
             image = ImageIO.read(inputStream);  repo.put(100,image);

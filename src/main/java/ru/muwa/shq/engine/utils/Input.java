@@ -24,6 +24,7 @@ import static ru.muwa.shq.engine.utils.Input.KListener.*;
 import static ru.muwa.shq.entities.GameObject.Type.DOOR;
 import static ru.muwa.shq.entities.GameObject.Type.*;
 import static ru.muwa.shq.entities.Item.Type.*;
+import static ru.muwa.shq.entities.Level.WILDBERRIES;
 import static ru.muwa.shq.entities.Minigame.Type.*;
 import static ru.muwa.shq.story.Dialogue.Companion.*;
 
@@ -414,6 +415,7 @@ public class Input {
 
         private void minigameClique(Point point) {
             if(Minigame.current == null) return;
+            if(Minigame.current.type == INTERNET){ internetClique(point); return;}
             if(Minigame.current.type == BUS){ busClique(point); return;} //TODO: переделать остальные так же
             if(Minigame.current.type == SLEEP){sleepClique(point); return;}
             if (Minigame.current.type == TOILET){toiletClique(point); return;}
@@ -437,7 +439,8 @@ public class Input {
                     Minigame.current.success.width = 0;
                     Minigame.current.success.height = 0;
                 }
-                if(Minigame.current.type != COOK )Minigame.current = null;
+                if(Minigame.current.type != COOK && Minigame.current.type != SHOP && Minigame.current.type != BUS)
+                    Minigame.current = null;
             }
             if (Minigame.current != null && Minigame.current.type == SHOP)
             {
@@ -448,6 +451,32 @@ public class Input {
                         if(Game.player.items.size() >= Game.player.ITEMS_CAPACITY) return;
                         Game.player.money -= Item.get(button.itemId).price;
                         Game.player.addItem(Item.get(button.itemId));
+                    }
+                }
+            }
+        }
+
+        private void internetClique(Point point) {
+            for (int i = 0; i < Minigame.current.inputButtons.size(); i++) {
+                Minigame.InputButton b = Minigame.current.inputButtons.get(i);
+                if(!b.contains(point))continue;
+                if(b.value.equals("x")) {Minigame.current = null;return;}
+                if(b.value.equals("<---")) {Minigame.current = Minigame.get(20);return;}
+                if(b.value.equals("<--- ")) {Minigame.current = Minigame.get(21);return;}
+                if(b.value.equals("<---  ")) {Minigame.current = Minigame.get(22);return;}
+                if(b.value.equals("<---   ")) {Minigame.current = Minigame.get(23);return;}
+            }
+            if(Minigame.current.purchaseButtons != null && !Minigame.current.purchaseButtons.isEmpty())
+            {
+                for (Minigame.PurchaseButton button : Minigame.current.purchaseButtons)
+                {
+                    if(button.contains(point) && Game.player.money >= Item.get(button.itemId).price)
+                    {
+                        if(Game.player.items.size() >= Game.player.ITEMS_CAPACITY) return;
+                        Game.player.money -= Item.get(button.itemId).price;
+                        var warehouse = Level.repo.get(WILDBERRIES).objects.stream()
+                                .filter(o->o.id==1).findFirst().orElse(null);
+                        warehouse.addItem(Item.get(button.itemId));
                     }
                 }
             }
@@ -602,6 +631,7 @@ public class Input {
                     //¬ зависимости от компаньона выбираем в каком из наборов мы ищем диалог по ссылке
                     switch (Dialogue.companion)
                     {
+                        case MOM -> Dialogue.current = Dialogue.mom.get(button.nextMessage);
                         case HACH -> Dialogue.current = Dialogue.hach.get(button.nextMessage);
                         case HACKER -> Dialogue.current = Dialogue.hacker.get(button.nextMessage);
                         case TRAP -> Dialogue.current = Dialogue.trap.get(button.nextMessage);
@@ -610,9 +640,6 @@ public class Input {
                         case BUTCHER -> Dialogue.current = Dialogue.butcher.get(button.nextMessage);
                         case GIRL -> Dialogue.current = Dialogue.girl.get(button.nextMessage);
                         case PHARMACIST -> Dialogue.current = Dialogue.pharmacist.get(button.nextMessage);
-
-
-                        case MOM -> foo();
                     }
                 }
             }
@@ -629,9 +656,9 @@ public class Input {
             for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
 
                 GameObject o = Game.currentLevel.objects.get(i);
-                if((o.type == GameObject.Type.CONTAINER || (o.minigame!= null && o.minigame.type == COOK)) && o.opened)
+                if(((o.type == CONTAINER || o.type == INTERACT) || (o.minigame!= null && o.minigame.type == COOK)) && o.opened)
                 {
-                    inContainer = 1==1;
+                    inContainer = true;
                     container = o;
                 }
             }

@@ -50,7 +50,6 @@ public class Renderer implements Runnable{
     public static List<BossIcon> bossIcons = new ArrayList<>();
 
 
-
     Renderer() {
 
         window = new GameWindow();
@@ -81,7 +80,7 @@ public class Renderer implements Runnable{
             lastTime = currTime;
             if (delta >= 1) {
                 work();
-                delta =-1;
+                delta =0;//delta-=1;
             }else{
                 long remainingTime = (long) ((1 - delta) * drawInterval / 1_000_000); // переводим в миллисекунды
                 try {
@@ -98,15 +97,16 @@ public class Renderer implements Runnable{
     {
         try {
             screen.repaint();
+
         }catch (Exception e){}
     }
-
 
     public static class Screen extends JPanel
     {
 
         public Screen()
         {
+            setDoubleBuffered(true);
         }
 
         BufferedImage offScreenBuffer;
@@ -143,7 +143,7 @@ public class Renderer implements Runnable{
              g2.dispose();
              offScreenGraphics.dispose();
 
-             try{ Thread.sleep(0,1);} catch(Exception e) {}
+           //  try{ Thread.sleep(0,1);} catch(Exception e) {}
 
         }
 
@@ -270,6 +270,20 @@ public class Renderer implements Runnable{
                     g.drawString(Minigame.current.input, (int) (Minigame.current.window.getMaxX()-50),Minigame.current.window.y+20);
                     break;
 
+                case INTERNET:
+                    if(Minigame.current.inputButtons != null && !Minigame.current.inputButtons.isEmpty())
+                    {
+                        for (int i = 0; i < Minigame.current.purchaseButtons.size(); i++) {
+                            Minigame.PurchaseButton button = Minigame.current.purchaseButtons.get(i);
+                            button.x = i/4 * 75 + Minigame.current.window.x;
+                            button.y = i%4 * 50 + Minigame.current.window.y;
+                            button.width = 50; button.height = 45;
+                            g.drawImage(ItemTextures.repo.get(button.itemId),button.x,button.y,null);
+                            g.setColor(Color.GREEN);
+                            g.setFont(new Font(Font.SANS_SERIF,1,15));
+                            g.drawString("" + Item.get(button.itemId).price, button.x + 50, (int) button.getCenterY());
+                        }
+                    }
                 case TOILET:
                 case BUS:
                 case ELEVATOR:
@@ -432,7 +446,7 @@ public class Renderer implements Runnable{
             //Рисуем окна открытых контейнеров.
             for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
                 GameObject o = Game.currentLevel.objects.get(i);
-                if(o.opened && (o.type.equals(CONTAINER) || o.minigame.type == COOK))
+                if(o.opened && (o.type.equals(CONTAINER) || o.type.equals(INTERACT) || o.minigame.type == COOK ))
                 {
                     int cx = Camera.x, cy = Camera.y;
                     g.setColor(Color.WHITE);
@@ -545,14 +559,13 @@ public class Renderer implements Runnable{
 
             }
             //магазин
-            if(Minigame.current != null && Minigame.current.type == SHOP)
+            if(Minigame.current != null && (Minigame.current.type == SHOP || (Minigame.current.purchaseButtons!=null && !Minigame.current.purchaseButtons.isEmpty()) ) )
             {
                 for (int i = 0; i < Minigame.current.purchaseButtons.size(); i++) {
                     Minigame.PurchaseButton button = Minigame.current.purchaseButtons.get(i);
                     Item item = Item.get(button.itemId);
                     if(button.contains(Input.mouse.x, Input.mouse.y-30))
                         g.drawString(item.name + " | " + item.description,Input.mouse.x + 50, Input.mouse.y+50);
-
                 }
             }
         }

@@ -29,7 +29,7 @@ public class Updater implements Runnable{
             lastTime = currTime;
             if (delta >= 1) {
                 work();
-                delta-=1;
+                delta=0; //delta-=1;
             }else if (delta > 0) {
                 long remainingTime = (long) ((1 - delta) * drawInterval / 1_000_000); // переводим в миллисекунды
                 try {
@@ -57,7 +57,7 @@ public class Updater implements Runnable{
             Physx.work();
             Combat.work();
             AI.work();
-            //Spawner.work();//Лучше отключать при работе со сборкой уровней
+            Spawner.work();//Лучше отключать при работе со сборкой уровней
             Kldmn.mdk();
         }catch (Exception e){}
     }

@@ -435,7 +435,7 @@
       "height": 80
     },
     "type": "INTERACT",
-    "scriptId": 0
+    "scriptId": 19
   },
   {
     "id": 42,
@@ -1150,6 +1150,26 @@
     },
     "type": "OBJECT",
     "solid": false
+  },
+  {
+    "id": 114,
+    "name": "salon_goods",
+    "hitBox": {
+      "width": 82,
+      "height": 140
+    },
+    "type": "INTERACT",
+    "minigameId": 3
+  },
+  {
+    "id": 115,
+    "name": "biolog_shop",
+    "hitBox": {
+      "width": 257,
+      "height": 213
+    },
+    "type": "INTERACT",
+    "minigameId": 18
   },
   {
     "id": 200,

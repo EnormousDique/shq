@@ -80,6 +80,7 @@ public class Dialogue {
     }
     public static Dialogue current;
     public static HashMap<Integer,Dialogue> repo = new HashMap<>();
+    public static HashMap<Integer,Dialogue> mom = new HashMap<>();
     public static HashMap<Integer,Dialogue> hach = new HashMap<>();
     public static HashMap<Integer,Dialogue> hacker = new HashMap<>();
     public static HashMap<Integer,Dialogue> girl = new HashMap<>();
@@ -90,6 +91,8 @@ public class Dialogue {
     public static HashMap<Integer,Dialogue> pharmacist = new HashMap<>();
     static
     {
+        fillDialogueMapFromJSON(mom,"json/mom_dialogues.json");
+
         String pathToJsonWithItems = "json/dialogues.json";
         readDialoguesFromJsonFile(pathToJsonWithItems);
         pathToJsonWithItems = "json/hacker_dialogues.json";
@@ -104,7 +107,7 @@ public class Dialogue {
         fillDialogueMapFromJSON(mech,pathToJsonWithItems);
         fillDialogueMapFromJSON(butcher,"json/butchers_dialogues.json");
         fillDialogueMapFromJSON(girl,"json/girl_dialogues.json");
-        fillDialogueMapFromJSON(pharmacist,"json/pharmacist_dialogues.json");
+        //   fillDialogueMapFromJSON(pharmacist,"json/pharmacist_dialogues.json");
         System.out.println("Список диалогов успешно загружен");
     }
     @Override

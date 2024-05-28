@@ -91,7 +91,7 @@ public class Game {
 
         //Хачик
         Level.repo.get(STREET_1).objects.add(hach);
-        hach.x = 2190; hach.y = 5500;
+        hach.x = 2190; hach.y = 5600;
 
         //Мясник
         Level.repo.get(BUTCHERY).objects.add(butcher);
@@ -103,8 +103,8 @@ public class Game {
         //Педовка попадает на карту после общения со школьником
 
         //Ловушка из валберс
-        //Level.repo.get(STREET_1).objects.add(trap);
-        //trap.x = 1550; trap.y = 2100;
+        Level.repo.get(WILDBERRIES).objects.add(trap);
+        trap.x = 300; trap.y = 300;
 
         //Медбрат
         nurse.x = 600; nurse.y = 820;
@@ -120,5 +120,11 @@ public class Game {
         renderer.thread.start();
         System.out.println("Запуск игрового движка");
         updater.thread.start();
+
+        //Включаем стартовый диалог
+        Dialogue.current = Dialogue.mom.get(0);
+        Dialogue.companion = Dialogue.Companion.MOM;
+        Dialogue.texture = Dialogue.textures.get(Game.mom.id);
+
     }
 }

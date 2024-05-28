@@ -19,7 +19,7 @@ public class Minigame
     public Type type;
     public enum Type
     {
-        SHQUR, PADIQUE, MOM_CLEAN, DOOR, ELEVATOR,COOK,SHOP,BUS,SLEEP,SINK,TOILET,DEATH,GAS
+        SHQUR, PADIQUE, MOM_CLEAN, DOOR, ELEVATOR,COOK,SHOP,BUS,SLEEP,SINK,TOILET,DEATH,GAS,SELL,INTERNET
     }
     public int script;
     public String input = ""; // для padique и elevator
@@ -163,6 +163,48 @@ public class Minigame
                     button.x = window.x + (9-i)%2*50; button.y = window.y + (9-i)   /2 * 50;
                     inputButtons.add(button);
                 }
+                break;
+
+            case INTERNET:
+                inputButtons = new ArrayList<>();
+                if(this.id ==19) { // Интернет. Заглавная страница
+                    for (int i = 0; i < 4; i++) {
+                        Minigame.InputButton b = new InputButton("<---");
+                        for (int j = 0; j < i; j++) b.value += " ";
+                        b.x = window.x + 150;
+                        b.y = window.y + 70 + i * 16;
+                        b.height = 14;
+                        inputButtons.add(b);
+                    }
+                }
+                if(this.id == 21){// Интернет. Сайт валберс
+                    purchaseButtons = new ArrayList<>();
+                    PurchaseButton pb = new PurchaseButton(113);
+                    pb.x = 0/4 * 75 + window.x;
+                    pb.y = 0%4 * 50 + window.y;
+                    pb.width = 50; pb.height = 45;
+                    purchaseButtons.add(pb);
+
+                    pb = new PurchaseButton(109);
+                    pb.x = 1/4 * 75 + window.x;
+                    pb.y = 1%4 * 50 + window.y;
+                    pb.width = 50; pb.height = 45;
+                    purchaseButtons.add(pb);
+
+                    pb = new PurchaseButton(100);
+                    pb.x = 2/4 * 75 + window.x;
+                    pb.y = 2%4 * 50 + window.y;
+                    pb.width = 50; pb.height = 45;
+                    purchaseButtons.add(pb);
+
+
+                }
+
+                //Кнопка выключения компьютера
+                Minigame.InputButton b = new InputButton("x");
+                b.x = window.x + window.width - b.width;
+                b.y = window.y;
+                inputButtons.add(b);
                 break;
 
         }

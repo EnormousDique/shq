@@ -56,6 +56,7 @@ public class Command {
         if(arg.equals("zone")) Renderer.drawZones = !Renderer.drawZones;
         if(arg.startsWith("clear_level_from_")) clearLevelFrom(arg.split("clear_level_from_")[1]);
         if(arg.equals("walls")) Renderer.drawWalls = !Renderer.drawWalls;
+        if(arg.startsWith("minigame_")) Minigame.current = Minigame.get(Integer.parseInt(arg.split("minigame_")[1]));
 
     }
 

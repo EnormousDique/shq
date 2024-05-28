@@ -22,7 +22,7 @@ public class Spawner {
     }
 
     private static long carSpawnTimer = 0;
-    private static final long CAR_SPAWN_INTERVAL = 5_000;
+    private static final long CAR_SPAWN_INTERVAL = 3_500;
     private static void spawnCars() {
 
         if(Game.currentLevel.id != STREET_1) return;
@@ -133,7 +133,6 @@ public class Spawner {
                         cop.x = z.x;
                         cop.y = z.y;
                         Game.currentLevel.objects.add(cop);
-                        copSpawnTimer = GameTime.value + copSpawnInterval;
                 }
             }
             //Спавн на улице
@@ -150,23 +149,23 @@ public class Spawner {
                 //Спавним копов указанное количество раз
                 for (int i = 0; i < times; i++) {
                     //Определяем место для спавна
-                    int x = Game.player.x + Math.random() > 0.5?
-                            (GameWindow.WIDTH/2)+100 : (-1 * GameWindow.WIDTH/2)-100;
-                    int y = Game.player.y + Math.random() > 0.5?
-                            (GameWindow.HEIGHT/2)+100 : (-1 * GameWindow.HEIGHT/2)-100;
+                    int x = Game.player.x + Camera.x + (Math.random() > 0.5?
+                            (GameWindow.WIDTH/2)+100 : (-1 * GameWindow.WIDTH/2)-100);
+                    int y = Game.player.y + Camera.y + (Math.random() > 0.5?
+                            (GameWindow.HEIGHT/2)+100 : (-1 * GameWindow.HEIGHT/2)-100);
                     //Создаем новый экземпляр копа и помещаем на карту
                     GameObject cop = GameObject.get(copId);
                     cop.x = x;
                     cop.y = y;
                     Game.currentLevel.objects.add(cop);
                 }
-                int interval = 10_000;//По умолчанию 10 сек
-                if(Game.player.wanted > 150) interval -= 1_500; // -1.5 сек за каждый шаг
-                if(Game.player.wanted > 200) interval -= 1_500;
-                if(Game.player.wanted > 250) interval -= 1_500;
-                if(Game.player.wanted > 300) interval -= 1_500;
-                copSpawnTimer = GameTime.value + interval;
             }
+            int interval = 10_000;//По умолчанию 10 сек
+            if(Game.player.wanted > 150) interval -= 1_500; // -1.5 сек за каждый шаг
+            if(Game.player.wanted > 200) interval -= 1_500;
+            if(Game.player.wanted > 250) interval -= 1_500;
+            if(Game.player.wanted > 300) interval -= 1_500;
+            copSpawnTimer = GameTime.value + interval;
         }
         else{
             //Если беспредел низкий, убираем мусоров

@@ -29,6 +29,7 @@ public class Physx {
             var car = cars.get(i);
             for (int j = 0; j < cars.size(); j++) {
                 var car2 = cars.get(j);
+                if(car.x - car2.x > 200 || car.y - car2.y > 200 || car.x - car2.x < -200 || car.y - car2.y < -200) continue;
                 if(car.hitBox.intersects(car2.hitBox) && car!=car2) {
                    car2.speed = car.speed = 15;
                 }
@@ -60,6 +61,9 @@ public class Physx {
             GameObject object = Game.currentLevel.objects.get(i);
 
             if(!object.solid) continue;
+
+            if(npc.x - object.x > 1000 ||npc.x - object.x < -1000 || npc.y - object.y > 1000 || npc.y - object.y < -1000 )
+                continue;
 
             if(object.hitBox.intersects(npc.hitBox))
             {
@@ -179,8 +183,6 @@ public class Physx {
         }
     }
     private static Rectangle rotateHitBox(Rectangle hitBox){
-
-
 
         // Угол поворота в радианах
         double angle = Math.toRadians(Combat.angle);

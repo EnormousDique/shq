@@ -49,6 +49,21 @@ public class MinigameTextures {
             inputStream = classLoader.getResourceAsStream(Game.imgPath+"heater_game.png");
             image = ImageIO.read(inputStream); repo.put(13,image);
 
+            inputStream = classLoader.getResourceAsStream(Game.imgPath+"internet_index.png");
+            image = ImageIO.read(inputStream); repo.put(19,image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath+"internet_doc.png");
+            image = ImageIO.read(inputStream); repo.put(20,image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath+"internet_shop.png");
+            image = ImageIO.read(inputStream); repo.put(21,image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath+"internet_rent.png");
+            image = ImageIO.read(inputStream); repo.put(22,image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath+"internet_porn.png");
+            image = ImageIO.read(inputStream); repo.put(23,image);
+
         }
         catch (IOException e)
         {

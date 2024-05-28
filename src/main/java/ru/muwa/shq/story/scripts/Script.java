@@ -297,6 +297,36 @@ public abstract class Script {
                     Game.player.wanted += 20; //Мусоров такое может заебать
             }
         };repo.put(17,script);
+
+        /** Скрипт миниигры продажа (брат биолог) **/
+        script = new Script() {
+            @Override
+            public void execute() {
+
+            }
+        }; repo.put(18,script);
+
+        /** Скрипт компа **/
+        script = new Script() {
+            @Override
+            public void execute() {
+                //Находим объект компа
+                var pc = Game.currentLevel.objects.stream()
+                        .filter(o->o.id==41).findFirst().orElse(null);
+                if(pc==null) return;
+                // Проверяем, все ли детали собраны
+                boolean
+                        assembled = pc.items.stream().anyMatch(i -> i.id == 71) //ПРОЦ
+                        && pc.items.stream().anyMatch(i -> i.id == 108) //ОПЕРАТИВА
+                        && pc.items.stream().anyMatch(i -> i.id == 109) //МОНИТОР
+                        && pc.items.stream().anyMatch(i -> i.id == 111) //КЛАВА
+                        && pc.items.stream().anyMatch(i -> i.id == 112); //МЫШ
+                // Если да, открываем интернет
+                if(assembled) Minigame.current = Minigame.get(19);//Открыли интернет
+                // Если нет, открываем контейнер для добавления деталей
+                pc.opened = true;
+            }
+        }; repo.put(19,script);
         /** Шкипер кормит маму **/
         script = new Script() {
             //Проверка еды у Шкипера для мамы.
@@ -792,7 +822,7 @@ public abstract class Script {
                 if(Game.currentLevel.id!=HUB) return; //Поставить комп можно только дома!
                 //Если мы дома, ставим комп дома
                 GameObject pc = GameObject.get(41);
-                pc.x=400;pc.y=150;
+                pc.x=250;pc.y=100;
                 Level.repo.get(HUB).objects.add(pc);
                 //И забираем его из рук игрока
                 Game.player.items.remove(Game.player.equip);

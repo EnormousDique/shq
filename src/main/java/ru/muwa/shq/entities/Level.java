@@ -1,17 +1,13 @@
 package ru.muwa.shq.entities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.muwa.shq.Main;
-import ru.muwa.shq.engine.Game;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static ru.muwa.shq.entities.GameObject.MOM;
 
 
 public class Level {
@@ -58,7 +54,13 @@ public class Level {
         pathToJsonWithItems = "json/level_2.json";
         readItemsFromJsonFile(pathToJsonWithItems);
 
+        pathToJsonWithItems = "json/level_3.json";
+        readItemsFromJsonFile(pathToJsonWithItems);
+
         pathToJsonWithItems = "json/level_4.json";
+        readItemsFromJsonFile(pathToJsonWithItems);
+
+        pathToJsonWithItems = "json/level_5.json";
         readItemsFromJsonFile(pathToJsonWithItems);
 
         pathToJsonWithItems = "json/level_6.json";
@@ -92,6 +94,9 @@ public class Level {
         readItemsFromJsonFile(pathToJsonWithItems);
 
         pathToJsonWithItems = "json/level_16.json";
+        readItemsFromJsonFile(pathToJsonWithItems);
+
+        pathToJsonWithItems = "json/level_17.json";
         readItemsFromJsonFile(pathToJsonWithItems);
 
         pathToJsonWithItems = "json/level_18.json";

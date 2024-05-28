@@ -29,6 +29,7 @@ public class Combat {
     static
     {
         ammoTypeMap.put(3,9); //Макаров и 9х18 мм
+        ammoTypeMap.put(92,107); //Патроны для обреза
     }
 
     public static void work()
@@ -52,7 +53,7 @@ public class Combat {
                     //Пуля игрока попала в существо
                     creature.x += 10 * Math.cos(bulletAngles.get(bullet));
                     creature.y += 10 * Math.sin(bulletAngles.get(bullet));
-                    dealDamage(creature, 50);
+                    dealDamage(creature, 100);
                     Game.currentLevel.objects.remove(bullet);
                     bulletAngles.remove(bullet);
                     bulletTimer.remove(bullet);
@@ -144,11 +145,9 @@ public class Combat {
         for (Map.Entry<Integer,Double> entry : loot.entrySet())
         {
             var chance = Math.random();
-            System.out.println("chance : " +chance + " entry : "+ entry.getKey() + " - " + entry.getValue());
             if(chance > entry.getValue()) continue;
             corpse.addItem(Item.get(entry.getKey()));
         }
-
     }
 
     public static void shoot()
@@ -210,9 +209,14 @@ public class Combat {
     {
         // Пешеход (6)
         var loot = new HashMap<Integer,Double>();
-        loot.put(8,0.5); // 100 рублей
-        loot.put(67,0.1); // зажигалка
-        loot.put(66,0.05); // Сигареты
+        loot.put(8,0.75); // 100 рублей
+        loot.put(103,0.2); // 500 рублей
+        loot.put(104,0.1); // 1000 рублей
+        loot.put(105,0.05); // 5000 рублей
+        loot.put(74,0.4); // Банковская карта
+        loot.put(67,0.2); // зажигалка
+        loot.put(66,0.1); // Сигареты
+        loot.put(106,0.1); // Телефон
         lootChances.put(6, loot);
 
         // Кассир (33331)
@@ -222,9 +226,15 @@ public class Combat {
 
         //мент (7)
         loot = new HashMap<>();
-        loot.put(3,0.1);
-        loot.put(9,0.33);
-        loot.put(8,0.5); // 100 рублей
+        loot.put(3,0.2); // Макарыч
+        loot.put(9,0.66); // Патроны для макара
+        loot.put(8,0.75); // 100 рублей
+        loot.put(103,0.2); // 500 рублей
+        loot.put(104,0.1); // 1000 рублей
+        loot.put(105,0.05); // 5000 рублей
+        loot.put(74,0.4); // Банковская карта
+        loot.put(67,0.2); // зажигалка
+        loot.put(66,0.1); // Сигареты
         lootChances.put(7,loot);
 
     }

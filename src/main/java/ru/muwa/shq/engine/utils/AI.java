@@ -17,7 +17,7 @@ import static ru.muwa.shq.entities.Level.STREET_1;
 
 /**
  *
- * Класс ИИ.
+ * Класс искусственного интеллекта.
  * Управляет игровыми персонажами
  *
  */
@@ -85,6 +85,8 @@ public class AI {
                 car.x -= car.speed;
                 //Поворот
                 for(var zone : zones) {
+                    if(zone.x - car.x > 200 ||zone.x - car.x < -200 || zone.y - car.y > 200 || zone.y - car.y < -200 )
+                        continue;
                     if (zone.name.contains("zone_car_turn_left_to_up")
                     && car.hitBox.intersects(zone.hitBox)) {
                         if(ignoreZones.get(zone)==car) continue;
@@ -123,6 +125,8 @@ public class AI {
                 car.y -= car.speed;
                 //Поворот
                 for(var zone : zones) {
+                    if(zone.x - car.x > 200 ||zone.x - car.x < -200 || zone.y - car.y > 200 || zone.y - car.y < -200 )
+                        continue;
                     if (zone.name.contains("zone_car_turn_up_to_right")
                             && car.hitBox.intersects(zone.hitBox)) {
                         if(ignoreZones.get(zone)==car) continue;
@@ -161,6 +165,8 @@ public class AI {
                 car.y += car.speed;
                 //Поворот
                 for(var zone : zones) {
+                    if(zone.x - car.x > 200 ||zone.x - car.x < -200 || zone.y - car.y > 200 || zone.y - car.y < -200 )
+                        continue;
                     if (zone.name.contains("zone_car_turn_down_to_right")
                             && car.hitBox.intersects(zone.hitBox)) {
                         if(ignoreZones.get(zone)==car) continue;
@@ -199,6 +205,8 @@ public class AI {
                 car.x += car.speed;
                 //Поворот
                 for(var zone : zones) {
+                    if(zone.x - car.x > 200 ||zone.x - car.x < -200 || zone.y - car.y > 200 || zone.y - car.y < -200 )
+                        continue;
                     if (zone.name.contains("zone_car_turn_right_to_up")
                             && car.hitBox.intersects(zone.hitBox)) {
                         if(ignoreZones.get(zone)==car) continue;

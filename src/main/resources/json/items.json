@@ -108,12 +108,11 @@
   {
     "id":8,
     "name": "100_rub",
-    "description": "российских",
+    "description": "деревянных",
     "stackable": true,
     "count": 1,
     "price": 100,
     "type":"MONEY"
-
   },
   {
     "id": 9,
@@ -894,5 +893,96 @@
     "count": 1,
     "type": "ITEM",
     "price": 2
+  },
+  {
+    "id":103,
+    "name": "500_rub",
+    "description": "деревянных",
+    "stackable": true,
+    "count": 1,
+    "price": 500,
+    "type":"MONEY"
+  },
+  {
+    "id":104,
+    "name": "1000_rub",
+    "description": "деревянных",
+    "stackable": true,
+    "count": 1,
+    "price": 1000,
+    "type":"MONEY"
+  },
+  {
+    "id":105,
+    "name": "5000_rub",
+    "description": "деревянных",
+    "stackable": true,
+    "count": 1,
+    "price": 5000,
+    "type":"MONEY"
+  },
+  {
+    "id": 106,
+    "name": "phone",
+    "description": "мобильный телефон",
+    "price": 5000,
+    "type": "ITEM"
+  },
+  {
+    "id": 107,
+    "name": "ammo_shotgun",
+    "description": "под обре3",
+    "type": "AMMO",
+    "price": 500,
+    "stackable": true,
+    "count": 1
+  },
+  {
+  "id": 108,
+  "name": "Оперативная память",
+  "description": "плашка 512 МБ",
+  "count": 1,
+  "type": "ITEM",
+  "price": 5000
+  },
+  {
+    "id": 109,
+    "name": "Монитор",
+    "description": "Старый и пузатый",
+    "count": 1,
+    "type": "ITEM",
+    "price": 10000
+  },
+  {
+    "id": 110,
+    "name": "Графический процеcсор (GPU)",
+    "description": "отдельное устройство персонального компьютера или игровой приставки, выполняющее графический рендеринг",
+    "count": 1,
+    "type": "ITEM",
+    "price": 35000
+  },
+  {
+    "id": 111,
+    "name": "Клавиатура",
+    "description": "Для персонального компьютера",
+    "count": 1,
+    "type": "ITEM",
+    "price": 1000
+  },
+  {
+    "id": 112,
+    "name": "Компьютерная мышь",
+    "description": "не пищит",
+    "count": 1,
+    "type": "ITEM",
+    "price": 500
+  },
+  {
+    "id": 113,
+    "name": "резиновый член",
+    "description": "самотык",
+    "type": "MELEE",
+    "count": 1,
+    "damage": 10
   }
 ]

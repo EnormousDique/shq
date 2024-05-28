@@ -17,6 +17,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/textures/ItemTextures.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/main/java/ru/muwa/shq/textures/ObjectTextures.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/main/resources/json/girl_dialogues.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/json/mom_dialogues.json" charset="UTF-16" />
     <file url="PROJECT" charset="windows-1251" />
   </component>
 </project>

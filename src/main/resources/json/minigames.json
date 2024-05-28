@@ -81,5 +81,30 @@
     "id": 17,
     "script": 17,
     "type": "GAS"
+  },
+  {
+    "id": 18,
+    "script": 0,
+    "type": "SELL"
+  },
+  {
+    "id": 19,
+    "type": "INTERNET"
+  },
+  {
+    "id": 20,
+    "type": "INTERNET"
+  },
+  {
+    "id": 21,
+    "type": "INTERNET"
+  },
+  {
+    "id": 22,
+    "type": "INTERNET"
+  },
+  {
+    "id": 23,
+    "type": "INTERNET"
   }
 ]
