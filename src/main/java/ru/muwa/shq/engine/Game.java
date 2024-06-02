@@ -106,6 +106,10 @@ public class Game {
         Level.repo.get(WILDBERRIES).objects.add(trap);
         trap.x = 300; trap.y = 300;
 
+        //Мент
+        repo.get(POLICE_OFFICE).objects.add(officer);
+        officer.x = 200; officer.y = 200;
+
         //Медбрат
         nurse.x = 600; nurse.y = 820;
         Level.repo.get(HOSPITAL).objects.add(nurse);

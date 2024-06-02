@@ -14,7 +14,7 @@ public class ItemTextures {
 
     //Ключ - item id, значение - изображение (текстура).
     public static HashMap<Integer, BufferedImage> repo = new HashMap<>();
-    public static BufferedImage containerBG, inventory;
+    public static BufferedImage containerBG, inventory,hudImage;
 
     static
     {
@@ -30,6 +30,11 @@ public class ItemTextures {
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "inventory.png");
             inventory = ImageIO.read(inputStream);
+
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "hud_stats.png");
+            hudImage = ImageIO.read(inputStream);
+
 
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "knife_icon.png");
             image = ImageIO.read(inputStream); repo.put(2, image);
@@ -96,6 +101,13 @@ public class ItemTextures {
             image = ImageIO.read(inputStream); repo.put(54, image);
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "onion.png");
             image = ImageIO.read(inputStream); repo.put(55, image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "500_rub.png");
+            image = ImageIO.read(inputStream); repo.put(103, image);
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "1000_rub.png");
+            image = ImageIO.read(inputStream); repo.put(104, image);
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "5000_rub.png");
+            image = ImageIO.read(inputStream); repo.put(105, image);
 
             System.out.println("изображения предметов успешно загружены");
 

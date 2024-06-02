@@ -103,7 +103,7 @@ public class Combat {
         double mouseY = Input.mouse.y - (GameWindow.fullscreen?0:30);
 
         // Вычисляем угол между векторами
-        angle = Math.atan2(mouseY - centerY, mouseX - centerX);
+        if(!Game.player.busy) angle = Math.atan2(mouseY - centerY, mouseX - centerX);
 
         int px = (int) Game.player.hitBox.getCenterX();
         int py = (int) Game.player.hitBox.getCenterY();
@@ -236,6 +236,14 @@ public class Combat {
         loot.put(67,0.2); // зажигалка
         loot.put(66,0.1); // Сигареты
         lootChances.put(7,loot);
+
+        //Гопник (4)
+        loot = new HashMap<>();
+        loot.put(8,0.75);
+        loot.put(103,0.2);
+        loot.put(67,0.3);
+        loot.put(66,0.2);
+
 
     }
 }

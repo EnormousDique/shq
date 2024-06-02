@@ -190,7 +190,6 @@ public class Input {
         if(!reachable) return;
 
         //Если дотягиваемся
-
         if(o!=null && o.type == GameObject.Type.CONTAINER)
         {
             o.opened = !o.opened;
@@ -220,8 +219,6 @@ public class Input {
                 if(o==Game.butcher) {Dialogue.current = Dialogue.butcher.get(o.dialogue);Dialogue.companion=BUTCHER;}
                 if(o==Game.girl) {Dialogue.current = Dialogue.girl.get(o.dialogue);Dialogue.companion=GIRL;}
                 if(o==Game.pharmacist) {Dialogue.current = Dialogue.pharmacist.get(o.dialogue);Dialogue.companion=PHARMACIST;}
-
-
 
                 Dialogue.texture = Dialogue.textures.get(o.id);
             }

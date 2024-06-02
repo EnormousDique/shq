@@ -3,8 +3,8 @@
     "id" : "1",
     "name" : "тумбочка",
     "hitBox": {
-      "width": "92",
-      "height" : "100"
+      "width": "40",
+      "height" : "50"
     },
     "type": "CONTAINER",
     "solid" : "true"
@@ -1172,6 +1172,106 @@
     "minigameId": 18
   },
   {
+    "id": 116,
+    "name": "sewers_bg",
+    "hitBox": {
+      "width": 2455,
+      "height": 2440
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 117,
+    "name": "jail_bg",
+    "hitBox": {
+      "width": 840,
+      "height": 303
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 118,
+    "name": "construction_bg",
+    "hitBox": {
+      "width": 2001,
+      "height": 1360
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 119,
+    "name": "soccer_bg",
+    "hitBox": {
+      "width": 701,
+      "height": 530
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 120,
+    "name": "rat_spawn_zone",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 121,
+    "name": "gop_spawn_zone",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 122,
+    "name": "zek_spawn_zone",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 123,
+    "name": "rat",
+    "hitBox": {
+      "width": 25,
+      "height": 25
+    },
+    "solid": "true",
+    "type": "CREATURE",
+    "enemy": true,
+    "damage": 3,
+    "speed": 3,
+    "hp": 30
+  },
+  {
+    "id": 124,
+    "name": "zek",
+    "hitBox": {
+      "width": 35,
+      "height": 30
+    },
+    "solid": "true",
+    "type": "CREATURE",
+    "enemy": true,
+    "damage": 6,
+    "speed": 4,
+    "hp": 100
+  },
+  {
+    "id": 125,
+    "name": "hach_spawn_zone",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "ZONE"
+  },
+  {
     "id": 200,
     "name": "5_floor",
     "hitBox": {
@@ -1332,6 +1432,26 @@
       "height": 50
     },
     "type": "ZONE"
+  },
+  {
+    "id": 300,
+    "name": "inv_wall_horizontal_200x50",
+    "hitBox": {
+      "width": 200,
+      "height": 50
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 301,
+    "name": "inv_wall_vertical_50x200",
+    "hitBox": {
+      "width": 50,
+      "height": 200
+    },
+    "type": "OBJECT",
+    "solid": true
   },
   {
     "id": 666,

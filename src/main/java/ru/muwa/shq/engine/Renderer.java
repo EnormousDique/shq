@@ -51,7 +51,6 @@ public class Renderer implements Runnable{
 
 
     Renderer() {
-
         window = new GameWindow();
         screen = new Screen();
         if(GameWindow.fullscreen) window.setLocation(0,0);
@@ -61,7 +60,6 @@ public class Renderer implements Runnable{
         window.addMouseListener(Input.mouse);
         window.addMouseMotionListener(Input.mouse);
         thread = new Thread(this);
-
     }
 
     @Override
@@ -273,10 +271,11 @@ public class Renderer implements Runnable{
                 case INTERNET:
                     if(Minigame.current.inputButtons != null && !Minigame.current.inputButtons.isEmpty())
                     {
-                        for (int i = 0; i < Minigame.current.purchaseButtons.size(); i++) {
-                            Minigame.PurchaseButton button = Minigame.current.purchaseButtons.get(i);
-                            button.x = i/4 * 75 + Minigame.current.window.x;
-                            button.y = i%4 * 50 + Minigame.current.window.y;
+                        if(Minigame.current.purchaseButtons!=null)
+                            for (int i = 0; i < Minigame.current.purchaseButtons.size(); i++) {
+                               Minigame.PurchaseButton button = Minigame.current.purchaseButtons.get(i);
+                               button.x = i/4 * 75 + Minigame.current.window.x;
+                               button.y = i%4 * 50 + Minigame.current.window.y;
                             button.width = 50; button.height = 45;
                             g.drawImage(ItemTextures.repo.get(button.itemId),button.x,button.y,null);
                             g.setColor(Color.GREEN);
@@ -368,7 +367,7 @@ public class Renderer implements Runnable{
                             g.drawImage(Animation.getCurrentFrame(o), o.x -Camera.x, o.y - Camera.y, null);
                             continue;
                         }else //Иначе рисуем стандартную текстуру
-                            g.drawImage(ObjectTextures.repo.get(o.id), o.x - Camera.x, o.y - Camera.y, null);
+                            g.drawImage(ObjectTextures.repo.get(o.id), o.x - Camera.x, o.y - Camera.y, o.hitBox.width+o.hitBoxXOffset,o.hitBox.height+o.hitBoxYOffset,null);
                         //Для зон входа рисуем области
                         if((o.name.contains("enter")||o.name.contains("exit"))&&o.type == ZONE)
                         {
@@ -399,6 +398,7 @@ public class Renderer implements Runnable{
             g.drawString(GameTime.getString(), GameWindow.WIDTH - 150, 10);
 
             //Рисуем статы игрока
+            //  g.drawImage(ItemTextures.hudImage,GameWindow.WIDTH-250/*широта */-15,10,250,500,null);
             if(hud > 0){
                 //ХП
                 g.drawString(" \u2764 : " + Game.player.hp + " / " + Game.player.baseHp , GameWindow.WIDTH -150, 30 );
@@ -446,7 +446,7 @@ public class Renderer implements Runnable{
             //Рисуем окна открытых контейнеров.
             for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
                 GameObject o = Game.currentLevel.objects.get(i);
-                if(o.opened && (o.type.equals(CONTAINER) || o.type.equals(INTERACT) || o.minigame.type == COOK ))
+                if(o.opened && (o.type.equals(CONTAINER) || (o.type.equals(INTERACT) && o.minigameId != 3) || o.minigame.type == COOK ))
                 {
                     int cx = Camera.x, cy = Camera.y;
                     g.setColor(Color.WHITE);
@@ -460,7 +460,8 @@ public class Renderer implements Runnable{
                         item.icon.width = 50; item.icon.height = 50;
                         g.drawImage(ItemTextures.repo.get(item.id),item.icon.x,item.icon.y,null);
                         if(item.stackable) {
-                            g.setColor(Color.CYAN);
+                            g.setColor(new Color(150,0,200,250));
+                            g.setFont(new Font(g.getFont().getName(),Font.BOLD,20));
                             g.drawString("" + item.count,item.icon.x+15,item.icon.y+15);
                         }
                     }

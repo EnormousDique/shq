@@ -2,7 +2,6 @@ package ru.muwa.shq.engine.utils;
 
 import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.GameWindow;
-import ru.muwa.shq.engine.Renderer;
 import ru.muwa.shq.entities.GameObject;
 import ru.muwa.shq.entities.Player;
 
@@ -30,7 +29,7 @@ public class AI {
     public static final long WAIT_INTERVAL = 500; // 0.5 sec
     //Список id стреляющих НПС
     public static final List<Integer> shootingNPC = List.of(7);
-    //Мапа ожиданий после выстрела. (ключ - стрельнувший нпс. значение - таймер до сл. выстрела)
+    //Мапа ожиданий после выстрела. (ключ - стрельнувший нпс. Значение - таймер до сл выстрела)
     public static final Map<GameObject,Long> shotsTimer = new HashMap<>();
     //Безопасная дистанция по мнению стреляющих нпс (они бегут от Шкипера если расстояние не безопасно)
     public static final int SAFE_DIST = 300;
@@ -45,7 +44,7 @@ public class AI {
         traffic();
     }
 
-    //Мапа, в которой храним повороты машин
+    //Мапа, в которой храним повороты машин.
     //Ключ - id машины, которая поворачивает, значение - список id всех 4-х поворотов этой машины
     private static final int LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3;
     private static final HashMap<Integer,List<Integer>> carTurns = new HashMap<>();
@@ -62,9 +61,9 @@ public class AI {
         carTurns.put(94,List.of(53,91,88,94));//БЕЛАЯ МАШИНА
 
         carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
-        carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
-        carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
-        carTurns.put(55,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
+        carTurns.put(96,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
+        carTurns.put(93,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
+        carTurns.put(90,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
 
     }
     //Управляем машинами
@@ -250,7 +249,7 @@ public class AI {
             }
         }
     }
-    //Проходимся по НПЦ и передаем их службе физики чтобы проверить столкновения
+    //Проходимся по НПЦ и передаем их службе физики, чтобы проверить столкновения
     private static void callbackCollisions() {
         for (int i = 0; i <Game.currentLevel.objects.size(); i++) {
             GameObject object = Game.currentLevel.objects.get(i);
@@ -272,7 +271,7 @@ public class AI {
             }
 
 
-            if (p.destY == -1 && p.destX == -1){ if(Math.random() < 0.05) setRandomDestination(p); continue;};
+            if (p.destY == -1 && p.destX == -1){ if(Math.random() < 0.05) setRandomDestination(p); continue;}
 
 
             if (p.hitBox.getCenterX() < p.destX) {
@@ -438,11 +437,10 @@ public class AI {
             if(obst == o || obst == p) continue;
             if(!obst.solid) continue;
 
-            // Проверяем пересечение линии с хитбоксом объекта obst
+            // Проверяем пересечение линии с hit box объекта obst
             if (line.intersects(obst.hitBox)) {
                 return false; // Если есть пересечение, возвращаем false
             }
-
         }
         // Если не найдено пересечений, возвращаем true
         return true;

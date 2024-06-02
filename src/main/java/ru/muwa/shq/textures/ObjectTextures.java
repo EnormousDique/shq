@@ -292,6 +292,18 @@ public class ObjectTextures {
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "bed.png");
             image = ImageIO.read(inputStream);  repo.put(110,image);
 
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "sewers_bg.png");
+            image = ImageIO.read(inputStream);  repo.put(116,image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "jail_bg.png");
+            image = ImageIO.read(inputStream);  repo.put(117,image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "construction_bg.png");
+            image = ImageIO.read(inputStream);  repo.put(118,image);
+
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "soccer_bg.png");
+            image = ImageIO.read(inputStream);  repo.put(119,image);
+
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "5_floor.png");
             image = ImageIO.read(inputStream);  repo.put(200,image);
 

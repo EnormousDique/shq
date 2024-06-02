@@ -7,6 +7,7 @@ import ru.muwa.shq.story.Quest;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static ru.muwa.shq.engine.utils.GameTime.DAY_LENGTH;
@@ -29,6 +30,7 @@ public class Player extends GameObject {
     public Item equip;
     public int bonusHp, baseHp,psycho,bonusPsycho,basePsycho, baseSpeed,baseSprint = 6, bonusSpeed, bonusSprint;
 
+
     public double stamina, bonusStamina,baseStamina = 100;
     public long mommaFullness = DAY_LENGTH * 2,
                 mommaHealth = DAY_LENGTH * 2,
@@ -46,6 +48,7 @@ public class Player extends GameObject {
         hp = baseHp;
         type = Type.CREATURE;
         damage = 5;
+
     }
 
 

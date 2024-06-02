@@ -17,7 +17,7 @@
     "count": 1,
     "ammo": 0,
     "maxAmmo": 0,
-    "damage": 20,
+    "damage": 25,
     "price": 300,
     "type": "MELEE",
     "effect": null
@@ -984,5 +984,29 @@
     "type": "MELEE",
     "count": 1,
     "damage": 10
+  },
+  {
+    "id": 114,
+    "name": "Заточка",
+    "description": "воровская",
+    "stackable": false,
+    "count": 1,
+    "ammo": 0,
+    "maxAmmo": 0,
+    "damage": 40,
+    "price": 100,
+    "type": "MELEE"
+  },
+  {
+    "id": 115,
+    "name": "Финка",
+    "description": "дворовая",
+    "stackable": false,
+    "count": 1,
+    "ammo": 0,
+    "maxAmmo": 0,
+    "damage": 35,
+    "price": 100,
+    "type": "MELEE"
   }
 ]

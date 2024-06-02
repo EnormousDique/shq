@@ -35,8 +35,11 @@ public class Level {
                             SCHOOL = 20,//Школа
                             PACAN_FLAT = 21,//Квартира с пацаном (для кражи)
                             GARAGE = 22,//Гараж техника
-                            SALON_SVYAZI = 23;//Салон связи
-
+                            SALON_SVYAZI = 23,//Салон связи
+                            JAIL = 24, //Тюрьма
+                            SEWERS = 25,//Канализация
+                            CONSTRUCTION = 26,//Стройка
+                            SOCCER_FIELD = 27;//Футбольная коробка
 
     public int id;
     public List<GameObject> objects = new ArrayList<>();
@@ -111,6 +114,11 @@ public class Level {
         readItemsFromJsonFile("json/level_21.json");
         readItemsFromJsonFile("json/level_22.json");
         readItemsFromJsonFile("json/level_23.json");
+        readItemsFromJsonFile("json/level_24.json");
+        readItemsFromJsonFile("json/level_25.json");
+        readItemsFromJsonFile("json/level_26.json");
+        readItemsFromJsonFile("json/level_27.json");
+
 
 
         System.out.println("Список уровней успешно инициализирован");

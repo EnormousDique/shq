@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
 
+import static ru.muwa.shq.engine.utils.GameTime.TimeOfTheDay.NIGHT;
 import static ru.muwa.shq.entities.Level.STREET_1;
 
 public class Spawner {
@@ -19,6 +20,91 @@ public class Spawner {
         copSpawn();
         removeNpcAtNight();
         spawnCars();
+        spawnRats();
+        spawnZek();
+        spawnHach();
+        spawnGop();
+    }
+    private static long gopSpawnTimer =0;
+    private static void spawnGop() {
+        if(Game.currentLevel.id != STREET_1) return;
+        if(GameTime.getTimeOfTheDay() == NIGHT || GameTime.getTimeOfTheDay() == GameTime.TimeOfTheDay.SUNSET) {
+            if (gopSpawnTimer > System.currentTimeMillis()) return;
+            int x = Game.player.x + Camera.x + (Math.random() > 0.5?
+                    (GameWindow.WIDTH/2)+100 : (-1 * GameWindow.WIDTH/2)-100);
+            int y = Game.player.y + Camera.y + (Math.random() > 0.5?
+                    (GameWindow.HEIGHT/2)+100 : (-1 * GameWindow.HEIGHT/2)-100);
+            //Создаем новый экземпляр гопника и помещаем на карту
+            GameObject gop = GameObject.get(4);
+            gop.x = x;
+            gop.y = y;
+            Game.currentLevel.objects.add(gop);
+
+            gopSpawnTimer = System.currentTimeMillis() + (GameTime.getTimeOfTheDay() == NIGHT? 1_500 : 4_000);
+
+        } else if( GameTime.getTimeOfTheDay() == GameTime.TimeOfTheDay.SUNRISE || GameTime.getTimeOfTheDay() == GameTime.TimeOfTheDay.DAY)
+        {
+            for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
+                var gop = Game.currentLevel.objects.get(i);
+                if(gop.id !=4) return;
+                var screen = new Rectangle(Camera.x,Camera.y,GameWindow.WIDTH,GameWindow.HEIGHT);
+                if(screen.intersects(gop.hitBox)) continue;
+                Game.currentLevel.objects.remove(gop);
+            }
+        }
+    }
+
+
+    private static long hachSpawnTimer = 0;
+    private static void spawnHach() {
+        if(Game.currentLevel.id != Level.JAIL && Game.currentLevel.id != STREET_1) return;
+        if(GameTime.getTimeOfTheDay() == NIGHT) return;
+        if(hachSpawnTimer > System.currentTimeMillis()) return;
+        for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
+            var zone = Game.currentLevel.objects.get(i);
+            if(zone.id != 125) continue;
+            if(Game.player.x - zone.x > 750 || Game.player.x - zone.x < -750) continue;
+            if(Game.player.y - zone.y > 750 || Game.player.y - zone.y < -750) continue;
+
+            var hach = GameObject.get(124);
+            hach.x = zone.x; hach.y = zone.y;
+            Game.currentLevel.objects.add(hach);
+            hachSpawnTimer = System.currentTimeMillis() + 6_000;
+        }
+    }
+
+    private static long zekSpawnTimer = 0;
+    private static void spawnZek() {
+        if(Game.currentLevel.id != Level.JAIL) return;
+        if(zekSpawnTimer > System.currentTimeMillis()) return;
+        for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
+            var zone = Game.currentLevel.objects.get(i);
+            if(zone.id != 122) continue;
+            if(Game.player.x - zone.x > 500 || Game.player.x - zone.x < -500) continue;
+            if(Game.player.y - zone.y > 500 || Game.player.y - zone.y < -500) continue;
+
+            var zek = GameObject.get(124);
+            zek.x = zone.x; zek.y = zone.y;
+            Game.currentLevel.objects.add(zek);
+            zekSpawnTimer = System.currentTimeMillis() + 6_000;
+        }
+    }
+
+    private static long ratSpawnTimer = 0;
+    private static void spawnRats() {
+        if(Game.currentLevel.id != Level.SEWERS) return;
+        if(ratSpawnTimer > System.currentTimeMillis()) return;
+        for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
+            var zone = Game.currentLevel.objects.get(i);
+            if(zone.id != 120) continue;
+            if(Game.player.x - zone.x > 500 || Game.player.x - zone.x < -500) continue;
+            if(Game.player.y - zone.y > 500 || Game.player.y - zone.y < -500) continue;
+
+            var rat = GameObject.get(123);
+            rat.x = zone.x; rat.y = zone.y;
+            Game.currentLevel.objects.add(rat);
+            ratSpawnTimer = System.currentTimeMillis() + 3_000;
+        }
     }
 
     private static long carSpawnTimer = 0;
