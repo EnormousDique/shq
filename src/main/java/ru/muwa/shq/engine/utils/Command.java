@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.Renderer;
 import ru.muwa.shq.entities.*;
+import ru.muwa.shq.story.scripts.Script;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
+import static ru.muwa.shq.engine.utils.GameTime.DAY_LENGTH;
 
 public class Command {
 
@@ -57,6 +60,13 @@ public class Command {
         if(arg.startsWith("clear_level_from_")) clearLevelFrom(arg.split("clear_level_from_")[1]);
         if(arg.equals("walls")) Renderer.drawWalls = !Renderer.drawWalls;
         if(arg.startsWith("minigame_")) Minigame.current = Minigame.get(Integer.parseInt(arg.split("minigame_")[1]));
+        if(arg.startsWith("skip_")) GameTime.forward (Integer.parseInt(arg.split("skip_")[1]));
+        if(arg.startsWith("wanted_")) Game.player.wanted = (Integer.parseInt(arg.split("wanted_")[1]));
+        if(arg.equals("full")) {Game.player.hunger=0;Game.player.thirst=0;Game.player.sleepy=0;}
+        if(arg.equals("mom_full")) {Game.player.mommaFullness=DAY_LENGTH*2;Game.player.mommaHealth=DAY_LENGTH*2;Game.player.mommaClean=DAY_LENGTH*2;}
+        if(arg.contains("goto_")) Game.switchLevel(Integer.parseInt(arg.split("goto_")[1]));
+        if(arg.contains("script_")) Script.repo.get(Integer.parseInt(arg.split("script_")[1])).execute();
+
         System.out.println("executed command: " + arg);
     }
 

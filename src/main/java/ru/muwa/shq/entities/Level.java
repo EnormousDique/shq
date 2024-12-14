@@ -21,16 +21,16 @@ public class Level {
                             BUILDING_1 = 6, // 5-этажка дом Шкипера
                             BUTCHERY = 7, // Мясной цех
                             HACKERS_PLACE = 8, // Квартира хакера
-                            BUILDING_2 = 9,// 5-этажка с аптекой
-                            BUILDING_3 = 10, // 5-этажка справа от дома
+                            BUILDING_13 = 9,// 5-этажка с аптекой
+                            BUILDING_2 = 10, // 5-этажка справа от дома
                             HOSPITAL = 11,//Внутренности больницы
-                            BUILDING_4 = 12,//5-этажка с кв. мясника (дом у школы)
+                            BUILDING_15 = 12,//5-этажка с кв. мясника (дом у школы)
                             BUTCHERS_PLACE = 13,//Квартира мясника
                             TRAP_HOUSE = 14,//Квартира-притон
                             BUILDING_5 = 15,//9-этажка с притоном (на севере города у продуктового)
-                            BUILDING_6 = 16,//9-этажка с хакером (на юге города у больницы)
+                            BUILDING_17 = 16,//9-этажка с хакером (на юге города у больницы)
                             WILDBERRIES = 17,//ПВЗ ВАЛБЕРС
-                            BUILDING_7 = 18,//5-этажка у детской площадки (с кв. техника)
+                            BUILDING_9 = 18,//5-этажка у детской площадки (с кв. техника)
                             MECH_FLAT = 19,//Квартира механика
                             SCHOOL = 20,//Школа
                             PACAN_FLAT = 21,//Квартира с пацаном (для кражи)
@@ -39,9 +39,27 @@ public class Level {
                             JAIL = 24, //Тюрьма
                             SEWERS = 25,//Канализация
                             CONSTRUCTION = 26,//Стройка
-                            SOCCER_FIELD = 27;//Футбольная коробка
+                            SOCCER_FIELD = 27,//Футбольная коробка
+                            TRAP_HOUSE_2 = 28, //Второй притон (по квесту аптекарши)
+                            BUILDING_16 = 29, //Пятиэтажка на озерной (за больницей)
+                            BANDIT_FLAT = 30, // Квартира блатного авторитета (для подброса наркоты)
+                            BANDIT_FRIEND_FLAT = 31, // Квартира подельника авторитета. (Там охраняют ключ)
+                            ROOF_RUINS = 32, //Руины крыши, где драка с боссом
+                            BUILDING_7 = 33, // 9-этажка на углу сквозной и речной ул
+                            BUILDING_8 = 34, //9-этажка на парковой (у входа в парк с кв блатного авторитета ??и медбрата??)
+                            BUILDING_3 = 35, //5-этажка снизу от дома Шкипера
+                            BUILDING_4 = 36, //5-этажка снизу-справа от дома Шкипера
+                            BUILDING_6 = 37, //9-этажка с почтой (справа от продуктового)
+                            BUILDING_10 = 38, //9-этажка с валберс
+                            BUILDING_11 = 39, //Верхняя многоэтажка у автовокзала
+                            BUILDING_12 = 40, //Нижняя многоэтажка у автовокзала
+                            BUILDING_14 = 41, // Многоэтажка между аптекой и школой
+                            NURSE_FLAT = 42, //Квартира медбрата
+                            RENT_APARTMENTS = 43, //Квартира, которая сдается в аренду
+                            TRAP_DUDE_PLACE = 44; //Квартира пидараса
 
     public int id;
+
     public List<GameObject> objects = new ArrayList<>();
     public boolean isStreet, isIndoors;
     public double noise = 0.0;
@@ -118,6 +136,18 @@ public class Level {
         readItemsFromJsonFile("json/level_25.json");
         readItemsFromJsonFile("json/level_26.json");
         readItemsFromJsonFile("json/level_27.json");
+        readItemsFromJsonFile("json/level_28.json");
+        readItemsFromJsonFile("json/level_29.json");
+
+        readItemsFromJsonFile("json/level_30.json");
+        readItemsFromJsonFile("json/level_31.json");
+        readItemsFromJsonFile("json/level_32.json");
+
+        readItemsFromJsonFile("json/level_34.json");
+
+        readItemsFromJsonFile("json/level_42.json");
+        readItemsFromJsonFile("json/level_43.json");
+        readItemsFromJsonFile("json/level_44.json");
 
 
 

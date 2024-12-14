@@ -61,6 +61,9 @@ public class Physx {
             GameObject object = Game.currentLevel.objects.get(i);
 
             if(!object.solid) continue;
+            if(npc == Game.mom || object == Game.mom) continue;
+            if(npc == Momma.boss || object == Momma.boss) continue;
+
 
             if(npc.x - object.x > 1000 ||npc.x - object.x < -1000 || npc.y - object.y > 1000 || npc.y - object.y < -1000 )
                 continue;
@@ -68,9 +71,26 @@ public class Physx {
             if(object.hitBox.intersects(npc.hitBox))
             {
                 if(object == npc) continue;
-                if(!npc.solid) continue;
+                if(object == Momma.boss) continue;
+                //if(!npc.solid) continue;
                 if(object.type == CREATURE || object == Game.player && !npc.enemy) AI.setRandomDestination(npc);
-
+                if(object.name.contains("car") && !object.name.contains("zone") && object.speed > 5) {
+                    npc.hp -= 5;
+                    if(npc.hp <=0)
+                    {
+                        Combat.addCorpse(npc);
+                        Game.currentLevel.objects.remove(npc);
+                    }
+                }
+                if(object.name.contains("bullet"))
+                {
+                    npc.hp -= 25;
+                    if(npc.hp <=0)
+                    {
+                        Combat.addCorpse(npc);
+                        Game.currentLevel.objects.remove(npc);
+                    }
+                }
                 // Определите горизонтальное и вертикальное перекрытие между объектами.
                 double overlapX = 0;
                 double overlapY = 0;
@@ -136,6 +156,9 @@ public class Physx {
                 // Определите горизонтальное и вертикальное перекрытие между объектами.
                 double overlapX = 0;
                 double overlapY = 0;
+
+                if(object.name.contains("car") && !object.name.contains("zone") && object.speed > 5)
+                    Game.player.hp -= 5;
 
                 if (player.hitBox.getMaxX() > object.hitBox.getMinX() && player.hitBox.getMinX() < object.hitBox.getMaxX()) {
                     // Столкновение по горизонтали

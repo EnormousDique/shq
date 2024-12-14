@@ -57,7 +57,7 @@ public class Updater implements Runnable{
             Physx.work();
             Combat.work();
             AI.work();
-            Spawner.work();//Лучше отключать при работе со сборкой уровней
+            Spawner.work(); //Лучше отключать при работе со сборкой уровней
             Kldmn.mdk();
         }catch (Exception e){}
     }

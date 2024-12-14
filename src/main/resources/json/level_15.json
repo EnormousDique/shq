@@ -937,7 +937,7 @@
       "y": 2373,
       "items": {},
       "coordinates": {
-        "x": 5750,
+        "x": 6780,
         "y": 1680,
         "levelId": 1
       }
@@ -948,7 +948,7 @@
       "y": 2369,
       "items": {},
       "coordinates": {
-        "x": 6080,
+        "x": 6460,
         "y": 1680,
         "levelId": 1
       }
@@ -959,7 +959,7 @@
       "y": 2369,
       "items": {},
       "coordinates": {
-        "x": 6460,
+        "x": 6080,
         "y": 1680,
         "levelId": 1
       }
@@ -970,17 +970,10 @@
       "y": 2369,
       "items": {},
       "coordinates": {
-        "x": 6780,
+        "x": 5750,
         "y": 1680,
         "levelId": 1
       }
-    },
-    {
-      "id": 16,
-      "x": 575,
-      "y": 2275,
-      "items": {},
-      "coordinates": null
     },
     {
       "id": 3,
@@ -1476,6 +1469,13 @@
       "id": 3,
       "x": 2966,
       "y": 2281,
+      "items": {},
+      "coordinates": null
+    },
+    {
+      "id": 16,
+      "x": 575,
+      "y": 2275,
       "items": {},
       "coordinates": null
     }

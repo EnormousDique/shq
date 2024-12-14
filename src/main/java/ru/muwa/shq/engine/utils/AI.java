@@ -25,16 +25,16 @@ public class AI {
     //ПОЛЯ
     //Мапа ожиданий. (ключ - ждущий персонаж, значение - таймер)
     public final static HashMap<GameObject, Long> waitMap = new HashMap<>();
-    //Интервал ожидания (для таймера ожиданий)
+    //интервал ожидания (для таймера ожиданий)
     public static final long WAIT_INTERVAL = 500; // 0.5 sec
     //Список id стреляющих НПС
-    public static final List<Integer> shootingNPC = List.of(7);
+    public static final List<Integer> shootingNPC = List.of(7,129,9191);
     //Мапа ожиданий после выстрела. (ключ - стрельнувший нпс. Значение - таймер до сл выстрела)
     public static final Map<GameObject,Long> shotsTimer = new HashMap<>();
     //Безопасная дистанция по мнению стреляющих нпс (они бегут от Шкипера если расстояние не безопасно)
     public static final int SAFE_DIST = 300;
 
-    //Основной метод. Вызывает остальные методы службы ИИ
+    //Основной метод. Вызывает остальные методы службы ии
     public static void work()
     {
         movePedestrian();
@@ -64,7 +64,6 @@ public class AI {
         carTurns.put(96,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
         carTurns.put(93,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
         carTurns.put(90,List.of(96,93,90,55));//ЗЕЛЕНАЯ МАШИНА
-
     }
     //Управляем машинами
     private static void traffic() {
@@ -265,6 +264,7 @@ public class AI {
         {
 
             if(p == Game.player) continue;
+            if(p.id == 147) continue;
             if(p.hitBox.contains(new Point(p.destX,p.destY)))
             {
                 p.destX = -1; p.destY =-1;
@@ -296,11 +296,12 @@ public class AI {
             GameObject o = Game.currentLevel.objects.get(i);
 
             if(o == Game.player) continue;
+            if(o.id == 147) continue;
 
 
             if(!o.type.equals(CREATURE)) continue;
             if(shootingNPC.contains(o.id)) continue;
-            if(waitMap.containsKey(o) && waitMap.get(o) > GameTime.value) continue;
+            if(waitMap.containsKey(o) && waitMap.get(o) > System.currentTimeMillis()) continue;
 
             if(o.enemy)
             {
@@ -308,7 +309,7 @@ public class AI {
                 if(o.hitBox.intersects(Game.player.hitBox))
                 {
                     Combat.dealDamage(Game.player,o.damage);
-                    waitMap.put(o,GameTime.value + WAIT_INTERVAL);
+                    waitMap.put(o,System.currentTimeMillis() + WAIT_INTERVAL);
                 }
                 if(seesPlayer(o)){
                     o.destX = (int) Game.player.hitBox.getCenterX();
@@ -344,12 +345,12 @@ public class AI {
     private static void moveShootingEnemy() {
         for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
             GameObject object = Game.currentLevel.objects.get(i);
-            if(!shootingNPC.contains(object.id)) continue;
+            if(!shootingNPC.contains(object.id) || !object.enemy) continue;
 
             if(object.hitBox.intersects(Game.player.hitBox))
             {
                 Combat.dealDamage(Game.player,object.damage);
-                waitMap.put(object,GameTime.value + WAIT_INTERVAL);
+                waitMap.put(object,System.currentTimeMillis() + WAIT_INTERVAL);
             }
             if(seesPlayer(object)){
                 object.destX = (int) Game.player.hitBox.getCenterX();
@@ -366,40 +367,48 @@ public class AI {
             }
 
             Rectangle safeZone = new Rectangle(object.x-SAFE_DIST/2,object.y-SAFE_DIST/2,SAFE_DIST,SAFE_DIST);
+            if(object.id == 9191){ safeZone.width += 200; safeZone.height += 200;}
             if(Game.player.hitBox.intersects(safeZone))
             {
-                if (object.hitBox.getCenterX() < Game.player.x) {
+                if (object.hitBox.getCenterX() < Game.player.hitBox.getCenterX()) {
                     object.moveLeft();
                 } else {
                     object.moveRight();
                 }
-                if (object.hitBox.getCenterY() < Game.player.y) {
+                if (object.hitBox.getCenterY() < Game.player.hitBox.getCenterY()) {
                     object.moveUp();
                 } else {
                     object.moveDown();
                 }
             }
-            else
-
-            if (object.hitBox.getCenterX() < object.destX) {
-                object.moveRight();
-            } else {
-                object.moveLeft();
-            }
-            if (object.hitBox.getCenterY() < object.destY) {
-                object.moveDown();
-            } else {
-                object.moveUp();
+            else {
+                if (object.hitBox.getCenterX() < object.destX) {
+                    object.moveRight();
+                } else {
+                    object.moveLeft();
+                }
+                if (object.hitBox.getCenterY() < object.destY) {
+                    object.moveDown();
+                } else {
+                    object.moveUp();
+                }
             }
 
             if(!seesPlayer(object)) setRandomDestination(object);
 
+            if(object.id==9191) continue; //Фашик не стреляет, только убегает
             //shoot logic
             Rectangle screen = new Rectangle(Camera.x,Camera.y, GameWindow.WIDTH,GameWindow.HEIGHT);
-            if(seesPlayer(object) && screen.intersects(object.hitBox) &&(!shotsTimer.containsKey(object) || shotsTimer.get(object) < GameTime.value))
+            if(seesPlayer(object) && screen.intersects(object.hitBox) &&(!shotsTimer.containsKey(object) || shotsTimer.get(object) < System.currentTimeMillis()))
             {
-                 Combat.enemyShoot(object);
-                 shotsTimer.put(object,GameTime.value + WAIT_INTERVAL * 5);
+                Combat.enemyShoot(object);
+                shotsTimer.put(object, System.currentTimeMillis() + WAIT_INTERVAL * 5);
+                if(object.id==129)
+                {//Для военных
+                    shotsTimer.put(object,System.currentTimeMillis() + WAIT_INTERVAL);
+                    if(Math.random()>0.8)
+                        shotsTimer.put(object,System.currentTimeMillis() +  WAIT_INTERVAL*3);
+                }
             }
         }
     }
@@ -425,7 +434,7 @@ public class AI {
         o.destY = o.y + y;
     }
 
-    private static boolean seesPlayer(GameObject o) {
+    public static boolean seesPlayer(GameObject o) {
 
         Player p = Game.player;
         Line2D line = new Line2D.Double(o.hitBox.getCenterX(), o.hitBox.getCenterY(), p.hitBox.getCenterX(), p.hitBox.getCenterY());

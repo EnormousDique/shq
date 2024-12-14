@@ -16,6 +16,7 @@ public class Effect {
     /** РАБОТА СЛУЖБЫ ЭФФЕКТОВ **/
     public static void work()
     {
+        if(Game.player.hp > 100) Game.player.hp = 100;
         handleNoise();
         handleBusy();
         handleDeath();
@@ -77,16 +78,16 @@ public class Effect {
     private static void handleSmoke() {
         //Соблюдаем границы
         if(Game.player.smoke > 100) Game.player.smoke = 100;
-        //Накуренность падает на 1 в 1 сек (2 игровые минуты)
+        //Накуренность падает на 1 в 2 сек (4 игровые минуты)
         if(smokeTimer<System.currentTimeMillis()) {
-            smokeTimer = System.currentTimeMillis() + 1_000;
+            smokeTimer = System.currentTimeMillis() + 2_000;
             Game.player.smoke -=1;
         }
         //Соблюдаем границы
         if(Game.player.smoke < 0) Game.player.smoke = 0;
         //Если Шкипер подкурен, то его попускает
         if(Game.player.smoke > 1 && smokeCalmTimer < System.currentTimeMillis()) {
-            Game.player.crazy -= 1;
+            Game.player.crazy -= 2;
             //Если перебрал, хуярит
             if(Game.player.smoke > 70) Game.player.crazy += 2;
             //Таймер на 750 мсек (кулдаун)
@@ -101,7 +102,6 @@ public class Effect {
             Renderer.smokedRendering = false;
             newGlitchTimer = (long) (System.currentTimeMillis() + (1_500 - Game.player.smoke * 10));
         }
-
     }
 
     /** Таймер падения нанюханности **/
@@ -114,8 +114,8 @@ public class Effect {
     private static void handleStim() {
         //Соблюдаем границы
         if(Game.player.stimulate > 100) Game.player.stimulate = 100;
-        //Нанюханность падает на 1 в 1 сек (2 игровые минуты)
-        if(stimTimer<System.currentTimeMillis()){ stimTimer = System.currentTimeMillis() + 1_000;Game.player.stimulate -=1;}
+        //Нанюханность падает на 1 в 1.5 сек (3 игровые минуты)
+        if(stimTimer<System.currentTimeMillis()){ stimTimer = System.currentTimeMillis() + 1_500;Game.player.stimulate -=1;}
         //Соблюдаем границы
         if(Game.player.stimulate < 0) Game.player.stimulate = 0;
         //С шансом равным % стимуляции восстанавливаем 1 стамину раз в (150 - % нанюханности) миллисек
@@ -123,11 +123,13 @@ public class Effect {
             if(Game.player.stimulate > Math.random()*100) {
                 stimStaminaTimer = (long)
                         (System.currentTimeMillis() + (150 - Game.player.stimulate));
-                Game.player.stamina += 1;
+                Game.player.stamina += 3;
+                Game.player.hp += 1;
+                if(Game.player.stimulate > 50) Game.player.hp += 1;
             }
         }
         //Если Шкипер перенюхал, повышаем психа
-        if(Game.player.stimulate < 66 && stimCrazyTimer < System.currentTimeMillis()) {
+        if(Game.player.stimulate > 66 && stimCrazyTimer < System.currentTimeMillis()) {
             if(Game.player.stimulate > Math.random()*100) {
                 stimCrazyTimer = (long)
                         (System.currentTimeMillis() + (2000- Game.player.stimulate*15));
@@ -189,7 +191,7 @@ public class Effect {
         if (Game.player.hunger > 99) return;
         if(Input.keyboard.map.get(Input.keyboard.SHIFT)) return;
         Game.player.stamina += 1;
-        staminaTimer = System.currentTimeMillis() + Game.player.thirst<50?40:100;
+        staminaTimer = System.currentTimeMillis() + Game.player.thirst<50?20:100;
     }
 
     /** Таймер психа **/
@@ -199,15 +201,14 @@ public class Effect {
         //Соблюдаем границы
         if(Game.player.crazy > 100) Game.player.crazy = 100;
         if(Game.player.crazy < 0) Game.player.crazy = 0;
-
         if(Game.player.sleepy < 30 && crazyTimer < System.currentTimeMillis()){
-            //Если Шкипер не сонный, восстанавливаем 1 псих раз в 2 сек (4 игровых минуты)
+            //Если Шкипер не сонный, восстанавливаем 1 псих раз в 3 сек (6 игровых минуты)
             Game.player.crazy -= 1;
-            crazyTimer = System.currentTimeMillis() + 2_000;
+            crazyTimer = System.currentTimeMillis() + 3_000;
         } else if (Game.player.sleepy > 99 && crazyTimer < System.currentTimeMillis()) {
             //Если Шкипера вырубает в сон, он получает 1 псих раз в 1 сек (2 игровых минуты)
             Game.player.crazy += 1;
-            crazyTimer = System.currentTimeMillis() + 1_000;
+            crazyTimer = System.currentTimeMillis() + 1_500;
         }
     }
 
@@ -225,7 +226,7 @@ public class Effect {
         hungerTimer = System.currentTimeMillis() + 4_000; //Каждые 4 секунды (8 игровых минут)
         //Если Шкипер сыт, восполняем хп
         if(Game.player.hunger < 25 && Game.player.hp < 99)  Game.player.hp += 1;
-        if(Game.player.hunger < 50 && Game.player.hp < 100) Game.player.hp += 1;
+        if(Game.player.hunger < 50 && Game.player.hp < 99) Game.player.hp += 2;
         //Если голод на максах, отнимаем 1 хп каждые 10 сек (20 игровых минут)
         if(Game.player.hunger > 99){Game.player.hp -= 1; hungerTimer = System.currentTimeMillis() + 10_000;}
     }
@@ -254,11 +255,11 @@ public class Effect {
         //Проверяем таймер сонливости
         if(sleepyTimer > System.currentTimeMillis()) return;
         Game.player.sleepy +=1; //Повышаем сонливость на 1
-        sleepyTimer = System.currentTimeMillis() + 5_000; //Каждые 5 секунд (10 игровых минут)
+        sleepyTimer = System.currentTimeMillis() + 5_150; //Каждые 5.15 секунд (~10 игровых минут)
     }
 
     private static void handleCop() {
-        if(Game.player.wanted > 0) Game.player.wanted -=0.0005;
+        if(Game.player.wanted > 0) Game.player.wanted -= 0.005 * (Game.player.wanted/10);
     }
 
     private static void handleDeath() {

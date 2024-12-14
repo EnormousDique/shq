@@ -49,6 +49,9 @@ public class MinigameTextures {
             inputStream = classLoader.getResourceAsStream(Game.imgPath+"heater_game.png");
             image = ImageIO.read(inputStream); repo.put(13,image);
 
+            inputStream = classLoader.getResourceAsStream(Game.imgPath+"dead.png");
+            image = ImageIO.read(inputStream); repo.put(14,image);
+
             inputStream = classLoader.getResourceAsStream(Game.imgPath+"internet_index.png");
             image = ImageIO.read(inputStream); repo.put(19,image);
 

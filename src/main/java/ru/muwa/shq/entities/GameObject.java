@@ -20,7 +20,7 @@ public class GameObject {
     public int destX = -1;
     public int destY = -1;
     public static final int ITEMS_CAPACITY = 8;
-    public int hp, speed, sprintSpeed; //только для creature
+    public int hp, speed, sprintSpeed,startHp; //только для creature
 
     public int stamina;
     public int dialogue;
@@ -81,6 +81,7 @@ public class GameObject {
         this.x = x;
         this.y = y;
         this.hp = hp;
+        startHp = hp;
         this.stamina = stamina;
         this.speed = speed;
         this.sprintSpeed = sprintSpeed;

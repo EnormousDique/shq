@@ -10,7 +10,7 @@
     "solid" : "true"
   },
   {
-    "id": "2",
+    "id": 2,
     "name": "mom",
     "hitBox": {
       "height": "17",
@@ -18,8 +18,8 @@
     },
     "type": "CREATURE",
     "solid": false,
-    "dialogue": "1",
-    "hp": 100000
+    "dialogue": 5,
+    "hp": 500
   },
   {
     "id": "3",
@@ -34,16 +34,16 @@
   },
   {
     "id": "4",
-    "name": "gopnique",
+    "name": "gopnique_blue",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "50",
+      "height": "36"
     },
     "solid": "true",
     "type": "CREATURE",
     "enemy": true,
     "damage": "5",
-    "speed": "3",
+    "speed": "4",
     "hp": "100"
   },
   {
@@ -61,8 +61,8 @@
     "id": "6",
     "name": "citizen",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "40",
+      "height": "30"
     },
     "solid": "true",
     "type": "CREATURE",
@@ -75,14 +75,14 @@
     "id": "7",
     "name": "cop_handgun",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "40",
+      "height": "30"
     },
     "solid": "true",
     "type": "CREATURE",
     "enemy": true,
     "damage": "0",
-    "speed": "3",
+    "speed": "5",
     "hp": "100"
   },
   {
@@ -421,8 +421,8 @@
     "id": 40,
     "name": "pc_object",
     "hitBox": {
-      "width": 80,
-      "height": 80
+      "width": 33,
+      "height": 58
     },
     "type": "INTERACT",
     "scriptId": 11115
@@ -431,8 +431,8 @@
     "id": 41,
     "name": "home_pc",
     "hitBox": {
-      "width": 80,
-      "height": 80
+      "width": 33,
+      "height": 58
     },
     "type": "INTERACT",
     "scriptId": 19
@@ -451,8 +451,8 @@
     "id": 43,
     "name": "hospital_bg",
     "hitBox": {
-      "width": 1000,
-      "height": 1000
+      "width": 1373,
+      "height": 990
     },
     "type": "OBJECT"
   },
@@ -487,8 +487,8 @@
     "id": 47,
     "name": "ride_obj",
     "hitBox": {
-      "width": 50,
-      "height": 50
+      "width": 80,
+      "height": 80
     },
     "type": "INTERACT",
     "scriptId": 77772
@@ -774,8 +774,8 @@
     "id": 75,
     "name": "dump",
     "hitBox": {
-      "width": 64,
-      "height": 64
+      "width": 40,
+      "height": 40
     },
     "type": "CONTAINER"
   },
@@ -941,8 +941,8 @@
     "id": 93,
     "name": "car_green_up",
     "hitBox": {
-      "width": 140,
-      "height": 82
+      "width": 82,
+      "height": 140
     },
     "type": "OBJECT",
     "solid": true
@@ -1168,6 +1168,7 @@
       "width": 257,
       "height": 213
     },
+    "solid": true,
     "type": "INTERACT",
     "minigameId": 18
   },
@@ -1202,8 +1203,8 @@
     "id": 119,
     "name": "soccer_bg",
     "hitBox": {
-      "width": 701,
-      "height": 530
+      "width": 801,
+      "height": 1030
     },
     "type": "OBJECT"
   },
@@ -1271,6 +1272,336 @@
     },
     "type": "ZONE"
   },
+  {
+    "id": 126,
+    "name": "cat_plate",
+    "hitBox": {
+      "height": 34,
+      "width": 34
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 127,
+    "name": "cat_plate_full",
+    "hitBox": {
+      "height": 34,
+      "width": 34
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 128,
+    "name": "gopnique_gray",
+    "hitBox": {
+      "width": "50",
+      "height": "36"
+    },
+    "solid": "true",
+    "type": "CREATURE",
+    "enemy": true,
+    "damage": "13",
+    "speed": "4",
+    "hp": "100"
+  },
+
+  {
+    "id": 129,
+    "name": "army_guy",
+    "hitBox": {
+      "width": "50",
+      "height": "36"
+    },
+    "solid": "true",
+    "type": "CREATURE",
+    "enemy": true,
+    "damage": "0",
+    "speed": "6",
+    "hp": "250"
+  },
+  {
+    "id": 130,
+    "name": "dog",
+    "hitBox": {
+      "width": 33,
+      "height": 50
+    },
+    "solid": "true",
+    "type": "CREATURE",
+    "enemy": true,
+    "damage": 6,
+    "speed": 6,
+    "hp": 65
+  },
+  {
+    "id": 131,
+    "name": "bench_vert",
+    "hitBox": {
+      "width": 43,
+      "height": 104
+    },
+    "solid": "true",
+    "type": "OBJECT",
+    "enemy": true
+  },
+  {
+    "id": 132,
+    "name": "downer_building",
+    "hitBox": {
+      "width": 220,
+      "height": 180
+    },
+    "type": "INTERACT",
+    "solid": true,
+    "scriptId": 132
+  },
+  {
+    "id": 133,
+    "name": "bytovka",
+    "hitBox": {
+      "width": 226,
+      "height": 115
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 134,
+    "name": "barell",
+    "hitBox": {
+      "width": 62,
+      "height": 78
+    },
+    "type": "OBJECT",
+    "solid": true
+  },
+  {
+    "id": 135,
+    "name": "vokzal",
+    "hitBox": {
+      "width": 671,
+      "height": 140
+    },
+    "hitBoxYOffset": 130,
+    "solid": true,
+    "type": "BUILDING"
+  },
+  {
+    "id": 136,
+    "name": "soccer_enter_zone",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "ZONE",
+    "scriptId": 136
+  },
+  {
+    "id": 137,
+    "name": "soccer_exit_zone",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "ZONE",
+    "scriptId": 137
+  },
+  {
+    "id": 138,
+    "name": "immigrant",
+    "hitBox": {
+      "width": 40,
+      "height": 31
+    },
+    "solid": "true",
+    "type": "CREATURE",
+    "enemy": true,
+    "damage": 5,
+    "speed": 5,
+    "hp": 100
+  },
+  {
+    "id": 139,
+    "name": "gop_boss_spawn_zone",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "ZONE"
+  },
+  {
+    "id": 140,
+    "name": "washing_machine",
+    "hitBox": {
+      "width": 25,
+      "height": 35
+    },
+    "type": "INTERACT",
+    "scriptId":140
+  },
+  {
+    "id": 141,
+    "name": "door_with_script_bandit_friend_flat",
+    "hitBox": {
+      "width": "41",
+      "height": "85"
+    },
+    "solid": true,
+    "type": "INTERACT",
+    "scriptId": 141
+  },
+  {
+    "id": 142,
+    "name": "door_with_script_bandit_flat",
+    "hitBox": {
+      "width": "41",
+      "height": "85"
+    },
+    "solid": true,
+    "type": "INTERACT",
+    "scriptId": 142
+  },
+  {
+    "id": 143,
+    "name": "roof_ruins",
+    "hitBox": {
+      "width": 150,
+      "height": 300
+    },
+    "solid": true,
+    "type": "OBJECT"
+  },
+  {
+    "id": 144,
+    "name": "zone_enter_roof_ruins",
+    "hitBox": {
+      "width": 100,
+      "height": 300
+    },
+    "type": "ZONE",
+    "scriptId": 144
+  },
+  {
+    "id": 145,
+    "name": "roof_ruins_bg",
+    "hitBox": {
+      "width": 1458,
+      "height": 852
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 146,
+    "name": "mom_bullet",
+    "hitBox": {
+      "width": 15,
+      "height": 15
+    },
+    "type": "OBJECT"
+  },
+  {
+    "id": 147,
+    "name": "mom_boss",
+    "hitBox": {
+      "width": 60,
+      "height": 60
+    },
+    "type": "CREATURE",
+    "enemy": true,
+    "hp": 5000,
+    "startHp": 5000,
+    "solid": false,
+    "speed": 11
+  },
+  {
+    "id": 148,
+    "name": "coat_on_a_hang",
+    "hitBox": {
+      "width": 20,
+      "height": 50
+    },
+    "type": "CONTAINER"
+  },
+  {
+    "id": 149,
+    "name": "luke",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "INTERACT",
+    "scriptId": 149
+  },
+  {
+    "id": 150,
+    "name": "luke_2",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "INTERACT",
+    "scriptId": 150
+  },
+  {
+    "id": 151,
+    "name": "mutant",
+    "hitBox": {
+      "width": 150,
+      "height": 150
+    },
+    "type": "CREATURE",
+    "hp": 5000,
+    "enemy": true,
+    "speed": 2,
+    "solid": true,
+    "damage": 20
+  },
+  {
+    "id": 152,
+    "name": "uranium_object",
+    "hitBox": {
+      "width": 500,
+      "height": 500
+    },
+    "type": "INTERACT",
+    "solid": true,
+    "scriptId": 152
+  },
+  {
+    "id": 153,
+    "name": "luke_3",
+    "hitBox": {
+      "width": 50,
+      "height": 50
+    },
+    "type": "INTERACT",
+    "scriptId": 153
+  },
+  {
+    "id": 154,
+    "name": "atm",
+    "hitBox": {
+      "width": 35,
+      "height": 75
+    },
+    "type": "INTERACT",
+    "scriptId": 154,
+    "solid": true
+  },
+  {
+    "id": 155,
+    "name": "salon_goods",
+    "hitBox": {
+      "width": "131",
+      "height": "92"
+    },
+    "solid": true,
+    "type": "INTERACT",
+    "minigameId": "3"
+  },
+
+
+
   {
     "id": 200,
     "name": "5_floor",
@@ -1464,6 +1795,16 @@
     "solid": false
   },
   {
+    "id": 66601,
+    "name": "fire bullet (player)",
+    "hitBox": {
+      "width": 60,
+      "height": 60
+    },
+    "type": "OBJECT",
+    "solid": false
+  },
+  {
     "id": 777,
     "name": "bullet (enemy)",
     "hitBox": {
@@ -1487,8 +1828,8 @@
     "id": 1111,
     "name": "Hacker",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "solid": "true",
     "type": "CREATURE",
@@ -1500,8 +1841,8 @@
     "id": 2222,
     "name": "Hachique",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "solid": "true",
     "type": "CREATURE",
@@ -1512,8 +1853,8 @@
     "id": 3333,
     "name": "Butcher",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "solid": "true",
     "type": "CREATURE",
@@ -1525,8 +1866,8 @@
     "id": 33331,
     "name": "Teacher",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "solid": "true",
     "type": "INTERACT",
@@ -1538,8 +1879,8 @@
     "id": 33332,
     "name": "Pupil",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "solid": "true",
     "type": "INTERACT",
@@ -1551,12 +1892,12 @@
     "id": 33334,
     "name": "clerk",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "CREATURE",
     "speed": "4",
-    "hp": 100000,
+    "hp": 300,
     "dialogue":33334,
     "solid": true
   },
@@ -1564,8 +1905,8 @@
     "id": 33335,
     "name": "driver",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "CREATURE",
     "speed": 0,
@@ -1577,8 +1918,8 @@
     "id": 4444,
     "name": "Pedoffka",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "CREATURE",
     "speed": "0",
@@ -1590,8 +1931,8 @@
     "id": 5555,
     "name": "Wildberries_dude",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "CREATURE",
     "speed": "0",
@@ -1604,22 +1945,21 @@
     "id": 6666,
     "name": "Officer",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
-    "solid": "true",
     "type": "CREATURE",
     "speed": "3",
     "hp": 100000,
-    "dialogue": 18,
+    "dialogue": 1,
     "solid": true
   },
   {
     "id": 7777,
     "name": "Nurse",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "CREATURE",
     "speed": "0",
@@ -1631,8 +1971,8 @@
     "id": 8888,
     "name": "Mechanic",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "CREATURE",
     "speed": "0",
@@ -1641,17 +1981,43 @@
     "solid": true
   },
   {
+    "id": 888801,
+    "name": "specialist",
+    "hitBox": {
+      "width": "53",
+      "height": "39"
+    },
+    "type": "CREATURE",
+    "speed": "0",
+    "hp": 500,
+    "dialogue": 888801,
+    "solid": true
+  },
+  {
     "id": 9999,
     "name": "Drugstore_lady",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
-    "solid": "true",
     "type": "CREATURE",
     "speed": "3",
     "hp": 100000,
-    "dialogue": 18,
+    "dialogue": 1,
+    "solid": true
+  },
+
+  {
+    "id": 9191,
+    "name": "nazi",
+    "hitBox": {
+      "width": "53",
+      "height": "39"
+    },
+    "type": "CREATURE",
+    "speed": 7,
+    "hp": 2000,
+    "scriptId": 9191,
     "solid": true
   },
 
@@ -1659,8 +2025,8 @@
     "id": 44441,
     "name": "Kostya",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "INTERACT",
     "speed": "0",
@@ -1672,8 +2038,8 @@
     "id": 44442,
     "name": "Volodya",
     "hitBox": {
-      "width": "35",
-      "height": "25"
+      "width": "53",
+      "height": "39"
     },
     "type": "CREATURE",
     "speed": "4",
@@ -1681,5 +2047,4 @@
     "dialogue": 46,
     "solid": true
   }
-
 ]

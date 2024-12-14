@@ -37,6 +37,8 @@ public class Game {
     public static final GameObject nurse = GameObject.get(7777);
     public static final GameObject mechanic = GameObject.get(8888);
     public static final GameObject pharmacist = GameObject.get(9999);
+    public static final GameObject nazi = GameObject.get(9191);
+
 
     //Частота обновления потоков обновления и отрисовки
     public static int fps = 60, renderFPS = 120;
@@ -50,7 +52,7 @@ public class Game {
     //Ссылка на текущий уровень
     public static Level currentLevel;
 
-    //Путь до тектур внутри jar файла
+    //Путь до текстур внутри jar файла
     public static String imgPath = "textures/";//D:\\IdeaProjects\\shq\\src\\main\\resources\\textures\\";
 
     //Метод запуска игры
@@ -73,17 +75,22 @@ public class Game {
         //Добавляем игрока на позицию
         Level.repo.get(HUB).objects.add(player);
         player.x = 300; player.y = 200;
-        player.money = 5_000;
 
         //Добавляем стартовые квесты
         player.quests.add(Quest.get(1));
-        player.quests.add(Quest.get(2));
-        player.quests.add(Quest.get(3));
-        player.quests.add(Quest.get(4));
+        //player.quests.add(Quest.get(2));
+        //player.quests.add(Quest.get(3));
+        //player.quests.add(Quest.get(4));
+        player.quests.add(Quest.get(58));
 
         //TODO: Вывести стартовый диалог
 
         //Добавляем персонажей на позиции
+
+        //Мама
+        Game.mom.x = 125;
+        Game.mom.y = 150;
+        repo.get(HUB).objects.add(Game.mom);
 
         //Хакер
         Level.repo.get(HACKERS_PLACE).objects.add(hacker);
@@ -115,6 +122,14 @@ public class Game {
         Level.repo.get(HOSPITAL).objects.add(nurse);
         //Тесть появляется после взятия квеста у медбрата
 
+        //Аптекарша
+        pharmacist.x = 200; pharmacist.y = 250;
+        repo.get(DRUGSTORE).objects.add(pharmacist);
+
+        //Фашик
+        nazi.x = 300; nazi.y = 300;
+        repo.get(SOCCER_FIELD).objects.add(nazi);
+
         //Остальные
 
         //Устанавливаем игровое время на начало игры
@@ -130,5 +145,10 @@ public class Game {
         Dialogue.companion = Dialogue.Companion.MOM;
         Dialogue.texture = Dialogue.textures.get(Game.mom.id);
 
+    }
+    public static void switchLevel(int id){
+        Game.currentLevel.objects.remove(player);
+        Game.currentLevel = repo.get(id);
+        Game.currentLevel.objects.add(player);
     }
 }

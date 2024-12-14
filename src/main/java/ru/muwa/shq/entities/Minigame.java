@@ -1,6 +1,7 @@
 package ru.muwa.shq.entities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.muwa.shq.Main;
+import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.GameWindow;
 import java.awt.*;
 import java.io.File;
@@ -23,7 +24,7 @@ public class Minigame
     }
     public int script;
     public String input = ""; // для padique и elevator
-    public Rectangle window = new Rectangle(GameWindow.WIDTH / 4, GameWindow.HEIGHT / 4, 300,200);
+    public Rectangle window = new Rectangle(GameWindow.WIDTH / 3 - 75, GameWindow.HEIGHT / 5, 600,400);
     public Rectangle success = new Rectangle();
     public Rectangle exit;
     public ArrayList<InputButton> inputButtons;
@@ -37,7 +38,7 @@ public class Minigame
             this.value = value;
             width = 50; height = 50;
         }
-        public String value;
+        public String value, hiddenValue;
         public InputButton(String value,Rectangle bounds)
         {
             this.value = value;
@@ -129,13 +130,13 @@ public class Minigame
 
                 inputButtons = new ArrayList<>();
 
-                inputButtons.add(new InputButton("1_дом", new Rectangle(window.x+20,window.y+30,30,30)));
-                inputButtons.add(new InputButton("2_магазин", new Rectangle(window.x + 150,window.y+50,30,30)));
-                inputButtons.add(new InputButton("3_аптека", new Rectangle(window.x+150,window.y+120,30,30)));
-                inputButtons.add(new InputButton("4_рынок", new Rectangle(window.x+25,window.y+100,30,30)));
-                inputButtons.add(new InputButton("5_школа", new Rectangle(window.x+150,window.y+150,30,30)));
-                inputButtons.add(new InputButton("6_больница", new Rectangle(window.x+250,window.y+120,30,30)));
-                inputButtons.add(new InputButton("7_метро", new Rectangle(window.x+25,window.y+150,30,30)));
+                inputButtons.add(new InputButton("1_дом", new Rectangle(window.x+50,window.y+60,30,30)));
+                inputButtons.add(new InputButton("2_магазин", new Rectangle(window.x + 320,window.y+80,30,30)));
+                inputButtons.add(new InputButton("3_аптека", new Rectangle(window.x+310,window.y+250,30,30)));
+                inputButtons.add(new InputButton("4_рынок", new Rectangle(window.x+150,window.y+200,30,30)));
+                inputButtons.add(new InputButton("5_школа", new Rectangle(window.x+360,window.y+320,30,30)));
+                inputButtons.add(new InputButton("6_больница", new Rectangle(window.x+500,window.y+280,30,30)));
+                inputButtons.add(new InputButton("7_автовокзал", new Rectangle(window.x+50,window.y+320,30,30)));
 
                 break;
 
@@ -171,9 +172,26 @@ public class Minigame
                     for (int i = 0; i < 4; i++) {
                         Minigame.InputButton b = new InputButton("<---");
                         for (int j = 0; j < i; j++) b.value += " ";
-                        b.x = window.x + 150;
-                        b.y = window.y + 70 + i * 16;
+                        b.x = window.x + 200;
+                        b.y = window.y + 145 + i * 35;
                         b.height = 14;
+                        inputButtons.add(b);
+                    }
+                }
+                if(this.id == 20){
+                    // Интернет. Сайт с врачом
+                    if(Game.player.quests.stream()
+                            .noneMatch(q->q.id==20 && q.completed)){
+                    Minigame.InputButton b = new InputButton("Оплатить");
+                    b.x = window.x + (window.width/2);
+                    b.y = window.y + (window.y - 50);
+                    b.height=25;
+                    inputButtons.add(b);}
+                    else {
+                        Minigame.InputButton b = new InputButton("Операция оплачена. Ждем вас в израиле");
+                        b.x = window.x + (window.width/2);
+                        b.y = window.y + (window.y - 50);
+                        b.height=25;
                         inputButtons.add(b);
                     }
                 }
@@ -197,7 +215,44 @@ public class Minigame
                     pb.width = 50; pb.height = 45;
                     purchaseButtons.add(pb);
 
+                    pb = new PurchaseButton(98);
+                    pb.x = 3/4 * 75 + window.x;
+                    pb.y = 3%4 * 50 + window.y;
+                    pb.width = 50; pb.height = 45;
+                    purchaseButtons.add(pb);
 
+                    //Стиралка
+                    pb = new PurchaseButton(128);
+                    pb.x = 0/4 * 75 + window.x + 70;
+                    pb.y = 3%4 * 50 + window.y;
+                    pb.width = 50; pb.height = 45;
+                    purchaseButtons.add(pb);
+
+                    //Колеске
+                    pb = new PurchaseButton(83);
+                    pb.x = 2/4 * 75 + window.x +70;
+                    pb.y = 3%4 * 50 + window.y;
+                    pb.width = 50; pb.height = 45;
+                    purchaseButtons.add(pb);
+
+
+                }
+
+                if(this.id == 22){
+                    //Сайт с квартирой
+                    if(!Game.player.rent) {
+                        Minigame.InputButton b = new InputButton("Снять");
+                        b.x = window.x + (window.width / 2);
+                        b.y = window.y + (window.y - 50);
+                        b.height = 25;
+                        inputButtons.add(b);
+                    }else {
+                        Minigame.InputButton b = new InputButton("Квартира сдана!");
+                        b.x = window.x + (window.width / 2);
+                        b.y = window.y + (window.y - 50);
+                        b.height = 25;
+                        inputButtons.add(b);
+                    }
                 }
 
                 //Кнопка выключения компьютера

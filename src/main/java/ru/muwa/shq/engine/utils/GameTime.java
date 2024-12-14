@@ -10,12 +10,15 @@ import java.util.Map;
 public class GameTime {
 
     public static long value = 0;
+    public static int day;
 
     public static final long GAME_START = 0, DAY_LENGTH = 720_000, GAME_END = GAME_START + DAY_LENGTH * 30, HOUR_LENGTH = DAY_LENGTH / 24, TICK_LENGTH = 1_000 / Game.fps;
 
 
+
     public static void work() {
-        value += TICK_LENGTH;
+        if(Game.player.smoke < 1 || Math.random() < 0.34 )
+            value += TICK_LENGTH;
     }
 
     public static long get() {
@@ -64,9 +67,9 @@ public class GameTime {
     public enum TimeOfTheDay{SUNRISE,DAY,SUNSET,NIGHT}
     public static TimeOfTheDay getTimeOfTheDay()
     {
-        if(getString().contains("19 h") || getString().contains("20 h") || getString().contains("21 h") )
+        if(getString().contains("19 h") || getString().contains("20 h") || getString().contains("21 h") || getString().contains("22 h"))
             return TimeOfTheDay.SUNSET;
-        if(getString().contains("22 h") || getString().contains("23 h") || getString().contains(": 0 h") || getString().contains(": 1 h") || getString().contains(": 2 h") || getString().contains(": 3 h"))
+        if(/*getString().contains("22 h") ||*/ getString().contains("23 h") || getString().contains(": 0 h") || getString().contains(": 1 h") || getString().contains(": 2 h") || getString().contains(": 3 h"))
             return TimeOfTheDay.NIGHT;
         if(getString().contains(": 4 h") || getString().contains(": 5 h") || getString().contains(": 6 h") || getString().contains(": 7 h"))
             return TimeOfTheDay.SUNRISE;

@@ -12,12 +12,12 @@
   {
     "id": 2,
     "name": "Нож",
-    "description": "Острый",
+    "description": "кухонный",
     "stackable": false,
     "count": 1,
     "ammo": 0,
     "maxAmmo": 0,
-    "damage": 25,
+    "damage": 20,
     "price": 300,
     "type": "MELEE",
     "effect": null
@@ -31,7 +31,7 @@
     "ammo": 8,
     "maxAmmo": 8,
     "damage": 0,
-    "price": 35000,
+    "price": 10000,
     "type": "FIREARM",
     "effect": null
   },
@@ -246,8 +246,7 @@
     "stackable": true,
     "count": 1,
     "price": 300,
-    "type": "DRUG",
-    "scriptId": 42
+    "type": "ITEM"
   },
   {
     "id": 43,
@@ -256,15 +255,8 @@
     "stackable": true,
     "count": 1,
     "price": 30,
-    "effect": {
-      "regHpBonus": 1,
-      "name": "поел",
-      "thirst": 5,
-      "hunger": -10,
-      "poo": 15,
-      "pee": 0
-    },
-    "type": "FOOD"
+    "type": "DRUG",
+    "scriptId": 43
   },
   {
     "id": 44,
@@ -273,15 +265,9 @@
     "stackable": true,
     "count": 1,
     "price": 50,
-    "effect": {
-      "regHpBonus": 3,
-      "name": "поел",
-      "thirst": 5,
-      "hunger": -13,
-      "poo": 12,
-      "pee": 0
-    },
-    "type": "FOOD"
+    "type": "DRUG",
+    "scriptId": 43
+
   },
   {
     "id": 45,
@@ -290,15 +276,7 @@
     "stackable": true,
     "count": 1,
     "price": 100,
-    "effect": {
-      "regHpBonus": 1,
-      "name": "поел",
-      "thirst": 10,
-      "hunger": -1,
-      "poo": 5,
-      "pee": 5
-    },
-    "type": "FOOD"
+    "type": "ITEM"
   },
   {
     "id":46,
@@ -339,15 +317,8 @@
     "stackable": true,
     "price": 1,
     "count": 1,
-    "type": "FOOD",
-    "effect": {
-      "name": "поел",
-      "regHpBonus": 15,
-      "thirst": 5,
-      "hunger": -25,
-      "poo": 20,
-      "pee": 0
-    }
+    "type": "DRUG",
+    "scriptId": 50
   },
   {
     "id":51,
@@ -356,15 +327,7 @@
     "stackable": true,
     "price": 450,
     "count": 1,
-    "type": "FOOD",
-    "effect": {
-      "name": "поел",
-      "regHpBonus": 5,
-      "thirst": 0,
-      "hunger": -5,
-      "poo": 15,
-      "pee": 0
-    }
+    "type": "ITEM"
   },
   {
     "id":52,
@@ -373,15 +336,7 @@
     "stackable": true,
     "price": 700,
     "count": 1,
-    "type": "FOOD",
-    "effect": {
-      "name": "поел",
-      "regHpBonus": 5,
-      "thirst": 0,
-      "hunger": -10,
-      "poo": 25,
-      "pee": 0
-    }
+    "type": "ITEM"
   },
   {
     "id":53,
@@ -390,15 +345,7 @@
     "stackable": true,
     "price": 250,
     "count": 1,
-    "type": "FOOD",
-    "effect": {
-      "name": "поел",
-      "regHpBonus": 5,
-      "thirst": 0,
-      "hunger": -5,
-      "poo": 15,
-      "pee": 0
-    }
+    "type": "ITEM"
   },
 
   {
@@ -438,64 +385,39 @@
     "stackable": true,
     "price": 100,
     "count": 1,
-    "type": "FOOD",
-    "effect": {
-      "name": "поел",
-      "regHpBonus": 15,
-      "thirst": -5,
-      "hunger": -15,
-      "poo": 10,
-      "pee": 2
-    }
-  },  {
+    "type": "DRUG"
+  },
+  {
   "id":58,
   "name": "Жареная курица",
   "description": "как у полковника",
   "stackable": true,
   "price": 10,
   "count": 1,
-  "type": "FOOD",
-  "effect": {
-    "name": "поел",
-    "regHpBonus": 10,
-    "thirst": -10,
-    "hunger": -25,
-    "poo": 30,
-    "pee": 0
-  }
-},  {
+  "type": "DRUG",
+  "scriptId":58
+  },
+  {
   "id":59,
   "name": "говяжий стейк",
   "description": "килограммовый",
   "stackable": true,
   "price": 10,
   "count": 1,
-  "type": "FOOD",
-  "effect": {
-    "name": "поел",
-    "regHpBonus": 30,
-    "thirst": -10,
-    "hunger": -50,
-    "poo": 29,
-    "pee": 0
-  }
-},  {
+  "type": "DRUG",
+  "scriptId": 59
+  },
+  {
   "id":60,
   "name": "котлеты",
   "description": "как летом",
   "stackable": true,
   "price": 10,
   "count": 1,
-  "type": "FOOD",
-  "effect": {
-    "name": "поел",
-    "regHpBonus": 20,
-    "thirst": -15,
-    "hunger": -30,
-    "poo": 29,
-    "pee": 0
-  }
-},  {
+  "type": "DRUG",
+  "scriptId":60
+  },
+  {
   "id":61,
   "name": "Куриный суп",
   "description": "как у мамы",
@@ -511,23 +433,17 @@
     "poo": 20,
     "pee": 10
   }
-},  {
+},
+  {
   "id":62,
-  "name": "картожечка с лучком",
+  "name": "картошечка с лучком",
   "description": "жареная",
   "stackable": true,
   "price": 10,
   "count": 1,
-  "type": "FOOD",
-  "effect": {
-    "name": "поел",
-    "regHpBonus": 15,
-    "thirst": -10,
-    "hunger": -20,
-    "poo": 25,
-    "pee": 0
-  }
-},
+  "type": "DRUG",
+  "scriptId": 62
+  },
   {
   "id":63,
   "name": "сырники",
@@ -545,15 +461,7 @@
     "stackable": true,
     "price": 10,
     "count": 1,
-    "type": "FOOD",
-    "effect": {
-      "name": "поел",
-      "regHpBonus": 44,
-      "thirst": -15,
-      "hunger": -60,
-      "poo": 30,
-      "pee": 10
-    }
+    "type": "DRUG"
   },
   {
     "id": 65,
@@ -571,15 +479,17 @@
     "stackable": true,
     "price": 200,
     "count": 1,
-    "type": "ITEM"
+    "type": "DRUG",
+    "scriptId": 66
   },
   {
     "id": 67,
-    "name": "зажигалка",
-    "description": "запалiчка (зачапирка)",
+    "name": "спички",
+    "description": "спiчкi",
     "count": 1,
     "type": "ITEM",
-    "price": 50
+    "price": 20,
+    "stackable": true
   },
   {
     "id": 68,
@@ -591,7 +501,7 @@
   {
     "id": 69,
     "name": "косяк",
-    "description": "пыхнем? | подожги меня",
+    "description": "пыхнем? | подожги меня | НЕ ИСПОЛЬЗУЕТСЯ",
     "count": 1,
     "type": "ITEM",
     "stackable": true
@@ -609,7 +519,8 @@
     "name": "Процессор (ЦП)",
     "description": "чё-то типа детали для компа",
     "count": 1,
-    "type": "ITEM"
+    "type": "ITEM",
+    "price": 35000
   },
   {
     "id": 72,
@@ -700,7 +611,9 @@
     "description": "медицинский (как у врача)",
     "type": "TORSO",
     "count": 1,
-    "effect": {}
+    "effect": {
+      "name": "Выглядишь как врач"
+    }
   },
   {
     "id": 83,
@@ -714,10 +627,11 @@
     "id": 84,
     "name": "пиво",
     "description": "моча с пузыриками",
-    "type": "SCRIPT",
+    "type": "DRUG",
     "count": 1,
     "scriptId": 84,
-    "stackable": true
+    "stackable": true,
+    "price": 50
   },
   {
     "id": 85,
@@ -725,14 +639,16 @@
     "description": "против лома нет приема",
     "type": "MELEE",
     "count": 1,
-    "damage": 20
+    "damage": 40,
+    "price": 500
   },
   {
     "id": 86,
     "name": "грудничок",
     "description": "пиздючок",
     "type": "ITEM",
-    "count": 1
+    "count": 1,
+    "price": 100000
   },
   {
     "id": 87,
@@ -748,7 +664,8 @@
     "description": "для разного рода кустов и не только",
     "type": "SCRIPT",
     "count": 1,
-    "scriptId":88
+    "scriptId":88,
+    "price": 300
   },
   {
     "id": 89,
@@ -793,7 +710,8 @@
     "description": "Удобно копать и вскапывать",
     "count": 1,
     "type": "SCRIPT",
-    "scriptId": 93
+    "scriptId": 93,
+    "price": 100
   },
   {
     "id": 94,
@@ -983,7 +901,8 @@
     "description": "самотык",
     "type": "MELEE",
     "count": 1,
-    "damage": 10
+    "damage": 10,
+    "price": 10000
   },
   {
     "id": 114,
@@ -993,7 +912,7 @@
     "count": 1,
     "ammo": 0,
     "maxAmmo": 0,
-    "damage": 40,
+    "damage": 50,
     "price": 100,
     "type": "MELEE"
   },
@@ -1008,5 +927,229 @@
     "damage": 35,
     "price": 100,
     "type": "MELEE"
+  },
+  {
+    "id": 116,
+    "name": "корм для котов",
+    "description": "с витаминами?",
+    "type": "SCRIPT",
+    "count": 1,
+    "scriptId":116,
+    "price": 30,
+    "stackable": true
+  },
+  {
+    "id": 117,
+    "name": "собачье мясо",
+    "description": "это есть нельзя",
+    "type": "ITEM",
+    "count": 1,
+    "stackable": true
+  },
+  {
+    "id": 118,
+    "name": "Шаурма",
+    "description": "кавказская",
+    "type": "DRUG",
+    "count": 1,
+    "scriptId": 118,
+    "stackable": true
+  },
+  {
+    "id": 119,
+    "name": "Таблетки",
+    "description": "Тра.. тран.. сложное слово.. наверное, витамины",
+    "price": 1000,
+    "type": "DRUG",
+    "scriptId": 119,
+    "stackable": true,
+    "count": 1
+  },
+  {
+    "id": 120,
+    "name": "Кошачий корм",
+    "description": "это есть нельзя",
+    "type": "SCRIPT",
+    "count": 1,
+    "scriptId":116,
+    "stackable": true,
+    "price": 30
+  },
+  {
+    "id": 121,
+    "name": "Свидетельство о временной регистрации",
+    "description": "заполнено от руки с ошибками",
+    "type": "ITEM",
+    "stackable":true,
+    "count": 1
+  },
+  {
+    "id": 122,
+    "name": "Бронекомплект",
+    "description": "Военный",
+    "stackable": false,
+    "price": 100000,
+    "type": "TORSO",
+    "effect": {
+      "name": "защита тела",
+      "permanent": true,
+      "hpBonus": 50
+    }
+  },
+  {
+    "id": 123,
+    "name": "Каска",
+    "description": "Строительная",
+    "stackable": false,
+    "price": 2000,
+    "type": "HAT",
+    "effect": {
+      "name": "защита головы",
+      "permanent": true,
+      "hpBonus": 7
+    }
+  },
+  {
+    "id": 124,
+    "name": "Шлем",
+    "description": "Хоккейный",
+    "stackable": false,
+    "price": 10000,
+    "type": "HAT",
+    "effect": {
+      "name": "защита головы",
+      "permanent": true,
+      "hpBonus": 12
+    }
+  },
+  {
+    "id": 125,
+    "name": "Военный шлем",
+    "description": "Защищает тыквы",
+    "stackable": false,
+    "price": 20000,
+    "type": "HAT",
+    "effect": {
+      "name": "защита головы",
+      "permanent": true,
+      "hpBonus": 20
+    }
+  },
+  {
+    "id": 126,
+    "name": "АК-74",
+    "description": "Модификация под патрон 5.45",
+    "stackable": false,
+    "count": 1,
+    "ammo": 30,
+    "maxAmmo": 30,
+    "damage": 0,
+    "price": 100000,
+    "type": "FIREARM",
+    "effect": null
+  },
+  {
+    "id": 127,
+    "name": "Патроны 5.45",
+    "description": "Для калаша",
+    "stackable": true,
+    "count": 1,
+    "ammo": 30,
+    "maxAmmo": 30,
+    "price": 100000,
+    "type": "AMMO",
+    "effect": null
+  },
+  {
+    "id": 128,
+    "name": "Стиральная машина",
+    "description": "И как она в карман залезла? Тяжелая. Поставь дома.",
+    "scriptId": 128,
+    "count": 1,
+    "price": 20000,
+    "type": "SCRIPT"
+  },
+  {
+    "id": 129,
+    "name": "Кнопочный телефон",
+    "description": "Мент сказал набрать, как разберусь в прессхате",
+    "scriptId": 129,
+    "count": 1,
+    "price": 1000,
+    "type": "SCRIPT"
+  },
+  {
+    "id": 130,
+    "name": "ключ от квартиры",
+    "description": "от квартиры.. как там.. где деньги лежат",
+    "count": 1,
+    "type": "ITEM"
+  },
+  {
+    "id": 131,
+    "name": "кольцо",
+    "description": "Золотое. Обручальное. Медбратова жены",
+    "count": 1,
+    "type": "ITEM",
+    "price": 100000
+  },
+  {
+    "id": 132,
+    "name": "ключ",
+    "description": "медбратава квартиры",
+    "count": 1,
+    "type": "ITEM",
+    "price":1
+  },
+  {
+    "id": 133,
+    "name": "документы",
+    "description": "пакет документов на собственность магазина. Ну нихуя себе",
+    "count": 1,
+    "type": "ITEM",
+    "price": 50000
+  },
+  {
+    "id": 134,
+    "name": "огнемет",
+    "description": "фламсруа (флангестатор)",
+    "stackable": false,
+    "count": 1,
+    "ammo": 100,
+    "maxAmmo": 100,
+    "damage": 0,
+    "price": 100000,
+    "type": "FIREARM",
+    "effect": null
+  },
+  {
+    "id": 135,
+    "name": "Олимпийка",
+    "description": "спортивная",
+    "stackable": false,
+    "price": 25000,
+    "type": "TORSO",
+    "effect": {
+      "name": "спортивный шмот",
+      "permanent": true,
+      "staminaBonus": 100
+    }
+  },
+  {
+    "id": 136,
+    "name": "Мазь <<Анальный князь>>",
+    "description": "Пахнет острым соусом. Надо подложить компьютерщику в тумбочку",
+    "type":"ITEM",
+    "price": 1
+  },
+  {
+    "id": 137,
+    "name": "Энергетический",
+    "description": "напиток",
+    "type": "DRUG",
+    "price": 65,
+    "scriptId": 13701,
+    "stackable": true,
+    "count": 1
   }
 ]

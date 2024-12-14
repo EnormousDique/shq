@@ -19,7 +19,7 @@ public class Dialogue {
     public List<Response> responses = new ArrayList<>();
     public static List<ResponseButton> buttons = new ArrayList<>();
     public static BufferedImage texture;
-    public enum Companion {MOM,BUTCHER,HACH,OFFICER,GIRL,TRAP,PHARMACIST,HACKER,MECHANIC,NURSE}
+    public enum Companion {MOM,BUTCHER,HACH,OFFICER,GIRL,TRAP,PHARMACIST,HACKER,MECHANIC,NURSE,NAZI}
     public static Companion companion;
     public static final HashMap<Integer, BufferedImage> textures = new HashMap<>();
     static
@@ -30,16 +30,22 @@ public class Dialogue {
             textures.put(1111, image);
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "momma_face.png"));
             textures.put(2, image);
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "hach_face.png"));
+            textures.put(2222, image);
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "butcher_face.png"));
             textures.put(3333, image);
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "pedoffka_face_.png"));
             textures.put(4444, image);
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "trap_face.png"));
             textures.put(5555, image);
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "ment_face.png"));
+            textures.put(6666, image);
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "nurse_face.png"));
             textures.put(7777, image);
             image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "mech_face.png"));
             textures.put(8888, image);
+            image = ImageIO.read(classLoader.getResourceAsStream(Game.imgPath + "pharma_face.png"));
+            textures.put(9999, image);
         }catch (Exception e)
         {
             System.out.println("ошибка при загрузке текстуры собеседников");
@@ -89,6 +95,7 @@ public class Dialogue {
     public static HashMap<Integer,Dialogue> mech = new HashMap<>();
     public static HashMap<Integer,Dialogue> butcher = new HashMap<>();
     public static HashMap<Integer,Dialogue> pharmacist = new HashMap<>();
+    public static HashMap<Integer,Dialogue> officer = new HashMap<>();
     static
     {
         fillDialogueMapFromJSON(mom,"json/mom_dialogues.json");
@@ -107,7 +114,8 @@ public class Dialogue {
         fillDialogueMapFromJSON(mech,pathToJsonWithItems);
         fillDialogueMapFromJSON(butcher,"json/butchers_dialogues.json");
         fillDialogueMapFromJSON(girl,"json/girl_dialogues.json");
-        //   fillDialogueMapFromJSON(pharmacist,"json/pharmacist_dialogues.json");
+        fillDialogueMapFromJSON(pharmacist,"json/pharmacist_dialogues.json");
+        fillDialogueMapFromJSON(officer,"json/ment_dialogues.json");
         System.out.println("Список диалогов успешно загружен");
     }
     @Override

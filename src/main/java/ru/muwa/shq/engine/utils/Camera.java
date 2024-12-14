@@ -7,8 +7,20 @@ public class Camera {
     public static Kink kink;
     /**  **/
     public static void update(){
+
         x = (int) Game.player.hitBox.getCenterX() - (GameWindow.WIDTH/2);
         y = (int) Game.player.hitBox.getCenterY() - (GameWindow.HEIGHT/2);
+
+        if(Game.player.crazy > 50 && Game.player.crazy < 75){
+
+            y += (Math.random()>0.5? 1:-1);
+            x += (Math.random()>0.5? 1:-1);
+        }
+        if(Game.player.crazy > 75){
+
+            y += (Math.random()>0.5? 2:-2);
+            x += (Math.random()>0.5? 2:-2);
+        }
     }
     /** Работа службы камеры **/
     public static void work() {

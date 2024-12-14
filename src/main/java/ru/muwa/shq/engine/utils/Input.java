@@ -18,13 +18,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static ru.muwa.shq.engine.utils.Animation.PL_PISTOL_FIRE;
+import static ru.muwa.shq.engine.GameWindow.fullscreen;
+import static ru.muwa.shq.engine.utils.Animation.*;
 import static ru.muwa.shq.engine.utils.GameTime.HOUR_LENGTH;
 import static ru.muwa.shq.engine.utils.Input.KListener.*;
+import static ru.muwa.shq.entities.GameObject.ITEMS_CAPACITY;
 import static ru.muwa.shq.entities.GameObject.Type.DOOR;
 import static ru.muwa.shq.entities.GameObject.Type.*;
 import static ru.muwa.shq.entities.Item.Type.*;
-import static ru.muwa.shq.entities.Level.WILDBERRIES;
+import static ru.muwa.shq.entities.Level.*;
 import static ru.muwa.shq.entities.Minigame.Type.*;
 import static ru.muwa.shq.story.Dialogue.Companion.*;
 
@@ -166,7 +168,7 @@ public class Input {
         //Ищем объект, по которому прошло нажатие
         for (int i = 0; i < Game.currentLevel.objects.size(); i++)
         {
-            if(Game.currentLevel.objects.get(i).hitBox.contains(mouse.x + Camera.x,mouse.y - (GameWindow.fullscreen?0:30) + Camera.y))
+            if(Game.currentLevel.objects.get(i).hitBox.contains(mouse.x + Camera.x - (fullscreen?4:0),mouse.y - 30 + Camera.y))
             {
                 o = Game.currentLevel.objects.get(i);
             }
@@ -211,6 +213,8 @@ public class Input {
             {
                 Dialogue.current = Dialogue.repo.get(o.dialogue);
                 Dialogue.companion=null;
+
+                if(o==Game.mom) {Dialogue.current = Dialogue.mom.get(o.dialogue); Dialogue.companion = MOM;}
                 if(o==Game.hach) {Dialogue.current = Dialogue.hach.get(o.dialogue);Dialogue.companion=HACH;}
                 if(o==Game.hacker) {Dialogue.current = Dialogue.hacker.get(o.dialogue);Dialogue.companion=HACKER;}
                 if(o==Game.trap) {Dialogue.current = Dialogue.trap.get(o.dialogue);Dialogue.companion=TRAP;}
@@ -219,8 +223,12 @@ public class Input {
                 if(o==Game.butcher) {Dialogue.current = Dialogue.butcher.get(o.dialogue);Dialogue.companion=BUTCHER;}
                 if(o==Game.girl) {Dialogue.current = Dialogue.girl.get(o.dialogue);Dialogue.companion=GIRL;}
                 if(o==Game.pharmacist) {Dialogue.current = Dialogue.pharmacist.get(o.dialogue);Dialogue.companion=PHARMACIST;}
+                if(o==Game.officer) {Dialogue.current = Dialogue.officer.get(o.dialogue);Dialogue.companion=OFFICER;}
 
+
+                if(Dialogue.textures.get(o.id)==null) Dialogue.texture = null; //НЕ ЕБАНЕТ???
                 Dialogue.texture = Dialogue.textures.get(o.id);
+
             }
         }
 
@@ -232,7 +240,7 @@ public class Input {
             if(o.minigame.type == PADIQUE) Minigame.current.coordinates = o.coordinates;
             if (o.minigame.type.equals(SHOP) || o.minigame.type == COOK) o.opened = true;
         }
-        if(o!= null && (o.type.equals(INTERACT)||o.type.equals(ZONE)) && o.scriptId != 0)
+        if(o!= null && (o.type.equals(INTERACT)||o.type.equals(ZONE)||o.type.equals(CREATURE)) && o.scriptId != 0)
         {
             ru.muwa.shq.story.scripts.Script.repo.get(o.scriptId).execute();
         }
@@ -254,7 +262,13 @@ public class Input {
         if(Game.player.busy || Animation.current.containsKey(Game.player)) return;
         //Если в руках Шкипера ничего нет или холодное оружие,
         //Шкипер наносит удар врукопашную
-        if(Game.player.equip == null  || Game.player.equip.type.equals(MELEE)){ Game.player.melee(); return;};
+        if(Game.player.equip == null  || Game.player.equip.type.equals(MELEE)){
+            //Воспроизводим анимацию атаки
+            Animation.addAnimation(Game.player,Animation.get(PL_PUNCH));
+            //Ищем цель и наносим урон
+            Game.player.melee();
+            return;
+        }
         //Если в руках еда (ВОЗМОЖНО УСТАРЕЛО В СВЯЗИ С DRUG И МОИМ ЖЕЛАНИЕМ ИЗМЕНИТЬ ЛОГИКУ ЭФФЕКТОВ)
         if(Game.player.equip.type == FOOD)
         {
@@ -298,7 +312,8 @@ public class Input {
             Game.player.equip.ammo -=1;
             //И запускаем анимацию
             Animation animation = Animation.get(PL_PISTOL_FIRE);
-            animation.startTime = System.currentTimeMillis();
+            if(Game.player.equip.id == 92) animation = Animation.get(PL_SHOTGUN_FIRE);
+            if(Game.player.equip.id == 126) animation = Animation.get(PL_ASSAULT_RIFLE_FIRE);
             Animation.addAnimation(Game.player,animation);
         }
     }
@@ -402,9 +417,10 @@ public class Input {
             //Точка клика (х,у)
             Point point = new Point(e.getPoint());
 
-            if(!GameWindow.fullscreen) point.y -= 30; point.x -= 6; //Так будто-бы точнее. Возможно, из-за JPanel
+            if(!fullscreen){ point.y -= 30; point.x -= 6;} //Так будто-бы точнее. Возможно, из-за JPanel
 
             inventoryClique(point);
+            questClique(point);
             dialogueClique(point);
             minigameClique(point);
 
@@ -418,6 +434,8 @@ public class Input {
             if (Minigame.current.type == TOILET){toiletClique(point); return;}
             if (Minigame.current.type == SHQUR && Game.currentLevel.isIndoors) Game.currentLevel.noise += 1.0;
             if(Minigame.current.type == ELEVATOR) {elevatorClique(point);return;}
+            if(Minigame.current.type == SELL) {sellClique(point);return;}
+
             if(Minigame.current.inputButtons != null )
             {
 
@@ -436,7 +454,7 @@ public class Input {
                     Minigame.current.success.width = 0;
                     Minigame.current.success.height = 0;
                 }
-                if(Minigame.current.type != COOK && Minigame.current.type != SHOP && Minigame.current.type != BUS)
+                if(Minigame.current.type != COOK && Minigame.current.type != SHOP && Minigame.current.type != BUS && Minigame.current.type != SHQUR)
                     Minigame.current = null;
             }
             if (Minigame.current != null && Minigame.current.type == SHOP)
@@ -453,15 +471,37 @@ public class Input {
             }
         }
 
+        private void sellClique(Point point) {
+            for (int i = 0; i < Minigame.current.inputButtons.size(); i++) {
+                var button = Minigame.current.inputButtons.get(i);
+                if(button.contains(point))
+                {
+                    var item = Game.player.items.stream()
+                            .filter(item1->item1.id == Integer.parseInt(button.hiddenValue))
+                            .findFirst().orElse(null);
+
+                    if (item==null) return;
+
+                    item.count -= 1;
+                    if(item.count <= 0) Game.player.items.remove(item);
+                    if(Game.player.equip==item) Game.player.equip = null;
+
+                    Game.player.money += (item.price / 4);
+                }
+            }
+        }
+
         private void internetClique(Point point) {
             for (int i = 0; i < Minigame.current.inputButtons.size(); i++) {
                 Minigame.InputButton b = Minigame.current.inputButtons.get(i);
                 if(!b.contains(point))continue;
                 if(b.value.equals("x")) {Minigame.current = null;return;}
-                if(b.value.equals("<---")) {Minigame.current = Minigame.get(20);return;}
+                if(b.value.equals("<---")) {Minigame.current = Minigame.get(20); if(Game.player.quests.stream().noneMatch(q->(q.id == 18 || q.id== 58)&& q.completed)) {Script.repo.get(25).execute();} return;}
                 if(b.value.equals("<--- ")) {Minigame.current = Minigame.get(21);return;}
                 if(b.value.equals("<---  ")) {Minigame.current = Minigame.get(22);return;}
                 if(b.value.equals("<---   ")) {Minigame.current = Minigame.get(23);return;}
+                if(b.value.contains("тить")) {Script.repo.get(29).execute(); return;}
+                if(b.value.contains("нят")) {Script.repo.get(4444_22).execute(); return;}
             }
             if(Minigame.current.purchaseButtons != null && !Minigame.current.purchaseButtons.isEmpty())
             {
@@ -469,7 +509,6 @@ public class Input {
                 {
                     if(button.contains(point) && Game.player.money >= Item.get(button.itemId).price)
                     {
-                        if(Game.player.items.size() >= Game.player.ITEMS_CAPACITY) return;
                         Game.player.money -= Item.get(button.itemId).price;
                         var warehouse = Level.repo.get(WILDBERRIES).objects.stream()
                                 .filter(o->o.id==1).findFirst().orElse(null);
@@ -512,6 +551,8 @@ public class Input {
                             {
                                 Game.player.pee = 0;
                                 if (Game.currentLevel.isIndoors) Game.currentLevel.noise +=20;
+                                if(Game.currentLevel.id == STREET_1) Game.player.wanted += 10;
+                                Animation.addAnimation(Game.player,Animation.get(PL_PEE));
                             }
                             break;
                         case "срать":
@@ -522,6 +563,7 @@ public class Input {
                             }
                             break;
                     }
+                Minigame.current = null;
             }
         }
 
@@ -543,9 +585,11 @@ public class Input {
                 if (button.contains(point))
                 {
                     String where = button.value;
+                    if(Game.player.busFare > Game.player.money) return;
                     if(where.contains("1_"))
                     {
-                        Game.player.money -= 100;
+                        Game.player.money -= Game.player.busFare;
+                        Game.player.busFare += 10;
                         Game.player.x = 1700;
                         Game.player.y = 1700;
                         GameTime.forward(HOUR_LENGTH /2);
@@ -553,15 +597,19 @@ public class Input {
                     }
                     if(where.contains("2_"))
                     {
-                        Game.player.money -= 100;
+                        Game.player.money -= Game.player.busFare;
+                        Game.player.busFare += 10;
+
                         Game.player.x = 5500;
-                        Game.player.y = 2500;
+                        Game.player.y = 2000;
                         GameTime.forward(HOUR_LENGTH/2);
                         break;
                     }
                     if(where.contains("3_"))
                     {
-                        Game.player.money -= 100;
+                        Game.player.money -= Game.player.busFare;
+                        Game.player.busFare += 10;
+
                         Game.player.x = 5350;
                         Game.player.y = 6150;
                         GameTime.forward(HOUR_LENGTH/2);
@@ -569,7 +617,9 @@ public class Input {
                     }
                     if (where.contains("4_"))
                     {
-                        Game.player.money -= 100;
+                        Game.player.money -= Game.player.busFare;
+                        Game.player.busFare += 10;
+
                         Game.player.x = 2900;
                         Game.player.y = 5150;
                         GameTime.forward(HOUR_LENGTH/2);
@@ -577,7 +627,9 @@ public class Input {
                     }
                     if (where.contains("5_"))
                     {
-                        Game.player.money -= 100;
+                        Game.player.money -= Game.player.busFare;
+                        Game.player.busFare += 10;
+
                         Game.player.x = 5900;
                         Game.player.y = 8000;
                         GameTime.forward(HOUR_LENGTH/2);
@@ -585,9 +637,20 @@ public class Input {
                     }
                     if (where.contains("6_"))
                     {
-                        Game.player.money -= 100;
+                        Game.player.money -= Game.player.busFare;
+                        Game.player.busFare += 10;
+
                         Game.player.x = 8500;
                         Game.player.y = 7250;
+                        GameTime.forward(HOUR_LENGTH/2);
+                        break;
+                    }
+                    if (where.contains("7_"))
+                    {
+                        Game.player.money -= Game.player.busFare;
+                        Game.player.busFare += 10;
+                        Game.player.y = 7800;
+                        Game.player.x = 1800;
                         GameTime.forward(HOUR_LENGTH/2);
                         break;
                     }
@@ -637,6 +700,7 @@ public class Input {
                         case BUTCHER -> Dialogue.current = Dialogue.butcher.get(button.nextMessage);
                         case GIRL -> Dialogue.current = Dialogue.girl.get(button.nextMessage);
                         case PHARMACIST -> Dialogue.current = Dialogue.pharmacist.get(button.nextMessage);
+                        case OFFICER -> Dialogue.current = Dialogue.officer.get(button.nextMessage);
                     }
                 }
             }
@@ -647,8 +711,6 @@ public class Input {
 
             boolean inContainer = false;
             GameObject container = null;
-
-            questClique(point);
 
             for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
 
@@ -665,7 +727,15 @@ public class Input {
                     Item item = container.items.get(i);
                         if(item.icon.contains(point))
                         {
-                            if(Game.player.items.size() >= Game.player.ITEMS_CAPACITY) return;
+                            boolean canTake = true;
+                            if(Game.player.items.size()>=Game.player.ITEMS_CAPACITY)
+                            {
+                                if(!item.stackable) canTake = false;
+                                if(item.stackable && Game.player.items.stream().noneMatch(item1 -> item1.id == item.id))
+                                    canTake = false;
+                            }
+                            if(item.name.contains("rub")) canTake = true;
+                            if (!canTake) return;
                             if (!item.stackable || item.count == 1) {
                                 container.items.remove(item);
                                 Game.player.addItem(item);
@@ -677,13 +747,20 @@ public class Input {
                         }
                 }
             }
+
             if(!Renderer.itemVisible) return;
-            for (int i = 0; i < Game.player.items.size(); i++) {
-                Item item = Game.player.items.get(i);
+
+            List<Item> items = new ArrayList<>(Game.player.items);
+            if(Game.player.hat != null) items.add(Game.player.hat);
+            if(Game.player.torso != null) items.add(Game.player.torso);
+            if(Game.player.foot != null) items.add(Game.player.foot);
+
+            for (int i = 0; i < items.size(); i++) {
+                Item item = items.get(i);
 
                 if (item.icon.contains(point)) {
 
-                    if(inContainer && container.items.size() < GameObject.ITEMS_CAPACITY) {
+                    if(inContainer && container.items.size() < ITEMS_CAPACITY) {
                             if (!item.stackable || item.count ==1) {
                                 if(container.id!=75)
                                     container.addItem(item);
@@ -694,42 +771,81 @@ public class Input {
                                 item.count -= 1;
                             }
                             if(item==Game.player.equip){ Game.player.effects.remove(Game.player.equip.effect);  Game.player.equip = null;}
-                            if(item==Game.player.hat) {Game.player.effects.remove(Game.player.hat.effect); Game.player.hat = null; }
-                            if(item==Game.player.torso){ Game.player.effects.remove(Game.player.torso.effect); Game.player.torso = null;}
-                            if(item==Game.player.foot){Game.player.effects.remove(Game.player.foot.effect);Game.player.foot = null; }
                             return;
                     }
 
                     if(item.type == AMMO) Combat.Reload(Game.player.equip, item);
-                    if(item.type == HAT && Game.player.hat == null) {
-                        Game.player.hat = item;
-                        Game.player.effects.add( Game.player.hat.effect);
-                    }
-                    else if(item == Game.player.hat) {
-                        Game.player.effects.remove(Game.player.hat.effect);
-                        Game.player.hat = null;
-                    }
-                    if(item.type == TORSO && Game.player.torso == null)
+
+                    if(item.type == HAT)
                     {
-                        Game.player.torso = item;
-                        Game.player.effects.add(Game.player.torso.effect);
+                        if(Game.player.hat == item)
+                        {
+                            if(Game.currentLevel.id == SEWERS) return;//Нельзя снять шляпу (противогаз) в канализации
+                            Game.player.hat = null;
+                            Game.player.addItem(item);
+                            Game.player.effects.remove(item.effect);
+                            return;
+                        }
+                        else if(Game.player.hat != null)
+                        {
+                            return;
+                        }
+                        else {
+                            Game.player.items.remove(item);
+                            Game.player.hat = item;
+                            Game.player.effects.add(item.effect);
+                            return;
+                        }
                     }
-                    else if(item == Game.player.torso)
+
+                    if(item.type == TORSO)
                     {
-                        Game.player.effects.remove(Game.player.torso.effect);
-                        Game.player.torso = null;
+                        if(Game.player.torso == item)
+                        {
+                            Game.player.torso = null;
+                            Game.player.addItem(item);
+                            Game.player.effects.remove(item.effect);
+
+                            return;
+                        }
+                        else if(Game.player.torso != null)
+                        {
+                            return;
+                        }
+                        else {
+                            Game.player.items.remove(item);
+                            Game.player.torso = item;
+                            Game.player.effects.add(item.effect);
+                            return;
+                        }
                     }
-                    if(item.type == FOOTWEAR && Game.player.foot == null)
+
+                    if(item.type == FOOTWEAR)
                     {
-                        Game.player.foot = item;
-                        Game.player.effects.add(Game.player.foot.effect);
+                        if(Game.player.foot == item)
+                        {
+                            Game.player.foot = null;
+                            Game.player.addItem(item);
+                            Game.player.effects.remove(item.effect);
+
+                            return;
+                        }
+                        else if(Game.player.foot != null)
+                        {
+                            return;
+                        }
+                        else {
+                            Game.player.items.remove(item);
+                            Game.player.foot = item;
+                            Game.player.effects.add(item.effect);
+
+                            return;
+                        }
                     }
-                    else if(item == Game.player.foot)
-                    {
-                        Game.player.effects.remove(Game.player.foot.effect);
-                        Game.player.foot = null;
-                    }
-                    if (Game.player.equip == item ) {
+
+
+
+                    if (Game.player.equip == item) {
                         Game.player.equip = null;
                         return;
                     }
@@ -785,7 +901,12 @@ public class Input {
         }
         @Override
         public void mouseMoved(MouseEvent e) {
-            x = e.getX(); y = e.getY();
+            if(fullscreen){
+                x = e.getX(); y = e.getY()+30;
+            }else {
+                x = e.getX();
+                y = e.getY();
+            }
         }
     }
     public static void foo(){}

@@ -1,6 +1,7 @@
 package ru.muwa.shq.entities;
 
 import ru.muwa.shq.engine.Game;
+import ru.muwa.shq.engine.utils.Animation;
 import ru.muwa.shq.engine.utils.Combat;
 import ru.muwa.shq.engine.utils.Input;
 import ru.muwa.shq.story.Quest;
@@ -10,12 +11,14 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import static ru.muwa.shq.engine.utils.Animation.PL_PUNCH;
 import static ru.muwa.shq.engine.utils.GameTime.DAY_LENGTH;
 import static ru.muwa.shq.engine.utils.Input.KListener.SHIFT;
 import static ru.muwa.shq.entities.Item.Type.MELEE;
 import static ru.muwa.shq.entities.Item.Type.MONEY;
 
 public class Player extends GameObject {
+
     public int id = 0;
     public int brush = -1;
     public double pee=0,poo=0;
@@ -23,13 +26,13 @@ public class Player extends GameObject {
     public int attackDist = 100;
     public final int ITEMS_CAPACITY = 10;
     public double hunger = 0, thirst = 0, /* nuts */ crazy = 0, sleepy = 0, wanted = 0,smoke = 0, stimulate = 0, drunk = 0;
-    public boolean busy,dead;
+    public boolean busy,dead,rent,good, atm;
     public ArrayList<Item.Effect> effects = new ArrayList<>();
     public ArrayList<Item> items = new ArrayList<>();
     public ArrayList<Quest> quests = new ArrayList<>();
     public Item equip;
-    public int bonusHp, baseHp,psycho,bonusPsycho,basePsycho, baseSpeed,baseSprint = 6, bonusSpeed, bonusSprint;
-
+    public int bonusHp, baseHp,bonusPsycho,basePsycho, baseSpeed,baseSprint = 6, bonusSpeed, bonusSprint;
+    public int busFare = 100;
 
     public double stamina, bonusStamina,baseStamina = 100;
     public long mommaFullness = DAY_LENGTH * 2,
@@ -48,14 +51,12 @@ public class Player extends GameObject {
         hp = baseHp;
         type = Type.CREATURE;
         damage = 5;
-
     }
-
 
     @Override
     public void moveDown() {
         if (busy) return;
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1){
+        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
             speed=baseSprint + bonusSprint;
             if(Math.random()>0.5)Game.player.stamina -=1;
         }else speed = baseSpeed;
@@ -66,7 +67,7 @@ public class Player extends GameObject {
     @Override
     public void moveLeft() {
         if (busy) return;
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1){
+        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
             speed=baseSprint + bonusSprint;
             if(Math.random()>0.5) Game.player.stamina -=1;
         }else speed = baseSpeed;
@@ -77,7 +78,7 @@ public class Player extends GameObject {
     @Override
     public void moveRight() {
         if (busy) return;
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1){
+        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
             speed=baseSprint + bonusSprint;
             if(Math.random()>0.5)  Game.player.stamina -=1;
         }else speed = baseSpeed;
@@ -88,7 +89,7 @@ public class Player extends GameObject {
     @Override
     public void moveUp() {
         if (busy) return;
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1){
+        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
             speed=baseSprint + bonusSprint;
             if(Math.random()>0.5)  Game.player.stamina -=1;
         }else speed = baseSpeed;
@@ -142,6 +143,8 @@ public class Player extends GameObject {
             Combat.dealDamage(target, equip!=null && equip.type.equals(MELEE)?damage+ equip.damage : damage);
             //Тот, кого мы ударили, становится врагом
             target.enemy = true;
+
+
         }
     }
     public void removeEffect(String name)

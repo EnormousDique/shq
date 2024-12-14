@@ -20,7 +20,7 @@ public class Crafting {
         recipes.put(62, List.of(31,39,55));//Картошечка с лучком
         recipes.put(63, List.of(38,45,41,34));//Сырники
         recipes.put(64, List.of(52,31,55,32,37,40,56));//Борщ
-
+        recipes.put(116,List.of(120,119));//Кошачий корм с витаминами
 
     }
     public static int craft(List<Item> items)
