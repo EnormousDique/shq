@@ -12,13 +12,13 @@ public class GameTime {
     public static long value = 0;
     public static int day;
 
-    public static final long GAME_START = 0, DAY_LENGTH = 720_000, GAME_END = GAME_START + DAY_LENGTH * 30, HOUR_LENGTH = DAY_LENGTH / 24, TICK_LENGTH = 1_000 / Game.fps;
+    public static final long GAME_START = 0, DAY_LENGTH = 720_000, GAME_END = GAME_START + DAY_LENGTH * 30, HOUR_LENGTH = DAY_LENGTH / 24, TICK_LENGTH = (DAY_LENGTH / 24 / 60) / Game.fps;
 
 
 
     public static void work() {
         if(Game.player.smoke < 1 || Math.random() < 0.34 )
-            value += TICK_LENGTH;
+            value += TICK_LENGTH / 2;
     }
 
     public static long get() {
@@ -28,8 +28,8 @@ public class GameTime {
     public static String getString() {
         long day = value / DAY_LENGTH + 1;
         long time = value % DAY_LENGTH;
-        long hours = time / 30_000;
-        String minutes = "" + (int) (time % 30_000) * 2;
+        long hours = time / 60_000;
+        String minutes = "" + (int) (time % 60_000) * 2;
 
         if (minutes.length() < 4) minutes = "00";
         else {
@@ -38,19 +38,6 @@ public class GameTime {
         }
 
         return "day : " + day + " time : " + hours + " h " + minutes + " min";
-    }
-
-    public static String longToString(long time) {
-        long hours = time / 30_000;
-        String minutes = "" + (int) (time % 30_000) * 2;
-
-        if (minutes.length() < 4) minutes = "00";
-        else {
-            if (minutes.length() < 5) minutes = "0" + minutes.charAt(0);
-            else minutes = minutes.charAt(0) + "" + minutes.charAt(1);
-        }
-
-        return hours + " : " + minutes;
     }
 
     public static void forward(long amount) {

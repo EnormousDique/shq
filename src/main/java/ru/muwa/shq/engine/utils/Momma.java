@@ -81,14 +81,14 @@ public class Momma {
             //Обычное поведение мамы
             if (Game.player.smoke < 1) {
                 if (Game.player.quests.stream().noneMatch(q -> q.id == 53 && q.completed)) {
-                    Game.player.mommaHealth -= (1_000 / 60);
-                    Game.player.mommaClean -= (1_000 / 60);
+                    Game.player.mommaHealth -= (1_000 / 60)/2;
+                    Game.player.mommaClean -= (1_000 / 60)/2;
                 } else {
                     Game.player.mommaHealth = DAY_LENGTH * 2;
                     Game.player.mommaClean = DAY_LENGTH * 2;
                 }
                 if(Game.player.quests.stream().noneMatch(q->q.id == 34 && q.completed)) {
-                    Game.player.mommaFullness -= (1_000 / 60);
+                    Game.player.mommaFullness -= (1_000 / 60)/2;
                 }else{
                     Game.player.mommaFullness = DAY_LENGTH * 2;
                 }
