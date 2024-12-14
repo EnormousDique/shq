@@ -96,12 +96,12 @@ public class Spawner {
             gop.y = y;
             Game.currentLevel.objects.add(gop);
 
-            long interval = (GameTime.getTimeOfTheDay() == NIGHT? 4_000 : 10_000);
+            long interval = (10_000);
             switch( (int) (GameTime.value/DAY_LENGTH + 1)/7 )
             {
-                case 2 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 500 : 1_000;
-                case 3 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 1_000 : 3_000;
-                case 4 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 1_500 : 5_000;
+                case 2 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 8_500 : 6_000;
+                case 3 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 7_000 : 5_000;
+                case 4 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 5_500 : 5_000;
             }
 
             gopSpawnTimer = System.currentTimeMillis() + interval;
@@ -133,7 +133,7 @@ public class Spawner {
             var hach = GameObject.get(138);
             hach.x = zone.x; hach.y = zone.y;
             Game.currentLevel.objects.add(hach);
-            hachSpawnTimer = System.currentTimeMillis() + 6_000;
+            hachSpawnTimer = System.currentTimeMillis() + 16_000;
         }
     }
 
@@ -151,7 +151,7 @@ public class Spawner {
             var zek = GameObject.get(124);
             zek.x = zone.x; zek.y = zone.y;
             Game.currentLevel.objects.add(zek);
-            zekSpawnTimer = System.currentTimeMillis() + 6_000;
+            zekSpawnTimer = System.currentTimeMillis() + 10_000;
         }
     }
 
