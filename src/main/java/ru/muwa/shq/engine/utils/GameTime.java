@@ -18,7 +18,7 @@ public class GameTime {
 
     public static void work() {
         if(Game.player.smoke < 1 || Math.random() < 0.34 )
-            value += TICK_LENGTH / 2;
+            value += TICK_LENGTH / 1;
     }
 
     public static long get() {
@@ -28,8 +28,8 @@ public class GameTime {
     public static String getString() {
         long day = value / DAY_LENGTH + 1;
         long time = value % DAY_LENGTH;
-        long hours = time / 60_000;
-        String minutes = "" + (int) (time % 60_000) * 2;
+        long hours = time / 30_000;
+        String minutes = "" + (int) (time % 30_000) * 2;
 
         if (minutes.length() < 4) minutes = "00";
         else {
