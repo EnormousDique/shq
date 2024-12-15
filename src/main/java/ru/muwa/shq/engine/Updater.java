@@ -2,9 +2,11 @@ package ru.muwa.shq.engine;
 
 import ru.muwa.shq.Main;
 import ru.muwa.shq.engine.utils.*;
+import ru.muwa.shq.entities.Minigame;
 import ru.muwa.shq.entities.Player;
 
 import static ru.muwa.shq.engine.Game.pause;
+import static ru.muwa.shq.entities.Minigame.Type.*;
 
 public class Updater implements Runnable{
 

@@ -75,7 +75,6 @@ public class Spawner {
 
             return;
         }
-        if(Game.currentLevel.id != STREET_1) return;
 
         if(GameTime.getTimeOfTheDay() == NIGHT || GameTime.getTimeOfTheDay() == GameTime.TimeOfTheDay.SUNSET) {
             if (gopSpawnTimer > System.currentTimeMillis()) return;
@@ -108,8 +107,8 @@ public class Spawner {
 
         } else if( GameTime.getTimeOfTheDay() == GameTime.TimeOfTheDay.SUNRISE || GameTime.getTimeOfTheDay() == GameTime.TimeOfTheDay.DAY)
         {
-            for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
-                var gop = Game.currentLevel.objects.get(i);
+            for (int i = 0; i < Level.repo.get(STREET_1).objects.size(); i++) {
+                var gop = Level.repo.get(STREET_1).objects.get(i);
                 if(gop.id !=4) return;
                 var screen = new Rectangle(Camera.x,Camera.y,GameWindow.WIDTH,GameWindow.HEIGHT);
                 if(screen.intersects(gop.hitBox)) continue;
