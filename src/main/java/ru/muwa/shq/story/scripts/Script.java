@@ -51,20 +51,20 @@ public abstract class Script {
     static
     {
         //Что мама ест и насколько ее это насыщает
-        momFood.put(50,HOUR_LENGTH * 10);//Паста
-        momFood.put(63,HOUR_LENGTH * 4);//Сырник
-        momFood.put(57,HOUR_LENGTH * 5);//салат
-        momFood.put(58,HOUR_LENGTH * 10);//жареная курица
-        momFood.put(59,HOUR_LENGTH * 20);//стейк
-        momFood.put(60,HOUR_LENGTH * 6);//котлета
-        momFood.put(61,HOUR_LENGTH * 10);//куриный суп
-        momFood.put(62,HOUR_LENGTH * 5);//картошка с лучком
-        momFood.put(64,HOUR_LENGTH * 24);//борщ
+        momFood.put(50,HOUR_LENGTH * 15);//Паста
+        momFood.put(63,HOUR_LENGTH * 8);//Сырник
+        momFood.put(57,HOUR_LENGTH * 15);//салат
+        momFood.put(58,HOUR_LENGTH * 25);//жареная курица
+        momFood.put(59,HOUR_LENGTH * 30);//стейк
+        momFood.put(60,HOUR_LENGTH * 15);//котлета
+        momFood.put(61,HOUR_LENGTH * 20);//куриный суп
+        momFood.put(62,HOUR_LENGTH * 10);//картошка с лучком
+        momFood.put(64,HOUR_LENGTH * 35);//борщ
         //Какие лекарства помогают маме и на какое время
-        momDrugs.put(46,HOUR_LENGTH * 8);
-        momDrugs.put(47,HOUR_LENGTH * 16);
-        momDrugs.put(48,HOUR_LENGTH * 24);
-        momDrugs.put(49,HOUR_LENGTH * 48);
+        momDrugs.put(46,HOUR_LENGTH * 10);
+        momDrugs.put(47,HOUR_LENGTH * 20);
+        momDrugs.put(48,HOUR_LENGTH * 30);
+        momDrugs.put(49,HOUR_LENGTH * 50);
         //Пароли от подъездов
         padiquePasswords.put(new Coordinates(550,1400,BUILDING_1),"228");
         padiquePasswords.put(new Coordinates(1185,1400,BUILDING_1),"229");
@@ -121,11 +121,11 @@ public abstract class Script {
                     Game.player.x = 1170;
                     Game.player.y = 250;
                     Game.currentLevel.objects.add(Game.player);
-                    Game.player.hp = 50;
+                    Game.player.hp = 80;
                     Game.player.crazy += 10;
-                    Game.player.hunger = 40;
-                    Game.player.thirst = 30;
-                    Game.player.sleepy = 20;
+                    Game.player.hunger = 30;
+                    Game.player.thirst = 20;
+                    Game.player.sleepy = 10;
                     Game.player.pee = 0;
                     Game.player.poo = 0;
                     GameTime.forward(8 * HOUR_LENGTH);
@@ -135,7 +135,7 @@ public abstract class Script {
                     Game.player.money -= fine;
 
                     Dialogue d = new Dialogue();
-                    d.message = "Спустя 8 часов после госпитализации, Шкипер пришел в себя на больничной койке. \n За лечение выставили счет: " + fine + "р.";
+                    d.message = "Спустя 4 часа после госпитализации, Шкипер пришел в себя на больничной койке. \n За лечение выставили счет: " + fine + "р.";
                     d.responses.add(new Dialogue.Response("ладно.", 0, 0));
                     Dialogue.current = d;
                     Dialogue.companion = null;
