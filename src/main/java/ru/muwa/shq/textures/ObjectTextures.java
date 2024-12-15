@@ -374,6 +374,10 @@ public class ObjectTextures {
             image = ImageIO.read(inputStream);  repo.put(155,image);
 
 
+            inputStream = classLoader.getResourceAsStream(Game.imgPath + "police_office.png");
+            image = ImageIO.read(inputStream);  repo.put(156,image);
+
+
             inputStream = classLoader.getResourceAsStream(Game.imgPath + "5_floor.png");
             image = ImageIO.read(inputStream);  repo.put(200,image);
 

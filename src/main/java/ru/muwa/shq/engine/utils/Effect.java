@@ -222,7 +222,7 @@ public class Effect {
         if(Game.player.hunger < 0) Game.player.hunger = 0;
         //Проверяем таймер голода
         if(hungerTimer > System.currentTimeMillis()) return;
-        Game.player.hunger +=1; //Повышаем голод на 1
+        Game.player.hunger +=0.4; //Повышаем голод на 1
         hungerTimer = System.currentTimeMillis() + 4_000; //Каждые 4 секунды (8 игровых минут)
         //Если Шкипер сыт, восполняем хп
         if(Game.player.hunger < 25 && Game.player.hp < 99)  Game.player.hp += 1;
@@ -240,7 +240,7 @@ public class Effect {
         if(Game.player.thirst < 0) Game.player.thirst = 0;
         //Проверяем таймер жажды
         if(thirstTimer > System.currentTimeMillis()) return;
-        Game.player.thirst +=1; //Повышаем жажду на 1
+        Game.player.thirst +=0.3; //Повышаем жажду на 1
         thirstTimer = System.currentTimeMillis() + 2_000; //Каждые 2 секунды (4 игровых минут)
         }
 
@@ -254,7 +254,7 @@ public class Effect {
         if(Game.player.sleepy < 0) Game.player.sleepy = 0;
         //Проверяем таймер сонливости
         if(sleepyTimer > System.currentTimeMillis()) return;
-        Game.player.sleepy +=1; //Повышаем сонливость на 1
+        Game.player.sleepy +=0.4; //Повышаем сонливость на 1
         sleepyTimer = System.currentTimeMillis() + 5_150; //Каждые 5.15 секунд (~10 игровых минут)
     }
 
@@ -284,6 +284,7 @@ public class Effect {
         //Если шухер высокий, то будем спавнить жителей.
         if(Game.currentLevel.isIndoors && Game.currentLevel.noise > 99)
         {
+            //TODO: вынеси в метод "спавн соседей"
             //Ищем ближайшую к игроку зону спавна
             GameObject nearestSpawnZone = null;
             List<GameObject> zones = Game.currentLevel.objects.stream().filter(o -> o.id == 222).toList();
@@ -316,7 +317,7 @@ public class Effect {
         {
             //Проходимся по уровням и снижаем шухер
             Level level = entry.getValue();
-            if(level.isIndoors && level.noise > 0)  level.noise -=0.0005;
+            if(level.isIndoors && level.noise > 0)  level.noise -=0.001;
 
         }
 

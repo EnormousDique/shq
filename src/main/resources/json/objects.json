@@ -1599,9 +1599,16 @@
     "type": "INTERACT",
     "minigameId": "3"
   },
-
-
-
+  {
+    "id": 156,
+    "name": "police_office",
+    "hitBox": {
+      "width": "200",
+      "height": "92"
+    },
+    "solid": true,
+    "type": "OBJECT"
+  },
   {
     "id": 200,
     "name": "5_floor",

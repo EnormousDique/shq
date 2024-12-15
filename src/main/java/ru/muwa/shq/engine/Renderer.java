@@ -745,7 +745,7 @@ public class Renderer implements Runnable{
         private void drawDialogue(Graphics g) {
             //»Õ»÷»¿À»«¿÷»ﬂ
             g.setColor(new Color(200,201,169));
-            g.fillRect(GameWindow.WIDTH / 3-200, GameWindow.HEIGHT - 300, GameWindow.WIDTH / 2 + 200 , 300);
+            g.fillRect(GameWindow.WIDTH / 3-200, GameWindow.HEIGHT - 300, GameWindow.WIDTH / 2 + 300 , 300);
             g.setColor(Color.BLACK);
             g.setFont(new Font(Font.SANS_SERIF, Font.BOLD,15));
 

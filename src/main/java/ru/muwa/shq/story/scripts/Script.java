@@ -241,7 +241,7 @@ public abstract class Script {
                 //Снимаем сонливость
                 if(Game.player.sleepy > 30) Game.player.sleepy -= 30;
                 //Снимаем голод
-                if(Game.player.hunger < 60) Game.player.hunger -= 10;
+                if(Game.player.hunger > 40) Game.player.hunger -= 30;
                 //Забираем соль
                 /* Game.player.equip.count -=1;
                 if(Game.player.equip.count < 0){
