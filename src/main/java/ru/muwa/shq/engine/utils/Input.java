@@ -849,7 +849,7 @@ public class Input {
                         Game.player.equip = null;
                         return;
                     }
-                    if (Game.player.equip == null && (item.type != FOOTWEAR && item.type != TORSO && item.type != HAT)) {
+                    if (/*Game.player.equip == null &&*/ (item.type != FOOTWEAR && item.type != TORSO && item.type != HAT && item.type != AMMO)) {
                         Game.player.equip = item;
                         return;
                     }

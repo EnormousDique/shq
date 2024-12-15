@@ -864,7 +864,7 @@ public abstract class Script {
                 //Если куст нашелся, удаляем его с уровня
                 Game.currentLevel.objects.remove(bush);
                 //Даем Шкиперу срезанный куст как предмет
-                Game.player.addItem(Item.get(87));
+                Game.player.addItem(Item.get(75));
             }
         };repo.put(88,script);
         /** Скрипт косяка**/
