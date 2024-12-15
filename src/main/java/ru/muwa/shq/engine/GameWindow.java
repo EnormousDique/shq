@@ -10,8 +10,8 @@ import javax.swing.*;
 public class GameWindow extends JFrame {
 
     //Широта и высота экрана (для оконного режима)
-    public static int WIDTH = 1280;
-    public static int HEIGHT = 720;
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
 
     //Полноэкранный режим
     public static boolean fullscreen = false;

@@ -228,8 +228,8 @@ public class Launcher extends JFrame {
                     GameWindow.HEIGHT = screenSize.height;
                 }else {
                     GameWindow.fullscreen = false;
-                    GameWindow.WIDTH = 1280;
-                    GameWindow.HEIGHT = 800;
+                    GameWindow.WIDTH = 800;
+                    GameWindow.HEIGHT = 600;
                 }
             }
         });
