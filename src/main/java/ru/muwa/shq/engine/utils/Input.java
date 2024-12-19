@@ -39,6 +39,15 @@ public class Input {
     {
         keyboardInput();
     }
+    public static void pause(){
+        for (Integer i : keyboard.buttonList) {
+            if (keyboard.map.get(i)) {
+                if (i == KListener.M) {
+                    Game.pause = !Game.pause;
+                }
+            }
+        }
+    }
 
     /** ћетод обработки нажатий с клавиатуры **/
     private static void keyboardInput() {
@@ -69,9 +78,7 @@ public class Input {
                         case KListener.Q:
                             q();
                             break;
-                        case KListener.M:
 
-                            break;
                         case KListener.E:
                             e();
                             keyboard.map.put(i, false);
@@ -368,7 +375,8 @@ public class Input {
             map.put(P,false);
             map.put(H,false);
             map.put(REMOVE,false);
-            buttonList = List.of(W,A,S,D,SPACE,I,E,J,Q,C,SHIFT,ADD,P,REMOVE,H);
+            map.put(M,false);
+            buttonList = List.of(W,A,S,D,SPACE,I,E,J,Q,C,SHIFT,ADD,P,REMOVE,H,M);
             System.out.println("¬вод с клавиатуры инициализирован");
         }
 

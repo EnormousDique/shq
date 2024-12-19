@@ -128,7 +128,7 @@ public abstract class Script {
                     Game.player.sleepy = 10;
                     Game.player.pee = 0;
                     Game.player.poo = 0;
-                    GameTime.forward(8 * HOUR_LENGTH);
+                    GameTime.forward(4 * HOUR_LENGTH);
                     Game.player.wanted = 0;
 
                     int fine = (int) (Game.player.money * 0.3);
@@ -2904,6 +2904,7 @@ public abstract class Script {
                     Dialogue.current = Dialogue.officer.get(22);
                     Dialogue.officer.get(Game.officer.dialogue)
                             .responses.add(new Dialogue.Response("подбросил",0,6666_8));
+                    return;
                 }
                 if(Game.player.quests.stream().anyMatch(q->q.id==38 || q.completed)){
                     //Если Шкипер выполнил (последний) квест с подбросом.

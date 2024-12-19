@@ -48,7 +48,7 @@ public class Updater implements Runnable{
         try {
             //Код, выполняемый несмотря на паузу
             //TODO: добавить отдельно вызов обработки команд консоли
-
+            Input.pause();
             if (pause) return;
             //Код, замирающий при паузе
             Momma.work();
@@ -59,7 +59,7 @@ public class Updater implements Runnable{
             Physx.work();
             Combat.work();
             AI.work();
-            // Spawner.work(); //Лучше отключать при работе со сборкой уровней
+            Spawner.work(); //Лучше отключать при работе со сборкой уровней
             Kldmn.mdk();
         }catch (Exception e){}
     }

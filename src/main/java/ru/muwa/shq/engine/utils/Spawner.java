@@ -76,6 +76,7 @@ public class Spawner {
             return;
         }
 
+        //Обычный спавн гопников ночью
         if(GameTime.getTimeOfTheDay() == NIGHT || GameTime.getTimeOfTheDay() == GameTime.TimeOfTheDay.SUNSET) {
             if (gopSpawnTimer > System.currentTimeMillis()) return;
             //Определяем место для спавна
@@ -98,9 +99,9 @@ public class Spawner {
             long interval = (10_000);
             switch( (int) (GameTime.value/DAY_LENGTH + 1)/7 )
             {
-                case 2 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 8_500 : 6_000;
-                case 3 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 7_000 : 5_000;
-                case 4 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 5_500 : 5_000;
+                case 2 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 8_000 : 6_000;
+                case 3 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 6_000 : 4_000;
+                case 4 -> interval -= GameTime.getTimeOfTheDay() == NIGHT? 4_500 : 3_000;
             }
 
             gopSpawnTimer = System.currentTimeMillis() + interval;
@@ -132,7 +133,7 @@ public class Spawner {
             var hach = GameObject.get(138);
             hach.x = zone.x; hach.y = zone.y;
             Game.currentLevel.objects.add(hach);
-            hachSpawnTimer = System.currentTimeMillis() + 16_000;
+            hachSpawnTimer = System.currentTimeMillis() + 8_000;
         }
     }
 
@@ -150,7 +151,7 @@ public class Spawner {
             var zek = GameObject.get(124);
             zek.x = zone.x; zek.y = zone.y;
             Game.currentLevel.objects.add(zek);
-            zekSpawnTimer = System.currentTimeMillis() + 10_000;
+            zekSpawnTimer = System.currentTimeMillis() + 5_000;
         }
     }
 
@@ -243,7 +244,7 @@ public class Spawner {
     private static long copSpawnTimer;
     private static long copSpawnInterval; // 1 min
     private static long pedestrianSpawnTimer;
-    private static final long PEDESTRIAN_SPAWN_INTERVAL = 1_000; //1 сек //10_000; // 10 sec
+    private static final long PEDESTRIAN_SPAWN_INTERVAL = 5_000; //1 сек //10_000; // 10 sec
 
     private static final int PEDESTRIAN_SPAWN_ZONE_ID = 223;
     private static void pedestrianSpawn() {
