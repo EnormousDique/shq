@@ -78,7 +78,6 @@ public class Input {
                         case KListener.Q:
                             q();
                             break;
-
                         case KListener.E:
                             e();
                             keyboard.map.put(i, false);
@@ -597,7 +596,7 @@ public class Input {
                     if(where.contains("1_"))
                     {
                         Game.player.money -= Game.player.busFare;
-                        Game.player.busFare += 10;
+                        Game.player.busFare += 2;
                         Game.player.x = 1700;
                         Game.player.y = 1700;
                         GameTime.forward(HOUR_LENGTH /2);
@@ -606,7 +605,7 @@ public class Input {
                     if(where.contains("2_"))
                     {
                         Game.player.money -= Game.player.busFare;
-                        Game.player.busFare += 10;
+                        Game.player.busFare += 2;
 
                         Game.player.x = 5500;
                         Game.player.y = 2000;
@@ -616,7 +615,7 @@ public class Input {
                     if(where.contains("3_"))
                     {
                         Game.player.money -= Game.player.busFare;
-                        Game.player.busFare += 10;
+                        Game.player.busFare += 2;
 
                         Game.player.x = 5350;
                         Game.player.y = 6150;
@@ -626,7 +625,7 @@ public class Input {
                     if (where.contains("4_"))
                     {
                         Game.player.money -= Game.player.busFare;
-                        Game.player.busFare += 10;
+                        Game.player.busFare += 2;
 
                         Game.player.x = 2900;
                         Game.player.y = 5150;
@@ -636,7 +635,7 @@ public class Input {
                     if (where.contains("5_"))
                     {
                         Game.player.money -= Game.player.busFare;
-                        Game.player.busFare += 10;
+                        Game.player.busFare += 2;
 
                         Game.player.x = 5900;
                         Game.player.y = 8000;
@@ -646,7 +645,7 @@ public class Input {
                     if (where.contains("6_"))
                     {
                         Game.player.money -= Game.player.busFare;
-                        Game.player.busFare += 10;
+                        Game.player.busFare += 2;
 
                         Game.player.x = 8500;
                         Game.player.y = 7250;
@@ -656,7 +655,7 @@ public class Input {
                     if (where.contains("7_"))
                     {
                         Game.player.money -= Game.player.busFare;
-                        Game.player.busFare += 10;
+                        Game.player.busFare += 2;
                         Game.player.y = 7800;
                         Game.player.x = 1800;
                         GameTime.forward(HOUR_LENGTH/2);

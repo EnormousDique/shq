@@ -67,6 +67,7 @@ public class Player extends GameObject {
     @Override
     public void moveLeft() {
         if (busy) return;
+
         if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
             speed=baseSprint + bonusSprint;
             if(Math.random()>0.5) Game.player.stamina -=1;
@@ -78,6 +79,7 @@ public class Player extends GameObject {
     @Override
     public void moveRight() {
         if (busy) return;
+
         if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
             speed=baseSprint + bonusSprint;
             if(Math.random()>0.5)  Game.player.stamina -=1;
@@ -89,10 +91,12 @@ public class Player extends GameObject {
     @Override
     public void moveUp() {
         if (busy) return;
+
         if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
             speed=baseSprint + bonusSprint;
             if(Math.random()>0.5)  Game.player.stamina -=1;
         }else speed = baseSpeed;
+
 
         y -= speed + bonusSpeed;
         if(stamina<1) stamina = 0;
