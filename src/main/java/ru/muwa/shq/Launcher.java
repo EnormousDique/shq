@@ -222,14 +222,15 @@ public class Launcher extends JFrame {
                     GameWindow.fullscreen = true;
                     // Получение экземпляра Toolkit
                     Toolkit toolkit = Toolkit.getDefaultToolkit();
+                    toolkit.getScreenSize().setSize(new Dimension(800,600));
                     // Получение размера экрана
                     Dimension screenSize = toolkit.getScreenSize();
                     GameWindow.WIDTH = screenSize.width;
                     GameWindow.HEIGHT = screenSize.height;
                 }else {
                     GameWindow.fullscreen = false;
-                    GameWindow.WIDTH = 800;
-                    GameWindow.HEIGHT = 600;
+                    GameWindow.WIDTH = 1280;
+                    GameWindow.HEIGHT = 720;
                 }
             }
         });

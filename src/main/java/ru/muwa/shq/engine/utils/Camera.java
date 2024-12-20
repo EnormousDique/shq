@@ -6,7 +6,7 @@ public class Camera {
     public static int x = 0, y = 0;
     public static final double FOLLOW_SPEED = 0.05; // Чем меньше значение, тем медленнее камера будет следовать за игроком
     public static final double LOOK_AHEAD_DISTANCE = 200.0; // Расстояние, на которое камера заглядывает вперед
-    public static final double CURSOR_THRESHOLD_DISTANCE = 250.0; // Пороговое расстояние для проверки курсора
+    public static final double CURSOR_THRESHOLD_DISTANCE = 200.0; // Пороговое расстояние для проверки курсора
 
     enum Kink {LEFT, RIGHT, UP, DOWN}
     public static Kink kink;
