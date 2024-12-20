@@ -272,7 +272,7 @@ public class Input {
             //Воспроизводим анимацию атаки
             Animation.addAnimation(Game.player,Animation.get(PL_PUNCH));
             //Ищем цель и наносим урон
-            Game.player.melee();
+            Game.player.attemptMelee();
             return;
         }
         //Если в руках еда (ВОЗМОЖНО УСТАРЕЛО В СВЯЗИ С DRUG И МОИМ ЖЕЛАНИЕМ ИЗМЕНИТЬ ЛОГИКУ ЭФФЕКТОВ)

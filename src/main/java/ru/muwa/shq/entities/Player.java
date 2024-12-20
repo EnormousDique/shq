@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static ru.muwa.shq.engine.utils.Animation.PL_PUNCH;
 import static ru.muwa.shq.engine.utils.GameTime.DAY_LENGTH;
@@ -40,6 +43,11 @@ public class Player extends GameObject {
                 mommaClean = DAY_LENGTH * 2;
 
     public Item hat,torso,foot;
+
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private boolean attackInProgress = false;
+
+
     public Player()
     {
         name = "player";
@@ -56,51 +64,73 @@ public class Player extends GameObject {
     @Override
     public void moveDown() {
         if (busy) return;
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
-            speed=baseSprint + bonusSprint;
-            if(Math.random()>0.5)Game.player.stamina -=1;
-        }else speed = baseSpeed;
-        y += speed + bonusSpeed;
-        if(stamina<1) stamina = 0;
+        boolean isDiagonal = Input.keyboard.map.get(Input.KListener.A) || Input.keyboard.map.get(Input.KListener.D);
+
+        if (Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY) {
+            speed = baseSprint + bonusSprint;
+            if (isDiagonal) stamina -= 0.25; else stamina -= 0.5;
+        } else {
+            speed = baseSpeed;
+        }
+
+        double moveSpeed = isDiagonal ? (speed + bonusSpeed) / Math.sqrt(2) : speed + bonusSpeed;
+        y += moveSpeed;
+
+        if (stamina < 1) stamina = 0;
     }
 
     @Override
     public void moveLeft() {
         if (busy) return;
+        boolean isDiagonal = Input.keyboard.map.get(Input.KListener.W) || Input.keyboard.map.get(Input.KListener.S);
 
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
-            speed=baseSprint + bonusSprint;
-            if(Math.random()>0.5) Game.player.stamina -=1;
-        }else speed = baseSpeed;
-        x -= speed + bonusSpeed;
-        if(stamina<1) stamina = 0;
+        if (Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY) {
+            speed = baseSprint + bonusSprint;
+            if (isDiagonal) stamina -= 0.25; else stamina -= 0.5;
+        } else {
+            speed = baseSpeed;
+        }
+
+        double moveSpeed = isDiagonal ? (speed + bonusSpeed) / Math.sqrt(2) : speed + bonusSpeed;
+        x -= moveSpeed;
+
+        if (stamina < 1) stamina = 0;
     }
 
     @Override
     public void moveRight() {
         if (busy) return;
+        boolean isDiagonal = Input.keyboard.map.get(Input.KListener.W) || Input.keyboard.map.get(Input.KListener.S);
 
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
-            speed=baseSprint + bonusSprint;
-            if(Math.random()>0.5)  Game.player.stamina -=1;
-        }else speed = baseSpeed;
-        x += speed + bonusSpeed;
-        if(stamina<1) stamina = 0;
+        if (Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY) {
+            speed = baseSprint + bonusSprint;
+            if (isDiagonal) stamina -= 0.25; else stamina -= 0.5;
+        } else {
+            speed = baseSpeed;
+        }
+
+        double moveSpeed = isDiagonal ? (speed + bonusSpeed) / Math.sqrt(2) : speed + bonusSpeed;
+        x += moveSpeed;
+
+        if (stamina < 1) stamina = 0;
     }
 
     @Override
     public void moveUp() {
         if (busy) return;
+        boolean isDiagonal = Input.keyboard.map.get(Input.KListener.A) || Input.keyboard.map.get(Input.KListener.D);
 
-        if(Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY){
-            speed=baseSprint + bonusSprint;
-            if(Math.random()>0.5)  Game.player.stamina -=1;
-        }else speed = baseSpeed;
+        if (Input.keyboard.map.get(SHIFT) && stamina > 1 && items.size() <= ITEMS_CAPACITY) {
+            speed = baseSprint + bonusSprint;
+            if (isDiagonal) stamina -= 0.25; else stamina -= 0.5;
+        } else {
+            speed = baseSpeed;
+        }
 
+        double moveSpeed = isDiagonal ? (speed + bonusSpeed) / Math.sqrt(2) : speed + bonusSpeed;
+        y -= moveSpeed;
 
-        y -= speed + bonusSpeed;
-        if(stamina<1) stamina = 0;
-    }
+        if (stamina < 1) stamina = 0;}
 
     @Override
     public void addItem(Item item)
@@ -126,6 +156,16 @@ public class Player extends GameObject {
 
     }
 
+    public void attemptMelee() {
+        if (attackInProgress) return; // Предотвращение повторной атаки, если одна уже запланирована
+
+        attackInProgress = true;
+        scheduler.schedule(this::melee, 150, TimeUnit.MILLISECONDS);
+    }
+    public void shutdown() {
+        scheduler.shutdown();
+    }
+
     public void melee() {
 
         for (int i = 0; i < Game.currentLevel.objects.size(); i++) {
@@ -147,10 +187,12 @@ public class Player extends GameObject {
             Combat.dealDamage(target, equip!=null && equip.type.equals(MELEE)?damage+ equip.damage : damage);
             //Тот, кого мы ударили, становится врагом
             target.enemy = true;
-
-
         }
+        attackInProgress = false; // Разрешаем следующую атаку после завершения текущей
     }
+
+
+
     public void removeEffect(String name)
     {
         for (int i = 0; i < effects.size(); i++) {
