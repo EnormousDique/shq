@@ -242,7 +242,7 @@ public class Input {
         {
             Minigame.current = o.minigame == null? Minigame.get(o.minigameId) : o.minigame;
             o.minigame = Minigame.current;
-            if(o.minigame.type == SHQUR && Game.currentLevel.isIndoors) Game.currentLevel.noise += 2.5;
+            if(o.minigame.type == SHQUR && Game.currentLevel.isIndoors) Game.currentLevel.noise += 5;
             if(o.minigame.type == PADIQUE) Minigame.current.coordinates = o.coordinates;
             if (o.minigame.type.equals(SHOP) || o.minigame.type == COOK) o.opened = true;
         }
@@ -439,7 +439,7 @@ public class Input {
             if(Minigame.current.type == BUS){ busClique(point); return;} //TODO: переделать остальные так же
             if(Minigame.current.type == SLEEP){sleepClique(point); return;}
             if (Minigame.current.type == TOILET){toiletClique(point); return;}
-            if (Minigame.current.type == SHQUR && Game.currentLevel.isIndoors) Game.currentLevel.noise += 1.0;
+            if (Minigame.current.type == SHQUR && Game.currentLevel.isIndoors) Game.currentLevel.noise += 3.0;
             if(Minigame.current.type == ELEVATOR) {elevatorClique(point);return;}
             if(Minigame.current.type == SELL) {sellClique(point);return;}
 
@@ -557,7 +557,7 @@ public class Input {
                             if(Game.player.pee > 15)
                             {
                                 Game.player.pee = 0;
-                                if (Game.currentLevel.isIndoors) Game.currentLevel.noise +=20;
+                                if (Game.currentLevel.isIndoors) Game.currentLevel.noise +=30;
                                 if(Game.currentLevel.id == STREET_1) Game.player.wanted += 10;
                                 Animation.addAnimation(Game.player,Animation.get(PL_PEE));
                             }
@@ -566,7 +566,7 @@ public class Input {
                             if(Game.player.poo > 15)
                             {
                                 Game.player.poo = 0;
-                                if (Game.currentLevel.isIndoors) Game.currentLevel.noise +=50;
+                                if (Game.currentLevel.isIndoors) Game.currentLevel.noise +=60;
                             }
                             break;
                     }

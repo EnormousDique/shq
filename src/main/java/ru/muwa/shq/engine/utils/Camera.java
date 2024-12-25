@@ -1,6 +1,8 @@
 package ru.muwa.shq.engine.utils;
 import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.GameWindow;
+import ru.muwa.shq.engine.Renderer;
+import ru.muwa.shq.story.Dialogue;
 
 public class Camera {
     public static int x = 0, y = 0;
@@ -23,7 +25,7 @@ public class Camera {
 
 
         // Учет угла, под которым смотрит игрок
-        if (distanceToCursor > CURSOR_THRESHOLD_DISTANCE) {
+        if (distanceToCursor > CURSOR_THRESHOLD_DISTANCE && Dialogue.current == null && !Renderer.itemVisible) {
             double angle = Combat.angle; // Предполагается, что angle в радианах
             targetX += (int) (Math.cos(angle) * LOOK_AHEAD_DISTANCE);
             targetY += (int) (Math.sin(angle) * LOOK_AHEAD_DISTANCE);
