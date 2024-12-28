@@ -165,12 +165,15 @@ public class Game {
 
         //Загрузка уровней и игрока из сейва
         Loader.load();
+        Game.currentLevel.objects.add(player);
 
         //Ишем квестовых персов и сохраняем в ссылки
         for(var l : repo.values())
             for(var o : l.objects)
                 switch (o.id){
                 case 2 -> Game.mom = o;
+                case 1111 -> Game.hacker =o;
+                case 2222 -> Game.hach = o;
 
                 }
 

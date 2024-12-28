@@ -46,6 +46,8 @@ public class Quest {
     {
         return new Quest(repo.get(id));
     }
+
+
     public Quest (Quest quest)
     {
         this.description = quest.description;
@@ -58,6 +60,8 @@ public class Quest {
         this.title = quest.title;
         this.icon.width = 150;this.icon.height = 35;
     }
-    public Quest(){}
+    public Quest(){
+        this.icon.width = 150;this.icon.height = 35;
+    }
     public static void foo(){}
 }

@@ -21,7 +21,7 @@ public class PlayerData {
     public Item hat,torso,foot;
     public int currentLevelId;
     public long time;
-
+    public PlayerData(){}
     public PlayerData(Player player){
         x = player.x;
         y = player.y;

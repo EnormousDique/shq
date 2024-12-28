@@ -52,7 +52,9 @@ public class Loader {
                 LevelSkeleton levelSkeleton = objectMapper.readValue(f,LevelSkeleton.class);
                 Level l = new Level(levelSkeleton);
                 Level.repo.put(l.id,l);
+                System.out.println("Загружен уровень: "+l.id);
             }
+
 
             //Загружаем квесты
             Game.player.quests =
@@ -61,21 +63,29 @@ public class Loader {
                             new TypeReference<>() {
                             }
                     );
+            System.out.println("Загружены квесты: ");
+
 
             //Загружаем прочую информацию об игроке
             PlayerData data = objectMapper.readValue(
                     new File(PATH + "\\player.json"),
-                    new TypeReference<>() {
-                    }
+                    PlayerData.class
             );
             setPlayerUp(data);
 
+            Game.currentLevel =
+                    Level.repo.get(data.currentLevelId);
+            System.out.println("current level: "+ Game.currentLevel);
+
+
+            return true;
+
         }catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
 
-
-        return true;
     }
 
     private static void setPlayerUp(PlayerData data) {
@@ -105,8 +115,7 @@ public class Loader {
         Game.player.hat = data.hat;
         Game.player.torso = data.torso;
         Game.player.foot = data.foot;
-        Game.currentLevel =
-                Level.repo.get(data.currentLevelId);
+
         GameTime.value = data.time;
     }
 }

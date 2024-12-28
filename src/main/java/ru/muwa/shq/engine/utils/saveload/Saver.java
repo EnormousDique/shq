@@ -6,6 +6,7 @@ import ru.muwa.shq.entities.Item;
 import ru.muwa.shq.entities.Level;
 import ru.muwa.shq.entities.LevelSkeleton;
 import ru.muwa.shq.entities.Player;
+import ru.muwa.shq.story.Dialogue;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +55,13 @@ public class Saver {
             objectMapper.writeValue(new File(PATH + "\\quests.json"),Game.player.quests);
 
             objectMapper.writeValue(new File(PATH + "\\player.json" ), new PlayerData(Game.player));
+
+            //Сохраняем диалоги
+            objectMapper.writeValue(new File(PATH + "\\mom_dialogues.json"), Dialogue.mom);
+            objectMapper.writeValue(new File(PATH + "\\hach_dialogues.json"), Dialogue.hach);
+            objectMapper.writeValue(new File(PATH + "\\hacker_dialogues.json"), Dialogue.hacker);
+
+
 
             return true;
         } catch (Exception e){

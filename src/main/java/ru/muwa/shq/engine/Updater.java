@@ -18,6 +18,7 @@ public class Updater implements Runnable{
     @Override
     public void run() {
         System.out.println("поток обновления запущен");
+        System.out.println("текущий уровень: "+ Game.currentLevel);
 
         double drawInterval = (double) 1_000_000_000 / Game.fps;
         double delta = 0;
