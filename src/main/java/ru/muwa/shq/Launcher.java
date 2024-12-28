@@ -3,14 +3,19 @@ package ru.muwa.shq;
 import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.GameWindow;
 import ru.muwa.shq.engine.Renderer;
+import ru.muwa.shq.engine.utils.saveload.Loader;
+import ru.muwa.shq.engine.utils.saveload.Saver;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Launcher extends JFrame {
     public Launcher()
@@ -128,7 +133,7 @@ public class Launcher extends JFrame {
         backgroundLabel.setOpaque(false);
 
         // Указание версии (для сборки)
-        var labelVersion = new JLabel("  shq_rdr ver 0.1 (alpha-pve)");
+        var labelVersion = new JLabel("  shq_rdr ver 0.1.1 (alpha-pve)");
         backgroundLabel.add(labelVersion);
         labelVersion.setBounds(20,450,170,30);
         labelVersion.setVisible(true);
@@ -145,23 +150,24 @@ public class Launcher extends JFrame {
         button.setOpaque(true);
         backgroundLabel.add(button);
 
-
+        //Кнопка загрузить игру
+        JButton loadButton = new JButton("Загрузить игру");
+        loadButton.setBounds(20,150,200,50);
+        loadButton.setBackground(new Color(150,200,200,200));
+        loadButton.setOpaque(true);
+        backgroundLabel.add(loadButton);
 
         //Кнопка открыть настройки
         JButton settingsButton = new JButton("Настройки");
-        settingsButton.setBounds(20,150,200,50);
+        settingsButton.setBounds(20,250,200,50);
         settingsButton.setBackground(new Color(150,200,200,200));
         settingsButton.setOpaque(true);
         backgroundLabel.add(settingsButton);
 
-        //Кнопка "принимаю" делает видимой эту панель
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                disclaimerPanel.setVisible(false);
-                startPanel.setVisible(true);
-            }
-        });
+
+
+
+
 
 
 
@@ -204,6 +210,26 @@ public class Launcher extends JFrame {
             }
         });
 
+        //Кнопка загрузить игру
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Path jarPath = Paths.get(Saver.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParent();
+                    File saveDirectory = new File(jarPath.toFile(), "shq_save");
+                    if (saveDirectory.exists() && saveDirectory.isDirectory()) {
+                        launcher.setVisible(false);
+                        Game.load();
+                    } else {
+                        JOptionPane.showMessageDialog(startPanel,
+                                "Нет сохраненной игры!",
+                                "Загрузка",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch (Exception ex){}
+            }
+        });
+
         //Кнопка открыть настройки
         settingsButton.addActionListener(new ActionListener() {
             @Override
@@ -240,6 +266,14 @@ public class Launcher extends JFrame {
                 //Скрываем панель настроек, открываем начальную панель
                 startPanel.setVisible(true);
                 settingsPanel.setVisible(false);
+            }
+        });
+        //Кнопка "принимаю"
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                disclaimerPanel.setVisible(false);
+                startPanel.setVisible(true);
             }
         });
     }

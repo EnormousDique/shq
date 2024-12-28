@@ -1,5 +1,6 @@
 package ru.muwa.shq.story;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.muwa.shq.Main;
 import ru.muwa.shq.engine.utils.GameTime;
@@ -15,6 +16,7 @@ public class Quest {
     public boolean completed, hasDeadline;
     public long startTime, expirationTime, duration;
     public String owner, title, description;
+    @JsonIgnore
     public Rectangle icon = new Rectangle();
 
     public static HashMap<Integer,Quest> repo = new HashMap<>();

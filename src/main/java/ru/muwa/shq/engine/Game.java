@@ -2,6 +2,7 @@ package ru.muwa.shq.engine;
 
 import ru.muwa.shq.engine.utils.GameTime;
 import ru.muwa.shq.engine.utils.Input;
+import ru.muwa.shq.engine.utils.saveload.Loader;
 import ru.muwa.shq.entities.GameObject;
 import ru.muwa.shq.entities.Item;
 import ru.muwa.shq.entities.Level;
@@ -27,17 +28,17 @@ public class Game {
     public static final Renderer renderer = new Renderer();
 
     //Ссылки на основных нпс
-    public static final GameObject mom = GameObject.get(MOM);
-    public static final GameObject hacker = GameObject.get(1111);
-    public static final GameObject hach = GameObject.get(2222);
-    public static final GameObject butcher = GameObject.get(3333);
-    public static final GameObject girl = GameObject.get(4444);
-    public static final GameObject trap = GameObject.get(5555);
-    public static final GameObject officer = GameObject.get(6666);
-    public static final GameObject nurse = GameObject.get(7777);
-    public static final GameObject mechanic = GameObject.get(8888);
-    public static final GameObject pharmacist = GameObject.get(9999);
-    public static final GameObject nazi = GameObject.get(9191);
+    public static  GameObject mom = GameObject.get(MOM);
+    public static  GameObject hacker = GameObject.get(1111);
+    public static  GameObject hach = GameObject.get(2222);
+    public static  GameObject butcher = GameObject.get(3333);
+    public static  GameObject girl = GameObject.get(4444);
+    public static  GameObject trap = GameObject.get(5555);
+    public static  GameObject officer = GameObject.get(6666);
+    public static  GameObject nurse = GameObject.get(7777);
+    public static  GameObject mechanic = GameObject.get(8888);
+    public static  GameObject pharmacist = GameObject.get(9999);
+    public static  GameObject nazi = GameObject.get(9191);
 
 
     //Частота обновления потоков обновления и отрисовки
@@ -82,8 +83,6 @@ public class Game {
         //player.quests.add(Quest.get(3));
         //player.quests.add(Quest.get(4));
         player.quests.add(Quest.get(58));
-
-        //TODO: Вывести стартовый диалог
 
         //Добавляем персонажей на позиции
 
@@ -150,5 +149,37 @@ public class Game {
         Game.currentLevel.objects.remove(player);
         Game.currentLevel = repo.get(id);
         Game.currentLevel.objects.add(player);
+    }
+
+    public static void load() {
+
+        System.out.println("инициализация...");
+
+        //инициализация static-блоков классов-служб
+        Item.foo();
+        GameObject.foo();
+        ItemTextures.foo();
+        ObjectTextures.foo();
+        Dialogue.foo();
+        Input.foo();
+
+        //Загрузка уровней и игрока из сейва
+        Loader.load();
+
+        //Ишем квестовых персов и сохраняем в ссылки
+        for(var l : repo.values())
+            for(var o : l.objects)
+                switch (o.id){
+                case 2 -> Game.mom = o;
+
+                }
+
+
+        //Запуск
+        System.out.println("Запуск графического движка");
+        renderer.thread.start();
+        System.out.println("Запуск игрового движка");
+        updater.thread.start();
+
     }
 }

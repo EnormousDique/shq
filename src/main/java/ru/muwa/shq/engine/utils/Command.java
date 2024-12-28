@@ -3,6 +3,7 @@ package ru.muwa.shq.engine.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.Renderer;
+import ru.muwa.shq.engine.utils.saveload.Saver;
 import ru.muwa.shq.entities.*;
 import ru.muwa.shq.story.scripts.Script;
 
@@ -66,6 +67,7 @@ public class Command {
         if(arg.equals("mom_full")) {Game.player.mommaFullness=DAY_LENGTH*2;Game.player.mommaHealth=DAY_LENGTH*2;Game.player.mommaClean=DAY_LENGTH*2;}
         if(arg.contains("goto_")) Game.switchLevel(Integer.parseInt(arg.split("goto_")[1]));
         if(arg.contains("script_")) Script.repo.get(Integer.parseInt(arg.split("script_")[1])).execute();
+        if(arg.equals("save_game")) Saver.work();
 
         System.out.println("executed command: " + arg);
     }
