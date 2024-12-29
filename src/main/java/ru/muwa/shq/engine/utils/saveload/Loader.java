@@ -8,6 +8,7 @@ import ru.muwa.shq.entities.Item;
 import ru.muwa.shq.entities.Level;
 import ru.muwa.shq.entities.LevelSkeleton;
 import ru.muwa.shq.entities.Player;
+import ru.muwa.shq.story.Dialogue;
 import ru.muwa.shq.story.Quest;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Loader {
@@ -73,6 +75,21 @@ public class Loader {
             );
             setPlayerUp(data);
 
+            //Восстанавливаем состояние диалогов
+            Dialogue.mom = objectMapper.readValue(new File(PATH + "\\mom_dialogues.json"), new TypeReference<>() {});
+            Dialogue.hach = objectMapper.readValue(new File(PATH + "\\hach_dialogues.json"), new TypeReference<>() {});
+            Dialogue.hacker = objectMapper.readValue(new File(PATH + "\\hacker_dialogues.json"), new TypeReference<>() {});
+            Dialogue.butcher = objectMapper.readValue(new File(PATH + "\\butcher_dialogues.json"), new TypeReference<>() {});
+            Dialogue.girl = objectMapper.readValue(new File(PATH + "\\girl_dialogues.json"),new TypeReference<>() {});
+            Dialogue.trap = objectMapper.readValue(new File(PATH + "\\trap_dialogues.json"), new TypeReference<>() {});
+            Dialogue.officer = objectMapper.readValue(new File(PATH + "\\ment_dialogues.json"), new TypeReference<>() {});
+            Dialogue.nurse = objectMapper.readValue(new File(PATH + "\\nurse_dialogues.json"),new TypeReference<>() {});
+            Dialogue.mech = objectMapper.readValue(new File(PATH + "\\mech_dialogues.json"), new TypeReference<>() {});
+            Dialogue.pharmacist = objectMapper.readValue(new File(PATH + "\\pharmacist_dialogues.json"),new TypeReference<>() {});
+
+
+
+            //Восстанавливаем текущий уровень из сохранения и ставим в движок.
             Game.currentLevel =
                     Level.repo.get(data.currentLevelId);
             System.out.println("current level: "+ Game.currentLevel);

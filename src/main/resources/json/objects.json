@@ -1122,6 +1122,19 @@
     "minigameId":9
   },
   {
+    "id": 110110,
+    "name": "bed_zone",
+    "hitBox": {
+      "width": 59,
+      "height": 120
+    },
+    "solid": false,
+    "type": "INTERACT",
+    "minigameId":9
+  },
+
+
+  {
     "id": 111,
     "name": "wildberries_bg",
     "hitBox": {

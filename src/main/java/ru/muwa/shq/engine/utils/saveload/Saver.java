@@ -2,10 +2,7 @@ package ru.muwa.shq.engine.utils.saveload;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.muwa.shq.engine.Game;
-import ru.muwa.shq.entities.Item;
-import ru.muwa.shq.entities.Level;
-import ru.muwa.shq.entities.LevelSkeleton;
-import ru.muwa.shq.entities.Player;
+import ru.muwa.shq.entities.*;
 import ru.muwa.shq.story.Dialogue;
 
 import java.io.File;
@@ -14,7 +11,10 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import static ru.muwa.shq.entities.Level.STREET_1;
 
 /**
  * Класс осуществляющий сохранение игры.
@@ -48,6 +48,7 @@ public class Saver {
             // Записываем уровни
             for(var l : Level.repo.values())
             {
+                if(l.id==STREET_1) clearLevelFromCars(l);
                 var skeleton = new LevelSkeleton(l);
                 objectMapper.writeValue(new File(PATH + "\\level_"+l.id+".json"),skeleton);
             }
@@ -60,6 +61,20 @@ public class Saver {
             objectMapper.writeValue(new File(PATH + "\\mom_dialogues.json"), Dialogue.mom);
             objectMapper.writeValue(new File(PATH + "\\hach_dialogues.json"), Dialogue.hach);
             objectMapper.writeValue(new File(PATH + "\\hacker_dialogues.json"), Dialogue.hacker);
+            objectMapper.writeValue(new File(PATH + "\\butcher_dialogues.json"), Dialogue.butcher);
+            objectMapper.writeValue(new File(PATH + "\\girl_dialogues.json"), Dialogue.girl);
+            objectMapper.writeValue(new File(PATH + "\\trap_dialogues.json"), Dialogue.trap);
+            objectMapper.writeValue(new File(PATH + "\\ment_dialogues.json"), Dialogue.officer);
+            objectMapper.writeValue(new File(PATH + "\\nurse_dialogues.json"), Dialogue.nurse);
+            objectMapper.writeValue(new File(PATH + "\\mech_dialogues.json"), Dialogue.mech);
+            objectMapper.writeValue(new File(PATH + "\\pharmacist_dialogues.json"), Dialogue.pharmacist);
+
+
+
+
+
+
+
 
 
 
@@ -70,8 +85,12 @@ public class Saver {
             e.printStackTrace();
             return false;
         }
+    }
 
-
+    private static void clearLevelFromCars(Level l) {
+        ArrayList<GameObject> cars = new ArrayList<>();
+        for(var o : l.objects) if(o.speed >= 10) cars.add(o);
+        for( var car : cars) l.objects.remove(car);
     }
 
 

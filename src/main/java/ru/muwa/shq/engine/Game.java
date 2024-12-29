@@ -160,7 +160,6 @@ public class Game {
         GameObject.foo();
         ItemTextures.foo();
         ObjectTextures.foo();
-        Dialogue.foo();
         Input.foo();
 
         //Загрузка уровней и игрока из сейва
@@ -174,7 +173,14 @@ public class Game {
                 case 2 -> Game.mom = o;
                 case 1111 -> Game.hacker =o;
                 case 2222 -> Game.hach = o;
-
+                case 3333 -> Game.butcher = o;
+                case 4444 -> Game.girl = o;
+                case 5555 -> Game.trap = o;
+                case 6666 -> Game.officer = o;
+                case 7777 -> Game.nurse = o;
+                case 8888 -> Game.mechanic = o;
+                case 9999 -> Game.pharmacist = o;
+                case 9191 -> Game.nazi = o;
                 }
 
 
