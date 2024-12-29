@@ -155,7 +155,6 @@ public class Game {
 
         System.out.println("инициализация...");
 
-        //инициализация static-блоков классов-служб
         Item.foo();
         GameObject.foo();
         ItemTextures.foo();
@@ -182,6 +181,17 @@ public class Game {
                 case 9999 -> Game.pharmacist = o;
                 case 9191 -> Game.nazi = o;
                 }
+
+        // Подкручиваем НПЦ диалоги
+        if(Game.player.quests.stream().anyMatch(q-> q.id ==10 && q.completed))
+             Game.hacker.dialogue = 4;
+        if(Game.player.quests.stream().anyMatch(q->q.owner.equals("тесть")))
+            Game.mechanic.dialogue = 7;
+        if(Game.player.quests.stream().anyMatch(q-> q.id ==46 && q.completed))
+            Game.mechanic.dialogue = 10;
+
+
+
 
 
         //Запуск

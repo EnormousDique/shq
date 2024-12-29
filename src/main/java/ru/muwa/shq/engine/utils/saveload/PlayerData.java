@@ -5,8 +5,6 @@ import ru.muwa.shq.engine.utils.GameTime;
 import ru.muwa.shq.entities.Item;
 import ru.muwa.shq.entities.Player;
 
-import static ru.muwa.shq.engine.utils.GameTime.DAY_LENGTH;
-
 public class PlayerData {
     public int x,y;
     public double pee=0,poo=0;
