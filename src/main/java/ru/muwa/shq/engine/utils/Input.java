@@ -219,7 +219,6 @@ public class Input {
             {
                 Dialogue.current = Dialogue.repo.get(o.dialogue);
                 Dialogue.companion=null;
-
                 if(o==Game.mom) {Dialogue.current = Dialogue.mom.get(o.dialogue); Dialogue.companion = MOM;}
                 if(o==Game.hach) {Dialogue.current = Dialogue.hach.get(o.dialogue);Dialogue.companion=HACH;}
                 if(o==Game.hacker) {Dialogue.current = Dialogue.hacker.get(o.dialogue);Dialogue.companion=HACKER;}
@@ -232,7 +231,7 @@ public class Input {
                 if(o==Game.officer) {Dialogue.current = Dialogue.officer.get(o.dialogue);Dialogue.companion=OFFICER;}
 
 
-                if(Dialogue.textures.get(o.id)==null) Dialogue.texture = null; //团 帕劳乓???
+                //if(Dialogue.textures.get(o.id)==null) Dialogue.texture = null; //团 帕劳乓???
                 Dialogue.texture = Dialogue.textures.get(o.id);
 
             }

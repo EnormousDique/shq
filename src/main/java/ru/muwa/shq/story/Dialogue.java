@@ -19,6 +19,9 @@ public class Dialogue {
     public List<Response> responses = new ArrayList<>();
     public static List<ResponseButton> buttons = new ArrayList<>();
     public static BufferedImage texture;
+
+
+
     public enum Companion {MOM,BUTCHER,HACH,OFFICER,GIRL,TRAP,PHARMACIST,HACKER,MECHANIC,NURSE,NAZI}
     public static Companion companion;
     public static final HashMap<Integer, BufferedImage> textures = new HashMap<>();
@@ -153,6 +156,46 @@ public class Dialogue {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Image getTexture() {
+        if (companion == null) return null;
+        switch (companion){
+            case MOM -> {
+                return textures.get(Game.mom.id);
+            }
+            case HACH -> {
+                return textures.get(Game.hach.id);
+            }
+            case HACKER-> {
+                return textures.get(Game.hacker.id);
+            }
+            case BUTCHER -> {
+                return textures.get(Game.butcher.id);
+            }
+            case GIRL -> {
+                return textures.get(Game.girl.id);
+            }
+            case TRAP -> {
+                return textures.get(Game.trap.id);
+            }
+            case OFFICER -> {
+                return textures.get(Game.officer.id);
+            }
+            case NURSE -> {
+                return textures.get(Game.nurse.id);
+            }
+            case MECHANIC -> {
+                return textures.get(Game.mechanic.id);
+            }
+            case PHARMACIST -> {
+                return textures.get(Game.pharmacist.id);
+            }
+            case NAZI -> {
+                return textures.get(Game.nazi.id);
+            }
+        }
+        return null;
     }
     public static void foo(){}
 }

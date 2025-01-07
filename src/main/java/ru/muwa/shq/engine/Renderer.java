@@ -274,9 +274,11 @@ public class Renderer implements Runnable{
 
                 case PADIQUE:
 
+                    //Рисуем фон окна
                     g.setColor(new Color(100,100,100,100));
                     g.fillRect(Minigame.current.window.x,Minigame.current.window.y,Minigame.current.window.width,Minigame.current.window.height);
 
+                    //Отрисовываем кнопки ввода
                     for (int i = 0; i < Minigame.current.inputButtons.size(); i++) {
                         Minigame.InputButton button = Minigame.current.inputButtons.get(i);
                         g.setColor(Color.WHITE);
@@ -284,7 +286,7 @@ public class Renderer implements Runnable{
                         g.setColor(Color.BLACK);
                         g.drawString(button.value, (int) button.getCenterX(), (int) button.getCenterY());
                     }
-
+                    //Рисуем введенный код
                     g.setColor(Color.green);
                     g.fillRect(Minigame.current.success.x,Minigame.current.success.y,Minigame.current.success.width,Minigame.current.success.height);
                     g.drawString(Minigame.current.input, (int) (Minigame.current.window.getMaxX()-50),Minigame.current.window.y+20);
@@ -750,7 +752,7 @@ public class Renderer implements Runnable{
             g.setFont(new Font(Font.SANS_SERIF, Font.BOLD,15));
 
             //ОТРИСОВКА ПОРТРЕРА
-            g.drawImage(Dialogue.texture,GameWindow.WIDTH/3-200,GameWindow.HEIGHT-300,200,300,null);
+            g.drawImage(Dialogue.getTexture(),GameWindow.WIDTH/3-200,GameWindow.HEIGHT-300,200,300,null);
 
             for(int i = 0;i< Dialogue.current.message.split("\n").length ; i++)
             {//ОТРИСОВКА СООБЩЕНИЯ

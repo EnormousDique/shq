@@ -288,7 +288,7 @@ public class Spawner {
             if(Game.currentLevel.isStreet)
             {
                 //Определяем какого копа спавним
-                int copId = Game.player.wanted >= 300? 129 : 7;
+                int copId = Game.player.wanted >= 100? 129 : 7;
                 //Считаем какое кол-во копов спавним
                 int times = 0;
                 if(Game.player.wanted > 10) times = 1;

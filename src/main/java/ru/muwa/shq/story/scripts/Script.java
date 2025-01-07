@@ -4,6 +4,7 @@ import ru.muwa.shq.engine.Game;
 import ru.muwa.shq.engine.utils.Animation;
 import ru.muwa.shq.engine.utils.GameTime;
 import ru.muwa.shq.engine.utils.Momma;
+import ru.muwa.shq.engine.utils.saveload.Saver;
 import ru.muwa.shq.entities.*;
 import ru.muwa.shq.story.Dialogue;
 import ru.muwa.shq.story.Quest;
@@ -125,13 +126,13 @@ public abstract class Script {
                     Game.player.crazy += 10;
                     Game.player.hunger = 30;
                     Game.player.thirst = 20;
-                    Game.player.sleepy = 10;
+                    Game.player.sleepy = 35;
                     Game.player.pee = 0;
                     Game.player.poo = 0;
                     GameTime.forward(4 * HOUR_LENGTH);
                     Game.player.wanted = 0;
 
-                    int fine = (int) (Game.player.money * 0.3);
+                    int fine = (int) (Game.player.money * 0.15);
                     Game.player.money -= fine;
 
                     Dialogue d = new Dialogue();
@@ -139,6 +140,7 @@ public abstract class Script {
                     d.responses.add(new Dialogue.Response("ëàäíî.", 0, 0));
                     Dialogue.current = d;
                     Dialogue.companion = null;
+                    Saver.work();
                 }else{
                     Game.switchLevel(HUB);
                     Game.player.x = 200;
@@ -164,6 +166,7 @@ public abstract class Script {
                     d.message = "Øêèïåğ ïîòåğÿë ñîçíàíèå è ïîïàë âî âğåìåííóş ïåòëş \n Âğåìÿ âåğíóëàñü íàçàä äî ìîìåíòà ñğàæåíèÿ";
                     d.responses.add(new Dialogue.Response("ëàäíî",0,0));
                     Dialogue.current = d;
+
                 }
             }
         };
@@ -187,24 +190,28 @@ public abstract class Script {
                     Game.player.sleepy -= 20;
                     GameTime.forward(2 * HOUR_LENGTH);
                     Game.player.crazy = Math.max(0, Game.player.crazy - 5);
+                    Saver.work();
                 }
                 //Ñïèì 4 ÷àñà
                 if(Minigame.current.input.startsWith("4")) {
                     Game.player.sleepy -= 50;
                     GameTime.forward(4 * HOUR_LENGTH);
                     Game.player.crazy = Math.max(0, Game.player.crazy - 10);
+                    Saver.work();
                 }
                 //Ñïèì 8 ÷àñîâ
                 if(Minigame.current.input.startsWith("8")) {
                     Game.player.sleepy = 0;
                     Game.player.crazy = Math.max(0, Game.player.crazy - 15);
                     GameTime.forward(8 * HOUR_LENGTH);
+                    Saver.work();
                 }
                 //Ñïèì 12 ÷àñîâ
                 if(Minigame.current.input.startsWith("12")) {
                     Game.player.sleepy = 0;
                     Game.player.crazy = Math.max(0, Game.player.crazy - 30);
                     GameTime.forward(12 * HOUR_LENGTH);
+                    Saver.work();
                 }
                 //Ñáğàñûâàåì ìèíè-èãğó
                 Minigame.current.input = "";
@@ -3040,6 +3047,12 @@ public abstract class Script {
                 for (var q: Game.player.quests)
                     if(q.id == 38) q.completed = true;
                 Dialogue.current = null;
+                Dialogue.current = Dialogue.officer.get(9);
+                var d = Dialogue.officer.get(Game.officer.dialogue);
+                var r = d.responses.stream()
+                        .filter(dd->dd.text.contains("áğîñ"))
+                        .findFirst().orElse(null);
+                Dialogue.officer.get(Game.officer.dialogue).responses.remove(r);
                 Game.player.quests.add(Quest.get(60));
                 var door = Level.repo.get(HUB).objects
                         .stream().filter(o->o.id==108)
