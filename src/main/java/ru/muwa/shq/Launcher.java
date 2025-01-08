@@ -140,9 +140,6 @@ public class Launcher extends JFrame {
         labelVersion.setOpaque(true);
         labelVersion.setBackground(new Color(250,200,200,200));
 
-
-
-
         //Кнопка начала игры
         JButton button = new JButton("Начать игру");
         button.setBounds(20,50,200,50);
@@ -170,12 +167,6 @@ public class Launcher extends JFrame {
         howToButton.setBackground(new Color(150,200,200,200));
         howToButton.setOpaque(true);
         backgroundLabel.add(howToButton);
-
-
-
-
-
-
 
 
         //Панель настроек
@@ -248,10 +239,6 @@ public class Launcher extends JFrame {
         JButton howToBackButton = new JButton("Вернуться");
         howToPanel.add(howToBackButton);
         howToBackButton.setBounds(400,500,100,50);
-
-
-
-
         //Код нажатий кнопок
 
         //Кнопка начать игру
@@ -347,7 +334,4 @@ public class Launcher extends JFrame {
             }
         });
     }
-
-
-
 }
