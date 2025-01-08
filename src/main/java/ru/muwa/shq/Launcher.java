@@ -233,17 +233,23 @@ public class Launcher extends JFrame {
                 + "Если не успеть вовремя, игра оканчивается.<br>"
                 + "Кол-во оставшегося времени указано в таймере мамы на HUD<br><br>"
                 + "Попробуйте спасти маму. Удастся ли Вам это?<br><br>"
-                + "Ключ к успеху - общение<br>"
+                + "Ключ к успеху - общение "
                 + "Ищите игровых персонажей, общайтесь с ними. <br>"
                 + "Возможно кто-то из них поможет вам спасти мать.<br><br>"
                 + "ИГРА СОХРАНЯЕТСЯ АВТОМАТИЧЕСКИ КОГДА ПЕРСОНАЖ СПИТ<br>"
                 + "СЛЕДИТЕ ЗА ПОКАЗАТЕЛЯМИ ЖИЗНЕДЕЯТЕЛЬНОСТИ ИГРОКА И МАТЕРИ <br>"
                 + "НЕ ЗАБЫВАЙТЕ ВОВРЕМЯ УДОВЛЕТВОРЯТЬ ЖИЗНЕННЫЕ ПОТРЕБНОСТИ ИГРОКА И МАТЕРИ<br><br>"
-                + "ПОПРОБУЙТЕ ИССЛЕДОВАТЬ ЭТОТ МИР И ОН ПООЩРИТ ВАС ЗА ЭТО<br>"
+                + "ПОПРОБУЙТЕ ИССЛЕДОВАТЬ ЭТОТ МИР И ОН ПООЩРИТ ВАС ЗА ЭТО<br><br>"
+                + "ДЛЯ ПОЛНОГО ПОГРУЖЕНИЯ УСТАНОВИТЕ РАЗРЕШЕНИЕ 1280х720 И УСТАНОВИТЕ ПОЛНОЭКРАННЫЙ РЕЖИМ В НАСТРОЙКАХ"
                 + "</td></tr></table>"
                 + "</body></html>";
         JLabel howToLabel = new JLabel(howToString);
         howToPanel.add(howToLabel);
+        JButton howToBackButton = new JButton("Вернуться");
+        howToPanel.add(howToBackButton);
+        howToBackButton.setBounds(400,500,100,50);
+
+
 
 
         //Код нажатий кнопок
@@ -330,6 +336,14 @@ public class Launcher extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 startPanel.setVisible(false);
                 howToPanel.setVisible(true);
+            }
+        });
+
+        howToBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startPanel.setVisible(true);
+                howToPanel.setVisible(false);
             }
         });
     }
