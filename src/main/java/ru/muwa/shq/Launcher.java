@@ -133,7 +133,7 @@ public class Launcher extends JFrame {
         backgroundLabel.setOpaque(false);
 
         // Указание версии (для сборки)
-        var labelVersion = new JLabel("  shq_rdr ver 0.1.1 (alpha-pve)");
+        var labelVersion = new JLabel("  shq_rdr ver 0.1.2 (alpha-pve)");
         backgroundLabel.add(labelVersion);
         labelVersion.setBounds(20,450,170,30);
         labelVersion.setVisible(true);
