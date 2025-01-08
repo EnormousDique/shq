@@ -1,8 +1,6 @@
 package ru.muwa.shq.engine.utils;
 
-import jdk.jshell.spi.ExecutionControl;
 import ru.muwa.shq.engine.Game;
-import ru.muwa.shq.engine.GameWindow;
 import ru.muwa.shq.engine.Renderer;
 import ru.muwa.shq.entities.*;
 import ru.muwa.shq.story.scripts.Script;
@@ -117,10 +115,30 @@ public class Input {
                             keyboard.map.put(i, false);
                             break;
 
+                        case R:
+                            r();
+                            keyboard.map.put(i, false);
+                            break;
+
+                        case T:
+                            q();
+                            Minigame.current = Minigame.get(24);
+                            keyboard.map.put(i, false);
+                            break;
+
                     }
                 }
             }
         }catch (Exception e){}
+    }
+
+
+    private static void r() {
+        if(Game.player.equip == null) return;
+        if(Game.player.equip.type != FIREARM) return;
+        for(var i : Game.player.items)
+            Combat.reload(Game.player.equip,i);
+
     }
 
     private static void h() {
@@ -350,7 +368,8 @@ public class Input {
                 C=67,
                 ADD = 46,
                 REMOVE = 44,
-                H = 72;
+                H = 72,
+                R = 82;
         public HashMap<Integer,Boolean> map;
         public List<Integer> buttonList;
         KListener()
@@ -374,7 +393,9 @@ public class Input {
             map.put(H,false);
             map.put(REMOVE,false);
             map.put(M,false);
-            buttonList = List.of(W,A,S,D,SPACE,I,E,J,Q,C,SHIFT,ADD,P,REMOVE,H,M);
+            map.put(T,false);
+            map.put(R,false);
+            buttonList = List.of(W,A,S,D,SPACE,I,E,J,Q,C,SHIFT,ADD,P,REMOVE,H,M,T,R);
             System.out.println("¬вод с клавиатуры инициализирован");
         }
 
@@ -441,6 +462,7 @@ public class Input {
             if (Minigame.current.type == SHQUR && Game.currentLevel.isIndoors) Game.currentLevel.noise += 3.0;
             if(Minigame.current.type == ELEVATOR) {elevatorClique(point);return;}
             if(Minigame.current.type == SELL) {sellClique(point);return;}
+            if(Minigame.current.type == WAIT) {waitClique(point); return;}
 
             if(Minigame.current.inputButtons != null )
             {
@@ -448,7 +470,10 @@ public class Input {
                 for (int i = 0; i < Minigame.current.inputButtons.size(); i++)
                 {
                     Minigame.InputButton button = Minigame.current.inputButtons.get(i);
-                    if(button.contains(point)){ Minigame.current.input += button.value; }
+                    if(button.contains(point)) {
+                        Minigame.current.input += button.value;
+                        if (button.value.equals("c")) Minigame.current.input = "";
+                    }
                 }
             }
             if(Minigame.current.success != null && Minigame.current.success.contains(point))
@@ -475,6 +500,16 @@ public class Input {
                     }
                 }
             }
+        }
+
+        private void waitClique(Point point) {
+            for (Minigame.InputButton b : Minigame.current.inputButtons)
+            {
+                if(b.contains(point))
+                    GameTime.forward(30_000);
+            }
+
+
         }
 
         private void sellClique(Point point) {
@@ -780,7 +815,7 @@ public class Input {
                             return;
                     }
 
-                    if(item.type == AMMO) Combat.Reload(Game.player.equip, item);
+                    if(item.type == AMMO) Combat.reload(Game.player.equip, item);
 
                     if(item.type == HAT)
                     {

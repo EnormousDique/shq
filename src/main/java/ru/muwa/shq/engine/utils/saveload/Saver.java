@@ -55,6 +55,7 @@ public class Saver {
             // Записываем квесты
             objectMapper.writeValue(new File(PATH + "\\quests.json"),Game.player.quests);
 
+            // Записываем данные игрока
             objectMapper.writeValue(new File(PATH + "\\player.json" ), new PlayerData(Game.player));
 
             //Сохраняем диалоги
@@ -90,6 +91,7 @@ public class Saver {
     private static void clearLevelFromCars(Level l) {
         ArrayList<GameObject> cars = new ArrayList<>();
         for(var o : l.objects) if(o.speed >= 10) cars.add(o);
+        for(var o : l.objects) if(o.id == 8) cars.add(o); //ТРУПЫ УДАЛЯЕМ ВМЕСТЕ С МАШИНАМИ
         for( var car : cars) l.objects.remove(car);
     }
 

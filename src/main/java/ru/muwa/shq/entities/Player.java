@@ -47,6 +47,8 @@ public class Player extends GameObject {
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private boolean attackInProgress = false;
 
+    public ArrayList<String> passwords = new ArrayList<>();
+
 
     public Player()
     {

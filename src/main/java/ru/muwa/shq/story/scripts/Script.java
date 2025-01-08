@@ -35,7 +35,7 @@ public abstract class Script {
     public static HashMap<Integer,Long> momDrugs = new HashMap<>(),
                                          momFood = new HashMap<>();
     //Мапа для хранения паролей домофона. Ключ - координаты назначения домофона, значение - пароль.
-    private static HashMap<Coordinates,String> padiquePasswords = new HashMap<>();
+    public static HashMap<Coordinates,String> padiquePasswords = new HashMap<>();
     public static int zekKilled = 0;
     public static int gopKilled = 0;
     //Список для хранения вещей игрока для респавна при битве с боссом
@@ -276,9 +276,14 @@ public abstract class Script {
 
         /** Скрипт мини-игры с ментовской подставой ("красная" закладка) **/
         //TODO: перенести в хача???
+        //ВРЕМЕННО ДУМАЮ ОТКЛЮЧИТЬ ПОДСТАВУ В РАМКАХ УПРОЩЕНИЯ ИГРЫ
         script = new Script() {
             @Override
             public void execute() {
+
+                if(true) return;        //ВРЕМЕННО ДУМАЮ ОТКЛЮЧИТЬ ПОДСТАВУ В РАМКАХ УПРОЩЕНИЯ ИГРЫ
+
+
                 if(expired) return;
                 //Созадем мента
                 var ment = GameObject.get(7);
@@ -358,9 +363,9 @@ public abstract class Script {
                     //Определяем текущий объем бенза в канистре по описанию
                     int volume = Integer.parseInt
                             (kanistra.description.split(":")[1].split("/")[0]);
-                    volume += 5; //Повышаем объем бензина
+                    volume +=10; //Повышаем объем бензина
                     kanistra.description = "Заполнена:"+volume+"/100"; //Обновляем описание
-                    Game.player.wanted += 25; //Мусоров такое может заебать
+                    Game.player.wanted += 10; //Мусоров такое может заебать
             }
         };repo.put(17,script);
 
@@ -1747,6 +1752,7 @@ public abstract class Script {
                     Dialogue.current = Dialogue.hach.get(5); //Выводим соответствующий диалог
                     //Добавляем ответ в основной корень диалога (для сдачи квеста)
                     Dialogue.hach.get(Game.hach.dialogue).responses.add(new Dialogue.Response("Вот, нашел.",0,22221));
+                    Game.player.passwords.add("Под. с фитюлей - 417");
                     return;
                 }
                 //Если игрок взял квест хача, но не выполнил него
@@ -1798,6 +1804,7 @@ public abstract class Script {
                 //Добавляем реплику хакеру для сдачи квеста
                 Dialogue.hacker.get(1).responses
                         .add(new Dialogue.Response("Вот. Принёс",0,11112));
+                Game.player.passwords.add("Хакер - 666");
             }
 
         }; repo.put(2222_1,script);
@@ -1908,6 +1915,7 @@ public abstract class Script {
                 Game.player.quests.add(Quest.get(6));
                 //И закрываем диалог
                 Dialogue.current = null;
+
             }
         }; repo.put(3333_1,script);
 
@@ -2045,6 +2053,7 @@ public abstract class Script {
                         .add(new Dialogue.Response("Пацаненок...",0,3333_15));
                 //Закрываем диалог
                 Dialogue.current = null;
+                Game.player.passwords.add("Подъезд с малюткой - 358");
             }
         }; repo.put(3333_11,script);
         /** Скрипт двери квартиры пацана **/
@@ -2414,6 +2423,8 @@ public abstract class Script {
                 //Добавляем реплику для сдачи квеста
                 Dialogue.girl.get(Game.girl.dialogue).responses
                         .add(new Dialogue.Response("травка...",0,4444_2));
+                Game.player.passwords.add("Притон (педовка) - 420");
+
             }
         };repo.put(4444_6,script);
         /** Скрипт Кости **/
@@ -2911,6 +2922,8 @@ public abstract class Script {
                     Dialogue.current = Dialogue.officer.get(22);
                     Dialogue.officer.get(Game.officer.dialogue)
                             .responses.add(new Dialogue.Response("подбросил",0,6666_8));
+                    Game.player.passwords.add("Подъезд авторитета - 111");
+                    Game.player.passwords.add("Подъезд с бандитами - 883");
                     return;
                 }
                 if(Game.player.quests.stream().anyMatch(q->q.id==38 || q.completed)){
@@ -3153,6 +3166,8 @@ public abstract class Script {
                     Dialogue.nurse.get(1).responses.add(new Dialogue.Response("Кольцо",0,7777_11));
                     //Даем ключ
                     Game.player.addItem(Item.get(132));
+                    // Код
+                    Game.player.passwords.add("Подъезд медбрата - 112");
                     return;
                 }
                 //Если Шкипер взял квест с кольцом
@@ -3375,6 +3390,8 @@ public abstract class Script {
                 Level.repo.get(MECH_FLAT).objects.add(Game.mechanic);
                 //Сменяем диалог механику на другой (для сдачи квеста)
                 Game.mechanic.dialogue = 7;
+                Game.player.passwords.add("Тесть медбрата - 999");
+
             }
         }; repo.put(8888_2,script);
 
@@ -3739,6 +3756,7 @@ public abstract class Script {
                 Dialogue.pharmacist.get(1).responses
                         .add(new Dialogue.Response("таблетки",0,9999_4));
                 Dialogue.current = null;
+                Game.player.passwords.add("Притон (аптекарша) - 880");
             }
         }; repo.put(9999_1,script);
 

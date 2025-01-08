@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -134,5 +135,6 @@ public class Loader {
         Game.player.foot = data.foot;
 
         GameTime.value = data.time;
+        Collections.copy(data.passwords,Game.player.passwords);
     }
 }

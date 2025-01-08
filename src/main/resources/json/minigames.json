@@ -106,5 +106,9 @@
   {
     "id": 23,
     "type": "INTERNET"
+  },
+  {
+    "id": 24,
+    "type": "WAIT"
   }
 ]

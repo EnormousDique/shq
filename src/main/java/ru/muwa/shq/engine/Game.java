@@ -144,6 +144,10 @@ public class Game {
         Dialogue.companion = Dialogue.Companion.MOM;
         Dialogue.texture = Dialogue.textures.get(Game.mom.id);
 
+        //Пароль от подъезда
+        player.passwords.add("Дом: 228"); // Изначально знает пароль от дома
+
+
     }
     public static void switchLevel(int id){
         Game.currentLevel.objects.remove(player);

@@ -20,7 +20,7 @@ public class Minigame
     public Type type;
     public enum Type
     {
-        SHQUR, PADIQUE, MOM_CLEAN, DOOR, ELEVATOR,COOK,SHOP,BUS,SLEEP,SINK,TOILET,DEATH,GAS,SELL,INTERNET
+        SHQUR, PADIQUE, MOM_CLEAN, DOOR, ELEVATOR,COOK,SHOP,BUS,SLEEP,SINK,TOILET,DEATH,GAS,SELL,INTERNET,WAIT
     }
     public int script;
     public String input = ""; // для padique и elevator
@@ -124,6 +124,11 @@ public class Minigame
                     button.x = window.x + i%3*50; button.y = window.y + i/3 * 50;
                     inputButtons.add(button);
                 }
+                    var buttonC = new InputButton("c");
+                    buttonC.x = window.x + 100;
+                    buttonC.y = window.y + 150;
+                    inputButtons.add(buttonC);
+
                 break;
 
             case BUS:
@@ -147,7 +152,11 @@ public class Minigame
                 inputButtons.add(new InputButton("4_ч",new Rectangle(window.x + 100, window.y + 150,50,50)));
                 inputButtons.add(new InputButton("8_ч",new Rectangle(window.x + 150, window.y + 150,50,50)));
                 inputButtons.add(new InputButton("12_ч",new Rectangle(window.x + 200, window.y + 150,50,50)));
+                break;
 
+            case WAIT:
+                inputButtons = new ArrayList<>();
+                inputButtons.add(new InputButton("1_ч",new Rectangle(window.x + 50, window.y + 150,50,50)));
                 break;
 
             case TOILET:

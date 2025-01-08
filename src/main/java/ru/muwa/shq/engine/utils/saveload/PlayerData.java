@@ -5,6 +5,10 @@ import ru.muwa.shq.engine.utils.GameTime;
 import ru.muwa.shq.entities.Item;
 import ru.muwa.shq.entities.Player;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 public class PlayerData {
     public int x,y;
     public double pee=0,poo=0;
@@ -19,6 +23,7 @@ public class PlayerData {
     public Item hat,torso,foot;
     public int currentLevelId;
     public long time;
+    public ArrayList<String> passwords = new ArrayList<>();
     public PlayerData(){}
     public PlayerData(Player player){
         x = player.x;
@@ -49,6 +54,6 @@ public class PlayerData {
         foot = player.foot;
         currentLevelId = Game.currentLevel.id;
         time = GameTime.get();
-
+        Collections.copy(Game.player.passwords,passwords);
     }
 }

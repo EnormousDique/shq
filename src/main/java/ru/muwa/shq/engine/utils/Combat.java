@@ -297,7 +297,7 @@ public class Combat {
         target.y += (int) (Math.sin(angle)*distance);
     }
 
-    public static void Reload(Item gun, Item ammo) {
+    public static void reload(Item gun, Item ammo) {
         if(gun == null || ammo == null) return;
         if(!ammoTypeMap.containsValue(ammo.id) || !ammoTypeMap.containsKey(gun.id)) return;
         if(gun.ammo == gun.maxAmmo) return;

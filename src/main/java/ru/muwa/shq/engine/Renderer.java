@@ -287,9 +287,17 @@ public class Renderer implements Runnable{
                         g.drawString(button.value, (int) button.getCenterX(), (int) button.getCenterY());
                     }
                     //Рисуем введенный код
-                    g.setColor(Color.green);
+                    g.setColor(Color.cyan);
                     g.fillRect(Minigame.current.success.x,Minigame.current.success.y,Minigame.current.success.width,Minigame.current.success.height);
-                    g.drawString(Minigame.current.input, (int) (Minigame.current.window.getMaxX()-50),Minigame.current.window.y+20);
+                    g.drawString("Ввод: "+Minigame.current.input, (int) (Minigame.current.window.getMaxX()-200),Minigame.current.window.y+20);
+
+                    //Отображаем коды, которые Шкипер знает
+                    for (int i = 0; i < Game.player.passwords.size(); i++) {
+                        g.drawString("Коды: "+ Game.player.passwords.get(i), (int) (Minigame.current.window.getMaxX()-200),Minigame.current.window.y+120 + (i*20));
+
+                    }
+
+
                     break;
 
                 case INTERNET:
@@ -351,6 +359,17 @@ public class Renderer implements Runnable{
 
                     }
                     break;
+
+                case WAIT:
+                    for (Minigame.InputButton button : Minigame.current.inputButtons )
+                    {
+                        g.setColor(new Color(0,100,100,100));
+                        g.fillRect(button.x,button.y, button.width,button.height);
+                        g.setColor(Color.BLACK);
+                        g.drawString("Ждать 1 час",button.x+5, button.y+20);
+                    }
+                    break;
+
                 case SELL:
 
                     Minigame.current.inputButtons = new ArrayList<>();
