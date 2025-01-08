@@ -164,6 +164,13 @@ public class Launcher extends JFrame {
         settingsButton.setOpaque(true);
         backgroundLabel.add(settingsButton);
 
+        //Кнопка открыть настройки
+        JButton howToButton = new JButton("Как играть");
+        howToButton.setBounds(20,350,200,50);
+        howToButton.setBackground(new Color(150,200,200,200));
+        howToButton.setOpaque(true);
+        backgroundLabel.add(howToButton);
+
 
 
 
@@ -181,7 +188,6 @@ public class Launcher extends JFrame {
         settingsPanel.setFocusable(true);
         settingsPanel.setVisible(false);
 
-
         //Кнопка полноэкранный режим
         JCheckBox fullscreen = new JCheckBox("Полноэкранный режим",false);
         settingsPanel.add(fullscreen);
@@ -196,6 +202,48 @@ public class Launcher extends JFrame {
         JButton backButton = new JButton("Назад в меню");
         backButton.setBounds(100,400,150,80);
         settingsPanel.add(backButton);
+
+        //Панель обучения
+        var howToPanel = new JPanel();
+        launcher.add(howToPanel);
+        howToPanel.setBounds(0,0,800,600);
+        howToPanel.setBackground(Color.WHITE);
+        howToPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        howToPanel.setOpaque(true);
+        howToPanel.setFocusable(true);
+        howToPanel.setVisible(false);
+
+        String howToString = "<html><style>body{ color: rgba(00, 0,0,0.9);  }</style><body>"
+                + "<table width='100%'><tr><td width='50%'>"
+                + "Управление <br><br>"
+                + "W A S D - передвижение<br>"
+                + "E - взаимодействие с объектами и персонажами<br>"
+                + "I - открыть инвентарь<br>"
+                + "H - открыть HUD (инфо окно)<br>"
+                + "Q - Закрыть окна<br>"
+                + "T - ждать / пропустить время<br>"
+                + "R - перезарядка оружия<br>"
+                + "SPACE - использования предмета в руке<br>"
+                + "P - туалет (вне дома)<br>"
+                + "M - пауза / меню<br><br>"
+                + "Основная цель игры - уход за матерью. <br>"
+                + "Важно - следить за тем,<br>"
+                + " чтобы вовремя дать ей еду, <br>"
+                + "лекарства и отвести в душ<br>"
+                + "Если не успеть вовремя, игра оканчивается.<br>"
+                + "Кол-во оставшегося времени указано в таймере мамы на HUD<br><br>"
+                + "Попробуйте спасти маму. Удастся ли Вам это?<br><br>"
+                + "Ключ к успеху - общение<br>"
+                + "Ищите игровых персонажей, общайтесь с ними. <br>"
+                + "Возможно кто-то из них поможет вам спасти мать.<br><br>"
+                + "ИГРА СОХРАНЯЕТСЯ АВТОМАТИЧЕСКИ КОГДА ПЕРСОНАЖ СПИТ<br>"
+                + "СЛЕДИТЕ ЗА ПОКАЗАТЕЛЯМИ ЖИЗНЕДЕЯТЕЛЬНОСТИ ИГРОКА И МАТЕРИ <br>"
+                + "НЕ ЗАБЫВАЙТЕ ВОВРЕМЯ УДОВЛЕТВОРЯТЬ ЖИЗНЕННЫЕ ПОТРЕБНОСТИ ИГРОКА И МАТЕРИ<br><br>"
+                + "ПОПРОБУЙТЕ ИССЛЕДОВАТЬ ЭТОТ МИР И ОН ПООЩРИТ ВАС ЗА ЭТО<br>"
+                + "</td></tr></table>"
+                + "</body></html>";
+        JLabel howToLabel = new JLabel(howToString);
+        howToPanel.add(howToLabel);
 
 
         //Код нажатий кнопок
@@ -274,6 +322,14 @@ public class Launcher extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 disclaimerPanel.setVisible(false);
                 startPanel.setVisible(true);
+            }
+        });
+
+        howToButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startPanel.setVisible(false);
+                howToPanel.setVisible(true);
             }
         });
     }
