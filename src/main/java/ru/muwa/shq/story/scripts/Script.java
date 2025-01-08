@@ -140,7 +140,7 @@ public abstract class Script {
                     d.responses.add(new Dialogue.Response("ладно.", 0, 0));
                     Dialogue.current = d;
                     Dialogue.companion = null;
-                    Saver.work();
+
                 }else{
                     Game.switchLevel(HUB);
                     Game.player.x = 200;
