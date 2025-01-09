@@ -947,17 +947,17 @@ public abstract class Script {
                         new Rectangle(Game.player.x - 50, Game.player.y-50,100,100);
                 //Ищем яму в зоне действия
                 GameObject pit = Game.currentLevel.objects.stream()
-                        .filter(o->o.hitBox.intersects(zone) && o.name.contains("pit")).findFirst().orElse(null);
+                        .filter(o->o.hitBox.intersects(zone) && o.id==68).findFirst().orElse(null);
                 if(pit != null) return; //Если в зоне действия есть яма, выкопать новую нельзя
                 //Иначе копаем яму
-                pit = GameObject.get(66);//Создали новую яму
+                pit = GameObject.get(68);//Создали новую яму
                 //Ставим на уровень рядом со Шкипером
                 pit.x = Game.player.x; pit.y = Game.player.y + Game.player.hitBox.height;
                 Game.currentLevel.objects.add(pit);
                 //С шансом даем шкиперу закладку
                 if(Math.random() > 0.8) Game.player.addItem(Item.get(77));
                 //Агрим мусоров
-                Game.player.wanted += 20;
+                Game.player.wanted += 10;
             }
         }; repo.put(93,script);
         /** Шкипер пьет бутылку воды **/
