@@ -944,7 +944,7 @@ public abstract class Script {
                     return;
                 //Зона действия лопаты
                 Rectangle zone =
-                        new Rectangle(Game.player.x - 50, Game.player.y-50,100,100);
+                        new Rectangle(Game.player.x - 100, Game.player.y-100,200,200);
                 //Ищем яму в зоне действия
                 GameObject pit = Game.currentLevel.objects.stream()
                         .filter(o->o.hitBox.intersects(zone) && o.id==68).findFirst().orElse(null);
@@ -955,7 +955,7 @@ public abstract class Script {
                 pit.x = Game.player.x; pit.y = Game.player.y + Game.player.hitBox.height;
                 Game.currentLevel.objects.add(pit);
                 //С шансом даем шкиперу закладку
-                if(Math.random() > 0.8) Game.player.addItem(Item.get(77));
+                if(Math.random() > 0.92) Game.player.addItem(Item.get(77));
                 //Агрим мусоров
                 Game.player.wanted += 10;
             }
