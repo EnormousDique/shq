@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine;
 
+import ru.muwa.shq.engine.utils.Camera;
 import ru.muwa.shq.engine.utils.GameTime;
 import ru.muwa.shq.engine.utils.Input;
 import ru.muwa.shq.engine.utils.saveload.Loader;
@@ -11,6 +12,8 @@ import ru.muwa.shq.story.Dialogue;
 import ru.muwa.shq.story.Quest;
 import ru.muwa.shq.textures.ItemTextures;
 import ru.muwa.shq.textures.ObjectTextures;
+
+import java.util.Calendar;
 
 import static ru.muwa.shq.entities.GameObject.MOM;
 import static ru.muwa.shq.entities.Level.*;
@@ -153,6 +156,9 @@ public class Game {
         Game.currentLevel.objects.remove(player);
         Game.currentLevel = repo.get(id);
         Game.currentLevel.objects.add(player);
+        for (int i = 0; i < 9999; i++) {
+            Camera.update();
+        }
     }
 
     public static void load() {
